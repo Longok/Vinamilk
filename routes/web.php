@@ -1,0 +1,66 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+//admin
+Route::get('/admin', 'AdminController@index');
+Route::get('/dashboard','AdminController@show_dashboard');
+Route::post('/admin-dashboard','AdminController@dashboard');
+Route::get('/create-admin', 'AdminController@create');
+Route::post('/create-admin', 'AdminController@store');
+Route::get('/logout-admin', 'AdminController@logout');
+
+//Home
+Route::get('/home','HomeController@index');
+Route::get('/home/category/{id}','HomeController@category');
+Route::post('/search','HomeController@search');
+//Category
+Route::get('category','CategoryController@create');
+Route::post('/addCategory','CategoryController@store')->name('add-category');
+Route::get('/all-category','CategoryController@index');
+Route::get('/edit-category/{id}','CategoryController@edit');
+Route::post('/update-category/{id}','CategoryController@update');
+Route::get('/delete-category/{id}','CategoryController@delete');
+//Products
+Route::get('product','ProductController@create');
+Route::post('/addProduct','ProductController@store')->name('add-product');
+Route::get('/all-product','ProductController@index');
+Route::get('/list-product/{id}','ProductController@list');
+Route::get('/edit-product/{id}','ProductController@edit');
+Route::post('/update-product/{id}','ProductController@update');
+Route::get('/delete-product/{id}','ProductController@delete');
+//Slide
+Route::get('slide','SlideController@create');
+Route::post('/add-slide','SlideController@store');
+Route::get('/all-slide','SlideController@index');
+Route::get('/delete-slide/{id}','SlideController@delete');
+
+//Cart
+Route::post('/cart/{id}', 'CartController@add')->name('cart');
+Route::get('/show-cart','CartController@show_cart');
+Route::get('/delete-cart/{rowId}','CartController@delete_cart');
+Route::post('/update-cart/','CartController@update_cart');
+//Checkout
+Route::get('/check-out','CheckoutController@checkout');
+Route::post('/save-info-customer','CheckoutController@info_customer');
+Route::get('/payment','CheckoutController@payment');
+Route::post('/order','CheckoutController@order');
+Route::post('/adress','CheckoutController@adress');
+Route::get('/manage-order','CheckoutController@manage_order');
+//
+Route::get('/sign-up','CheckoutController@create');
+Route::post('/sign-up','CheckoutController@store');
+Route::get('/login','CheckoutController@getLogin');
+Route::post('/login','CheckoutController@postLogin');
