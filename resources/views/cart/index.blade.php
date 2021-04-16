@@ -71,11 +71,18 @@
                 <li class="breadcrumb">Phí vận chuyển: Free </li>
                 <!-- <li class="breadcrumb">Tổng tiền: {{cart::total(0).'VNĐ'}}</li> -->
             </ul>
-            @if(Auth::check())                           
-                <a class="breadcrumb" href ="{{URL::to('/check-out')}}">Thanh toán</a>             
-            @else                                
-                <a class="breadcrumb" href ="{{URL::to('/login')}}">Thanh toán</a>                    
-            @endif               
+            <?php
+                $customer_id = Session::get('customer_id');
+                if($customer_id != null){
+            ?>  
+                <a href="{{ URL::to('/check-out')}}"><i class="fas fa-thumbs-up"></i></i> Thanh toán</a> 
+            <?php
+                }else{
+            ?>
+                <a href="{{ URL::to('/login')}}"><i class="fas fa-thumbs-up"></i></i> Thanh toán</a>
+            <?php
+                }
+            ?>                    
         </div>
     @else
         <p>Bạn chưa có sản phẩm nào</p>      

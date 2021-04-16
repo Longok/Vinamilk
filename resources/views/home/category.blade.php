@@ -5,6 +5,57 @@
     <div class="mt-3 mx-4 text-primary">
         <a href="{{ URL::to('/home') }}">Trang chủ</a>
     </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="menu col-8 ">       
+            <ul class="parent col-lg-12 col-md-12 col-sm-6 col-xs-8">
+                <li class="active"> <a href="{{ URL::to('/home') }}"> Trang chủ </a></li>
+                <li> <a href=""> Sản phẩm </a>
+                    <ul class="submenu">
+                        @foreach($categorys as $category)
+                        <li><a href="{{URL::to('/home/category/'.$category->id)}}">{{ $category->name }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li> <a href=""> Tin tức </a></li>
+                <li> <a href=""> Liên hệ </a></li>               
+            </ul>
+            </div>  
+            <div class="col-4">
+                <form action="{{ URL::to('/search') }}" method="post">
+                {{ csrf_field() }}
+                    <input type="text" placeholder="Tìm kiếm sản phẩm" name="keywords">
+                    <input type="submit" class="btn btn-success btn-sm mt-1" value="Tìm kiếm" name="search">                           
+                </form> 
+            </div>     
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+            <div class="carousel-inner col-12">
+                @php
+                $i = 0;
+                @endphp
+                @foreach ($slides as $slide)
+                @php
+                $i++;
+                @endphp
+                <div class="carousel-item {{ $i == 1 ? 'active' :''}}">
+                    <img class="d-block " src="{{ asset('/storage/image/'.$slide->image) }}" width="100%" height="500">
+                </div>
+                @endforeach
+            </div>
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+    </div>  
     <div class="container">
         <div class="row mt-4">
         @foreach($products as $pro)

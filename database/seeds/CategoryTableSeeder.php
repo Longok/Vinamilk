@@ -20,7 +20,7 @@ class CategoryTableSeeder extends Seeder
                     'name' => 'Sữa bột'
                 ],
                 [
-                 'name' => 'Sữa bột pha sẵn'
+                    'name' => 'Sữa bột pha sẵn'
                 ],
                 [
                     'name' => 'Sữa tươi'

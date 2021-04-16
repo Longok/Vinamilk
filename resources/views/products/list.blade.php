@@ -1,8 +1,5 @@
 @extends('layout.master')
-@section('content')
-        <div class="mt-3 mx-5 text-primary">
-            <h6><a href="{{URL::to('/admin')}}">Trang Admin</a></h6>
-        </div>
+@section('content')       
         <div class="col-md-8 mx-auto">
             <div class="mt-3 text-primary">
                 <h6>Danh sách sản phẩm</h6>
@@ -46,6 +43,5 @@
             </table>
             <span>{{ $products->render() }}</span>
         </div>
-
 @endsection
 

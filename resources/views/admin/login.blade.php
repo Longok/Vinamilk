@@ -13,7 +13,7 @@
     <div class="row">
         <a href="{{ URL::to('home')}}">Trang chủ</a>
         <div class="col-6 col-md-3 mx-auto">
-            <form action="{{ URL::to('/admin-dashboard')}}" method="post">
+            <form action="{{ URL::to('/dashboard')}}" method="post">
                 {{ csrf_field() }}             
                 <div class="loginbox">
                     <div class="text-danger mt-3 ">

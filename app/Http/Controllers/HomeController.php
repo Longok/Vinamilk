@@ -27,8 +27,10 @@ class HomeController extends Controller
 
     public function category($id)
     {
+        $slides = Slide::all();
+        $categorys = Category::all();
         $products = Product::where('category_id',$id)->paginate(16);
-        return view('home.category', compact('products'));
+        return view('home.category', compact('products','categorys','slides'));
     }
 
     public function search(Request $request){

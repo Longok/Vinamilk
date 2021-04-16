@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('desc');
             $table->string('image');
             $table->float('price', 30, 2);
-            $table->integer('discount');
+            $table->integer('discount')->nullable();
             $table->integer('quantity');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->softDeletes();

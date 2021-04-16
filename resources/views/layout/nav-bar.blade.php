@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-2 p-0 ">
             <div class="sidebar">
-                <h5 class=" mx-2 text-primary">Trang Admin</h5>
                 <ul class="sub">
                     <li> <a href="#"class="DM"> Danh mục </a>
                         <ul class="droplow">

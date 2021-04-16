@@ -17,7 +17,7 @@ Route::get('/', function () {
 //admin
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard','AdminController@show_dashboard');
-Route::post('/admin-dashboard','AdminController@dashboard');
+Route::post('/dashboard','AdminController@dashboard');
 Route::get('/create-admin', 'AdminController@create');
 Route::post('/create-admin', 'AdminController@store');
 Route::get('/logout-admin', 'AdminController@logout');
@@ -64,3 +64,5 @@ Route::get('/sign-up','CheckoutController@create');
 Route::post('/sign-up','CheckoutController@store');
 Route::get('/login','CheckoutController@getLogin');
 Route::post('/login','CheckoutController@postLogin');
+
+Route::get('logout','CheckoutController@logout');

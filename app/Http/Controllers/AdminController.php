@@ -11,7 +11,7 @@ use Session;
 use DB;
 use Illuminate\Support\Facades\Hash;
 
-// Session_start();
+Session_start();
 
 class AdminController extends Controller
 {
@@ -32,23 +32,24 @@ class AdminController extends Controller
         $data['admin_password'] = Hash::make($request ->admin_password);
         $data['admin_roles'] = $request->admin_roles;
         $user_id = DB::table('admin')->insertGetId($data);
-        Session::put('Thongbao','Tạo tài khoản thành công');        
-        return redirect::to('/index');
+        Session::put('Thongbao','Tạo tài khoản thành công');       
+        return redirect::to('/create-admin');
     }
     public function show_dashboard(){
-        return view('admin.index');
+        return view('admin.dashboard');
     }
 
     public function dashboard(Request $request){        
         $admin = Admin::where([['admin_email', '=', $request->admin_email]])
         ->first();
     if (Hash::check($request->admin_password, $admin->admin_password)) {
-        Session::put('admin', $admin);
+        Session::put('admin_name', $admin->admin_name);
 
-        return view('admin.index');
+        return redirect::to('/dashboard');
     }
     Session::put('message','Mật khẩu hoặc tài khoản bị sai');
     return redirect()->back();
+        
     }   
 
     public function logout(){

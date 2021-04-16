@@ -38,11 +38,12 @@ class CheckoutController extends Controller
         Session::put('customer_id',$customer_id);
         Session::put('name',$request->name);
         Session::put('message','Tạo tài khoản thành công');  
-        return redirect()->back();
+        return redirect('/check-out');
       
     }
 
     public function getLogin(){
+
         return view('customer.login'); 
     }
     
@@ -50,7 +51,7 @@ class CheckoutController extends Controller
 
         $arr = [
             'email' => $request->email,
-            'password' => $request ->password
+            'password' => $request->password
         ];
         if(Auth::attempt($arr)){
                 // dd('Đăng nhập thành công');
@@ -58,7 +59,12 @@ class CheckoutController extends Controller
         }else{
             return redirect('/login')->with('message','Địa chỉ Email hoặc mật khẩu không đúng');
             // dd('Đăng nhập thất bại');
-        }
+        }       
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect::to('/home');
     }
 
     public function checkout(){
@@ -106,7 +112,7 @@ class CheckoutController extends Controller
         $payment_id = DB::table('payment')->insertGetId($payment);
 
         $order = array();
-        $order['user_id'] = Session::get('id');
+        $order['customer_id'] = Session::get('customer_id');
         $order['shipping_id'] = Session::get('id');
         $order['payment_id'] = $payment_id;
         $order['order_total'] = Cart::subtotal(0);
@@ -154,13 +160,13 @@ class CheckoutController extends Controller
     }
 
     public function manage_order(){
-        // $order = DB::table('order')
-        // ->join('users','order.user_id', '=','users.id')
-        // ->join('shipping','order.user_id', '=','shipping.id')
-        // ->select('order.*', 'users.name as user_name')
-        // ->orderby('order.order_id','desc')
-        // ->get();
-        return view('checkout.manage_order');
+        $order = DB::table('order')
+        ->join('customer','order.customer_id', '=','customer.customer_id')
+        ->join('shipping','order.customer_id', '=','shipping.id')
+        ->select('order.*', 'customer.email as customer_email', 'shipping.name as shipping_name','shipping.phone as shipping_phone')
+        ->orderby('order.order_id','desc')
+        ->get();
+        return view('checkout.manage_order',compact('order'));
     }
 
    

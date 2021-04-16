@@ -2,7 +2,7 @@
 @include('layout.headerAdmin')
 @section('content')
 <div class="mx-4 mt-3 text-primary">
-    <h6><a href="{{URL::to('/admin')}}">Trang Admin</a></h6>
+    <h6><a href="{{URL::to('/dashboard')}}">Trang Admin</a></h6>
 </div>
 <div class="col-md-8 mx-auto">
     <table class="table table-hover table-bordered mt-5 text-primary">

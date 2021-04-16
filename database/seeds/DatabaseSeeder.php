@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
             CategoryTableSeeder::class,
             DistrictsTableSeeder::class,
             CityTableSeeder::class,
-            WardsTableSeeder::class
+            WardsTableSeeder::class,
+            ProductsTableSeeder::class,
+            SlideTableSeeder::class
         ]);
     }
 }

@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'customer',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'customer',
         ],
 
         'api' => [
@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        // 'customer' => [
+        //     'driver' => 'session',
+        //     'provider' => 'customer',
+        // ],
+
+        // 'customer-api' => [
+        //     'driver' => 'token',
+        //     'provider' => 'customer',
+        // ],
     ],
 
     /*
@@ -75,6 +85,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'customer' => [
+            'driver' => 'eloquent',
+            'model' => App\Customer::class,
+        ],
     ],
 
     /*
@@ -98,6 +112,12 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        
+        'customers' => [
+            'provider' => 'customers',
+            'table' => 'password_resets',
+            'expire' => 30,
         ],
     ],
 

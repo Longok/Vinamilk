@@ -45,7 +45,7 @@
                     </div>
                     <div class="mt-3">            
                         <label for="">Địa chỉ</label>      
-                            <select class="form-control choose city" name="city" id="city" >
+                            <!-- <select class="form-control choose city" name="city" id="city" >
                                     <option value="0">--Chọn thành phố--</option>
                                     @foreach($thanhpho as $key => $tp)       
                                         <option value="{{$tp->matp}}">{{$tp->name}}</option>        
@@ -62,7 +62,7 @@
                                     @foreach($xaphuong as $key => $xp)       
                                         <option value="{{$xp->xaid}}">{{$xp->name}}</option>        
                                     @endforeach
-                            </select>
+                            </select> -->
                         <input type="text"class="form-control mt-3" value="{{ old('adress')}}" placeholder="Địa chỉ nhận hàng" name="adress">   
                         <button type="submit" name="thanhtoan" class="btn btn-success btn-md mt-3 thanhtoan">Gửi</button>
                     </div>                        
