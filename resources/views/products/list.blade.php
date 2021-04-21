@@ -41,7 +41,9 @@
                 </tbody>
 
             </table>
-            <span>{{ $products->render() }}</span>
+            <span class="pagination justify-content-center">
+                {{ $products->render() }}
+            </span>
         </div>
 @endsection
 

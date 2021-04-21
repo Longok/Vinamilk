@@ -7,7 +7,9 @@ use App\Http\Requests\AdminRequest;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use App\Admin;
+use App\Order;
 use Session;
+use App\Customer;
 use DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -57,5 +59,11 @@ class AdminController extends Controller
         Session::put('admin_id',null);
         
         return redirect::to('/admin');
+    }
+
+    public function list_user(){
+        $order = Order::all();
+        $customers = Customer::paginate(10);
+        return view('customer.list', compact('customers','order'));
     }
 }

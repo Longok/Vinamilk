@@ -21,7 +21,7 @@ Route::post('/dashboard','AdminController@dashboard');
 Route::get('/create-admin', 'AdminController@create');
 Route::post('/create-admin', 'AdminController@store');
 Route::get('/logout-admin', 'AdminController@logout');
-
+Route::get('/list-user','AdminController@list_user');
 //Home
 Route::get('/home','HomeController@index');
 Route::get('/home/category/{id}','HomeController@category');
@@ -46,7 +46,6 @@ Route::get('slide','SlideController@create');
 Route::post('/add-slide','SlideController@store');
 Route::get('/all-slide','SlideController@index');
 Route::get('/delete-slide/{id}','SlideController@delete');
-
 //Cart
 Route::post('/cart/{id}', 'CartController@add')->name('cart');
 Route::get('/show-cart','CartController@show_cart');
@@ -59,7 +58,11 @@ Route::get('/payment','CheckoutController@payment');
 Route::post('/order','CheckoutController@order');
 Route::post('/adress','CheckoutController@adress');
 Route::get('/manage-order','CheckoutController@manage_order');
-//
+Route::get('/view-order/{order_id}','CheckoutController@order_detail');
+Route::get('/delete-order/{order_id}','CheckoutController@delete');
+
+
+//User
 Route::get('/sign-up','CheckoutController@create');
 Route::post('/sign-up','CheckoutController@store');
 Route::get('/login','CheckoutController@getLogin');

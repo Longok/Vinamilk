@@ -6,18 +6,19 @@
         <thead>
             <tr class="text-center">
                 <th scope="col-4" class="">#</th>
-                <th scope="col-4" class="">Tên danh mục sản phẩm</th>
+                <th scope="col-4" class="">Tên danh khách hàng</th>
+                <th scope="col-4" class="">Email</th>
                 <th scope="col-4" class="">Sửa/Xóa</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($categorys as $category)
+            @foreach($customers as $customer)
                 <tr class="text-center">
-                    <td scope="row">{{$category->id}}</td>
-                    <td scope="row"><a href="{{ URL::to('/list-product/'.$category->id) }}">{{$category->name}}</a></td>
+                    <td scope="row">{{$customer->customer_id}}</td>
+                    <td scope="row">{{$customer->name}}</td>
+                    <td scope="row">{{$customer->email}}</td>
                     <td>
-                        <a href="{{URL::to('/edit-category/'.$category->id)}}">Sửa |</a>
-                        <a href="{{URL::to('/delete-category/'.$category->id)}}">Xóa</a>
+                        <a href="{{URL::to('/delete-customer/'.$customer->id)}}">Xóa</a>
                     </td>
                 </tr>
              @endforeach

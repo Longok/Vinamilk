@@ -47,7 +47,7 @@ class ProductController extends Controller
 
     public function list($id)
     {
-        $products = Product::where('category_id',$id)->get();
+        $products = Product::where('category_id',$id)->paginate(10);
 
         return view('products.list', compact('products'));
     }

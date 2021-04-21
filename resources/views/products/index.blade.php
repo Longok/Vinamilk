@@ -5,7 +5,7 @@
     <div class="mt-3 text-primary">
         <h6>Danh sách sản phẩm</h6>
     </div>
-    <table class="table table-hover table-bordered mt-5 text-primary">
+    <table class="table table-hover table-striped table-bordered mt-5 text-primary">
         <thead>
             <tr class="text-center">
                         <th scope="col-4" class="">#</th>

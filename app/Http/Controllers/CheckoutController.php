@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CheckoutRequest;
 use App\Category;
 use App\Product;
+use App\Customer;
 use App\Shipping;
 use App\Payment;
 use App\Order;
@@ -19,6 +20,7 @@ use App\Wards;
 use Session;
 use Cart;
 use Auth;
+use Carbon\Carbon;
 use DB;
 
 class CheckoutController extends Controller
@@ -38,7 +40,7 @@ class CheckoutController extends Controller
         Session::put('customer_id',$customer_id);
         Session::put('name',$request->name);
         Session::put('message','Tạo tài khoản thành công');  
-        return redirect('/check-out');
+        return redirect('/home');
       
     }
 
@@ -48,13 +50,12 @@ class CheckoutController extends Controller
     }
     
     public function postLogin(Request $request){
-
         $arr = [
             'email' => $request->email,
             'password' => $request->password
         ];
         if(Auth::attempt($arr)){
-                // dd('Đăng nhập thành công');
+                // dd('Đăng nhập thành công');    
             return redirect('/home');
         }else{
             return redirect('/login')->with('message','Địa chỉ Email hoặc mật khẩu không đúng');
@@ -160,15 +161,32 @@ class CheckoutController extends Controller
     }
 
     public function manage_order(){
-        $order = DB::table('order')
+        $orders = DB::table('order')
         ->join('customer','order.customer_id', '=','customer.customer_id')
-        ->join('shipping','order.customer_id', '=','shipping.id')
-        ->select('order.*', 'customer.email as customer_email', 'shipping.name as shipping_name','shipping.phone as shipping_phone')
+        ->join('shipping','order.shipping_id', '=','shipping.id')
+        ->join('order_detail','order.order_id', '=','order_detail.order_id')
+        ->select('order.*', 'customer.*', 'shipping.*','order_detail.*')
         ->orderby('order.order_id','desc')
         ->get();
-        return view('checkout.manage_order',compact('order'));
+        return view('checkout.manage_order',compact('orders'));
     }
 
-   
+    public function order_detail($order_id){
+        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        $orders = DB::table('order')
+        ->join('customer','order.customer_id', '=','customer.customer_id')
+        ->join('shipping','order.shipping_id', '=','shipping.id')
+        ->join('order_detail','order.order_id', '=','order_detail.order_id')
+        ->select('order.*', 'customer.*', 'shipping.*','order_detail.*')
+        ->where('order.order_id',$order_id)->first();
+        return view('checkout.view_order',compact('orders','date'));
+    }
+
+    public function delete($order_id){
+        $order = Order::find($order_id);
+        $order->delete();
+        return Redirect::to('/manage-order');
+
+    }
 }
 
