@@ -14,11 +14,13 @@ class CreateShippingTable extends Migration
     public function up()
     {
         Schema::create('shipping', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('phone');
-            $table->string('adress');
-            $table->string('note');
+            $table->bigIncrements('shipping_id');
+            $table->string('shipping_name');
+            $table->string('shipping_phone');
+            $table->string('shipping_adress');
+            $table->string('shipping_email');
+            $table->string('shipping_note');
+            $table->string('shipping_method');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -54,12 +54,12 @@ Route::post('/update-cart/','CartController@update_cart');
 //Checkout
 Route::get('/check-out','CheckoutController@checkout');
 Route::post('/save-info-customer','CheckoutController@info_customer');
-Route::get('/payment','CheckoutController@payment');
-Route::post('/order','CheckoutController@order');
 Route::post('/adress','CheckoutController@adress');
 Route::get('/manage-order','CheckoutController@manage_order');
-Route::get('/view-order/{order_id}','CheckoutController@order_detail');
+Route::get('/view-order/{order_code}','CheckoutController@order_detail');
+Route::post('/update-order-status','CheckoutController@update_status');
 Route::get('/delete-order/{order_id}','CheckoutController@delete');
+
 
 
 //User

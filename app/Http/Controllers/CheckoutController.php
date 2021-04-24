@@ -9,7 +9,6 @@ use App\Category;
 use App\Product;
 use App\Customer;
 use App\Shipping;
-use App\Payment;
 use App\Order;
 use App\Order_detail;
 use App\Slide;
@@ -76,65 +75,45 @@ class CheckoutController extends Controller
     }
 
     public function info_customer(CheckoutRequest $request){
-        // $shipping = new Shipping;
-        // $shipping->name = $request->name;
-        // $shipping->phone = $request->phone;
-        // $shipping->adress = $request->adress;
-        // $shipping->note = $request->note;
-        // Session::put('Thongbao','Thêm thông tin thành công');
-        // dd($shipping);
-        // return redirect('/payment');
-        $thanhpho = City::all();
-        $quanhuyen = Districts::all();
-        $xaphuong = Wards::all();
-        $data = array();
-        $data['name'] = $request->name;
-        $data['phone'] = $request->phone;
-        $data['adress'] = $request->adress;
-        $data['note'] = $request->note;
-        $shipping_id = DB::table('shipping')->insertGetId($data);
-        Session::put('id',$shipping_id);
-        return redirect('/payment');
-
-    }
-
-    public function payment(){
-        $categorys = Category::all();
-        $products = Product::orderBy('id','desc')->paginate(16);
-        $slides = Slide::all();
-        return view('checkout.payment', compact('categorys','products','slides'));
-
-    }
-
-    public function order(Request $request){
-        $payment = array();
-        $payment['payment_method'] = $request->payment_method;
-        $payment['payment_status'] = "Đang xử lý";
-        $payment_id = DB::table('payment')->insertGetId($payment);
-
-        $order = array();
-        $order['customer_id'] = Session::get('customer_id');
-        $order['shipping_id'] = Session::get('id');
-        $order['payment_id'] = $payment_id;
-        $order['order_total'] = Cart::subtotal(0);
-        $order['order_status'] = "Đang xử lý";
-        $order_id = DB::table('order')->insertGetId($order);
-
         $content = Cart::content();
-        foreach($content as $v_content){
-            $order_detail = array();
-            $order_detail['order_id'] = $order_id;
-            $order_detail['product_id'] = $v_content->id;
-            $order_detail['product_name'] = $v_content->name;
-            $order_detail['product_price'] = $v_content->price;
-            $order_detail['product_quantity'] = $v_content->qty;
-            $order_detail_id = DB::table('order_detail')->insert($order_detail);
+
+        $shipping = new Shipping;
+        $shipping->shipping_name = $request->shipping_name;
+        $shipping->shipping_email = $request->shipping_email;
+        $shipping->shipping_phone = $request->shipping_phone;
+        $shipping->shipping_adress = $request->shipping_adress;
+        $shipping->shipping_note = $request->shipping_note;
+        $shipping->shipping_method = $request->shipping_method;
+        $shipping->save();
+        $shipping_id = $shipping->shipping_id;
+
+        $code = substr(md5(microtime()),rand(0,26),5);
+        $order = new Order;
+        $order->customer_id = Session::get('customer_id');
+        $order->shipping_id = $shipping_id;
+        $order->order_code = $code;
+        $order->order_status = 1;
+        $order->save();
+
+        foreach($content as $key =>$value){
+            $order_detail = new Order_detail;
+            $order_detail->order_code = $code;
+            $order_detail->product_id = $value->id;
+            $order_detail->product_name = $value->name;
+            $order_detail->product_price = $value->price;
+            $order_detail->product_quantity = $value->qty;
+            $order_detail->save();
+            // echo '<pre>';
+            // print_r($order_detail);
+            // echo '</pre>';
         }
-        if($payment['payment_method'] = $request->payment_method){
+
+        if($shipping->shipping_method = $request->shipping_method){
             Cart::destroy();
-            return view('checkout.order');
+            return view('checkout.message');
         }       
-        return redirect()->back();
+        return view('checkout.message');
+
     }
 
     public function adress(Request $request)
@@ -161,26 +140,31 @@ class CheckoutController extends Controller
     }
 
     public function manage_order(){
-        $orders = DB::table('order')
-        ->join('customer','order.customer_id', '=','customer.customer_id')
-        ->join('shipping','order.shipping_id', '=','shipping.id')
-        ->join('order_detail','order.order_id', '=','order_detail.order_id')
-        ->select('order.*', 'customer.*', 'shipping.*','order_detail.*')
-        ->orderby('order.order_id','desc')
-        ->get();
-        return view('checkout.manage_order',compact('orders'));
+        $shipping = Shipping::join('order','shipping.shipping_id','=','order.shipping_id')->select('shipping.*','order.*')->get();
+        $orders = Order::orderBy('created_at','DESC')->get();
+        return view('checkout.manage_order',compact('orders','shipping'));
     }
 
-    public function order_detail($order_id){
-        $date = Carbon::now('Asia/Ho_Chi_Minh');
-        $orders = DB::table('order')
-        ->join('customer','order.customer_id', '=','customer.customer_id')
-        ->join('shipping','order.shipping_id', '=','shipping.id')
-        ->join('order_detail','order.order_id', '=','order_detail.order_id')
-        ->select('order.*', 'customer.*', 'shipping.*','order_detail.*')
-        ->where('order.order_id',$order_id)->first();
-        return view('checkout.view_order',compact('orders','date'));
+    public function order_detail($order_code){
+        $order_detail = Order_detail::where('order_code',$order_code)->get();
+        $orders = Order::where('order_code',$order_code)->get();
+        foreach( $orders as $key => $order){
+            $customer_id = $order->customer_id;
+            $shipping_id = $order->shipping_id;
+        }
+        $customer = Customer::where('customer_id',$customer_id)->first();
+        $shipping = Shipping::where('shipping_id',$shipping_id)->first();
+
+        $order_detail = Order_detail::with('product')->where('order_code',$order_code)->get();
+        return view('checkout.view_order')->with(compact('order_detail','customer','shipping','order_detail','orders'));
     }
+
+    public function update_status(Request $request){
+        $data = $request->all();
+        $orderUpdate = Order::find($data['order_id']);
+        $orderUpdate->order_status = $data['order_status'];                                          
+        $orderUpdate->save();
+    }   
 
     public function delete($order_id){
         $order = Order::find($order_id);

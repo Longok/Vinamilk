@@ -24,18 +24,20 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required',
-            'phone'=>'required',
-            'adress'=>'required'
+            'shipping_name'=> 'required',
+            'shipping_phone'=>'required',
+            'shipping_adress'=>'required',
+            'shipping_email'=>'required'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => ('Bạn chưa nhập tên'),
-            'phone.required' => ('Bạn chưa nhập số điện thoại'),
-            'adress.required' => ('Bạn chưa thêm địa chỉ')
+            'shipping_name.required' => ('Bạn chưa nhập tên'),
+            'shipping_phone.required' => ('Bạn chưa nhập số điện thoại'),
+            'shipping_adress.required' => ('Bạn chưa thêm địa chỉ'),
+            'shipping_email.required' => ('Bạn chưa nhập email')
         ];
     }
 }

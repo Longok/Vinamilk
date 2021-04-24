@@ -16,7 +16,7 @@
                 <div class="col-sm-6 col-md-2 mt-5">
                     <ul>                    
                     @if(Auth::check())
-                        <i class="fas fa-smile" style="color:blue"></i> {{"Xin chào:"}} {{Auth::user()->name}}
+                        <i class="fas fa-smile" style="color:blue"></i> {{Auth::user()->name}}
                         <li><a href ="{{URL::to('/logout')}}">Đăng Xuất</a></li>
                     @else
                         <li><a href ="{{URL::to('/login')}}"><i class="fas fa-user" style="font-size:18px;color:blue;"></i>  Đăng nhập</a></li>
