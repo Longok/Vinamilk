@@ -8,15 +8,16 @@
     <table class="table table-hover table-striped table-bordered mt-5 text-primary">
         <thead>
             <tr class="text-center">
-                        <th scope="col-4" class="">#</th>
-                        <th scope="col-4" class="">Danh mục sản phẩm</th>
-                        <th scope="col-4" class="">Tên sản phẩm</th>
-                        <th scope="col-4" class="">Giá sản phẩm</th>
-                        <th scope="col-4" class="">Hình ảnh sản phẩm</th>
-                        <th scope="col-4" class="">Số lượng sản phẩm</th>
-                        <th scope="col-4" class="">Giảm giá (%)</th>
-                        <th scope="col-4" class="">Mô tả sản phẩm</th>
-                        <th scope="col-4" class="">Sửa/Xóa</th>
+                <th scope="col-4" class="">#</th>
+                <th scope="col-4" class="">Danh mục sản phẩm</th>
+                <th scope="col-4" class="">Tên sản phẩm</th>
+                <th scope="col-4" class="">Giá sản phẩm</th>
+                <th scope="col-4" class="">Hình ảnh sản phẩm</th>
+                <th scope="col-4" class="">Số lượng nhập vào</th>
+                <th scope="col-4" class="">Số lượng đã bán</th>
+                <th scope="col-4" class="">Giảm giá (%)</th>
+                <th scope="col-4" class="">Mô tả sản phẩm</th>
+                <th scope="col-4" class="">Sửa/Xóa</th>
             </tr>
         </thead>
         <tbody>
@@ -27,9 +28,10 @@
                 <td scope="row">{{$product->name}}</td>
                 <td scope="row">{{$product->price}}</td>
                 <td scope="row">
-                    <img src="{{ asset('storage/image/'.$product->image) }}" height="200" width="200">
+                    <img src="{{ asset('storage/image/'.$product->image) }}" height="150" width="150">
                 </td>
                 <td scope="row">{{$product->quantity}}</td>
+                <td scope="row">{{$product->sale}}</td>
                 <td scope="row">{{$product->discount}}</td>
                 <td scope="row">{{$product->desc}}</td>
                 <td>
@@ -45,6 +47,5 @@
         {{ $products->render() }}
     </span>
 </div>
-
 @endsection
 

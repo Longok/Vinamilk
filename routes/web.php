@@ -59,7 +59,7 @@ Route::get('/manage-order','CheckoutController@manage_order');
 Route::get('/view-order/{order_code}','CheckoutController@order_detail');
 Route::post('/update-order-status','CheckoutController@update_status');
 Route::get('/delete-order/{order_id}','CheckoutController@delete');
-
+Route::get('/manage-warehouse','CheckoutController@manage_warehouse');
 
 
 //User

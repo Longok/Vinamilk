@@ -41,8 +41,9 @@
                 <th>STT</th>
                 <th>Tên sản phẩm</th>
                 <th>Hình ảnh sản phẩm</th>
+                <th>Tồn kho</th>
                 <th>Số lượng</th>
-                <th>Giá tiền (vnđ)</th>
+                <th>Đơn giá (vnđ)</th>
             </tr>    
         </thead>
         <tbody> 
@@ -59,10 +60,14 @@
                     <td>
                         <img src="{{ asset('storage/image/'.$detail->product->image) }}" height="100" width="150">
                     </td>
-                    <td>{{ $detail->product_quantity }}</td>
+                    <td>{{ $detail->product->quantity }}</td>
+                    <td>
+                        <input type="number" min="1" value="{{$detail->product_quantity}}" name="product_quantity">
+                        <input type="hidden" value="{{$detail->product_id}}" name="order_product_id" class="order_product_id">
+                        <button class="btn btn-success btn-sm" name="update_quantity">Cập nhật</button>
+                    </td>
                     <td>{{ number_format($detail->product_price ,0,'.','.') }}</td>
-                </tr>
-                
+                </tr>               
         @endforeach
                 <tr>
                     <td colspan="3"><b>Tổng tiền</b></td>
@@ -78,7 +83,7 @@
             {{ csrf_field() }}          
                 <div class="form-inline">                
                     <select name="order_status" class="form-control input-inline update_order_status" style="width: 200px">
-                        <option id="{{$order->order_id}}" value="1">Đang xử lý</option>
+                        <option id="{{$order->order_id}}" selected value="1">Đang xử lý</option>
                         <option id="{{$order->order_id}}" value="2">Đã xử lý</option>
                         <option id="{{$order->order_id}}" value="3">Chưa xử lý</option>
                     </select>
@@ -114,19 +119,31 @@
 @section('script')
   <script>
     $('.update_order_status').change(function(){
-        // alert('hehe');
         var order_status = $(this).val();
         // alert(order_status);
         var order_id = $(this).children(":selected").attr("id");
         // alert(order_id);
         var _token = $('input[name="_token"]').val();
         // alert(_token);
+        //lấy số lượng
+        quantity = [];
+        $('input[name="product_quantity"]').each(function(){
+            quantity.push($(this).val());
+        });
+        // alert(quantity);
+        //lấy product id
+        order_product_id = [];
+        $('input[name="order_product_id"]').each(function(){
+            order_product_id.push($(this).val());
+        });
+        // alert(order_product_id);
         $.ajax({
                 url:'{{url('/update-order-status')}}',
                 method: 'POST',
-                data:{order_status:order_status,order_id:order_id,_token:_token},
+                data:{order_status:order_status,order_id:order_id,_token:_token,quantity:quantity,order_product_id:order_product_id},
                 success:function(data){
                     alert('Cập nhật tình trạng đơn hàng thành công');   
+                    // location.reload();
             }
         });
     });

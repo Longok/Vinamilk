@@ -21,7 +21,8 @@ class ProductsTableSeeder extends Seeder
                     'image'=> 'product-hop-sua-gold.png',
                     'price'=> '320000',
                     'discount'=> '0',
-                    'quantity'=> '48'
+                    'quantity'=> '48',
+                    'sale'=> '0'
                 ],
                 [
                     'category_id' => '2',
@@ -30,7 +31,8 @@ class ProductsTableSeeder extends Seeder
                     'image'=> 'growplus.png',
                     'price'=> '35000',
                     'discount'=> '0',
-                    'quantity'=> '48'
+                    'quantity'=> '48',
+                    'sale'=> '0'
                 ],
                 [
                     'category_id' => '3',
@@ -39,7 +41,8 @@ class ProductsTableSeeder extends Seeder
                     'image'=> 'sugar-180ml.png',
                     'price'=> '25000',
                     'discount'=> '0',
-                    'quantity'=> '48'
+                    'quantity'=> '48',
+                    'sale'=> '0'
                 ],
                 [
                     'category_id' => '4',
@@ -48,7 +51,8 @@ class ProductsTableSeeder extends Seeder
                     'image'=> 'it-duong-498-451.png',
                     'price'=> '22000',
                     'discount'=> '0',
-                    'quantity'=> '48'
+                    'quantity'=> '48',
+                    'sale'=> '0'
                 ],
                 [
                     'category_id' => '5',
@@ -57,7 +61,8 @@ class ProductsTableSeeder extends Seeder
                     'image'=> 'duasocola.jpg',
                     'price'=> '8500',
                     'discount'=> '0',
-                    'quantity'=> '48'
+                    'quantity'=> '48',
+                    'sale'=> '0'
                 ]
             ]
         );

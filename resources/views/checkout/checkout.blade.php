@@ -16,24 +16,7 @@
     </nav>    
         <div class="row mt-4 text-primary">    
             <div class="col-6 mx-auto">  
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <div class="alert-danger">
-                <?php
-                    $message = Session::get('Thongbao');
-                    if($message){
-                        echo '<span class="text-alert">'.$message.'</span>';
-                        session::put('Thongbao',null);
-                    }
-                ?>
-                </div>                       
+                                       
                 <div class="col-md-12">              
                     <div class="mt-3">            
                         <label for="">Tên khách hàng</label> 

@@ -75,7 +75,7 @@ class ProductController extends Controller
         Session::put('Thongbao','Sửa sản phẩm thành công');
         $updateProduct->save();
 
-        return Redirect::to('all-product');
+        return Redirect()->back();
     }
 
     public function delete($id)

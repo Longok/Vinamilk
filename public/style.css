@@ -130,18 +130,27 @@ ul ul {
 }
 ul.droplow.show{
     display: block;
+    padding-left: 15%;
 }
 ul.droplow1.show1{
     display: block;
+    padding-left: 15%;
 }
 ul.droplow2.show2{
     display: block;
+    padding-left: 15%;
 }
 ul.droplow3.show3{
     display: block;
+    padding-left: 15%;
 }
 ul.droplow4.show4{
     display: block;
+    padding-left: 15%;
+}
+ul.droplow5.show5{
+    display: block;
+    padding-left: 15%;
 }
 li{
     display: block;
@@ -155,7 +164,7 @@ ul.sub {
 }
 .sidebar{
     background:none;
-    width: 100%;
+    width: 80%;
     height: 100%;
     margin-left:10px;
 }

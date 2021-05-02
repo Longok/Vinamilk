@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->float('price', 30, 2);
             $table->integer('discount')->nullable();
             $table->integer('quantity');
+            $table->integer('sale')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->softDeletes();
             $table->timestamps();

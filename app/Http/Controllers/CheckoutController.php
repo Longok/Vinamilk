@@ -140,13 +140,15 @@ class CheckoutController extends Controller
     }
 
     public function manage_order(){
-        $shipping = Shipping::join('order','shipping.shipping_id','=','order.shipping_id')->select('shipping.*','order.*')->get();
+        $shipping = Shipping::join('order','shipping.shipping_id','=','order.shipping_id')
+        ->select('shipping.*','order.*')
+        ->get();
         $orders = Order::orderBy('created_at','DESC')->get();
         return view('checkout.manage_order',compact('orders','shipping'));
     }
 
     public function order_detail($order_code){
-        $order_detail = Order_detail::where('order_code',$order_code)->get();
+        $order_detail = Order_detail::with('product')->where('order_code',$order_code)->get();
         $orders = Order::where('order_code',$order_code)->get();
         foreach( $orders as $key => $order){
             $customer_id = $order->customer_id;
@@ -155,15 +157,33 @@ class CheckoutController extends Controller
         $customer = Customer::where('customer_id',$customer_id)->first();
         $shipping = Shipping::where('shipping_id',$shipping_id)->first();
 
-        $order_detail = Order_detail::with('product')->where('order_code',$order_code)->get();
-        return view('checkout.view_order')->with(compact('order_detail','customer','shipping','order_detail','orders'));
+        return view('checkout.view_order',compact('order_detail','customer','shipping','order_detail','orders'));
     }
 
     public function update_status(Request $request){
+        //update order
         $data = $request->all();
         $orderUpdate = Order::find($data['order_id']);
         $orderUpdate->order_status = $data['order_status'];                                          
         $orderUpdate->save();
+
+        if($orderUpdate->order_status == 2){
+            foreach($data['order_product_id'] as $key => $product_id){
+                $product = Product::find($product_id);  
+                $quantity = $product->quantity;
+                $sale = $product->sale;  
+                foreach($data['quantity'] as $key2 => $qty){
+
+                    if($key == $key2){
+                        $product_remain = $quantity - $qty;
+                        $product->quantity = $product_remain;
+                        $product->sale = $sale + $qty;
+                        $product->save();
+                    }
+                        
+                }
+            }
+        }
     }   
 
     public function delete($order_id){
@@ -171,6 +191,15 @@ class CheckoutController extends Controller
         $order->delete();
         return Redirect::to('/manage-order');
 
+    }
+
+    public function manage_warehouse(){
+        $warehouse = Product::join('order_detail','products.id','=','order_detail.product_id')
+        ->select('products.*','order_detail.product_quantity as product_sale')->paginate(10);
+
+        $category = Category::paginate(10);
+
+        return view('checkout.manage_warehouse',compact('warehouse','category',));
     }
 }
 
