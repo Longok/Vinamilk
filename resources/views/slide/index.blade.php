@@ -2,10 +2,10 @@
 @include('layout.headerAdmin')
 @section('content')
     <div class="col-md-8 mx-auto">
-        <div class="mt-3 text-primary">
+        <div class="mt-3 text-light">
             <h6>Danh sách Slide</h6>
         </div>
-        <table class="table table-hover table-bordered mt-5 text-primary">
+        <table class="table table-bordered mt-5 text-light">
             <thead>
                 <tr class="text-center">
                     <th scope="col-4" class="">#</th>

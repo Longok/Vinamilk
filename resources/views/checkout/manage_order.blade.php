@@ -2,7 +2,7 @@
 @include('layout.headerAdmin')
 @section('content')
 <div class="col-md-8 mx-auto">
-    <table class="table table-hover table-striped table-bordered mt-5 text-primary">
+    <table class="table table-striped table-bordered mt-5 text-light">
     <h6>Liệt kê đơn hàng</h6>
     <thead>
             <tr class="text-center">

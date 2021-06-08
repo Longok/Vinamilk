@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    // return what you want
 });
 //admin
-Route::get('/admin', 'AdminController@index');
+Route::get('/my-admin', 'AdminController@index');
 Route::get('/dashboard','AdminController@show_dashboard');
 Route::post('/dashboard','AdminController@dashboard');
 Route::get('/create-admin', 'AdminController@create');
@@ -23,8 +24,8 @@ Route::post('/create-admin', 'AdminController@store');
 Route::get('/logout-admin', 'AdminController@logout');
 Route::get('/list-user','AdminController@list_user');
 //Home
-Route::get('/home','HomeController@index');
-Route::get('/home/category/{id}','HomeController@category');
+Route::get('/','HomeController@index');
+Route::get('/category/{id}','HomeController@category');
 Route::post('/search','HomeController@search');
 //Category
 Route::get('category','CategoryController@create');
@@ -34,7 +35,7 @@ Route::get('/edit-category/{id}','CategoryController@edit');
 Route::post('/update-category/{id}','CategoryController@update');
 Route::get('/delete-category/{id}','CategoryController@delete');
 //Products
-Route::get('product','ProductController@create');
+Route::get('/product','ProductController@create');
 Route::post('/addProduct','ProductController@store')->name('add-product');
 Route::get('/all-product','ProductController@index');
 Route::get('/list-product/{id}','ProductController@list');

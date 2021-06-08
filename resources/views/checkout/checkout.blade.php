@@ -6,7 +6,7 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">         
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ URL::to('/home') }}">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="{{ URL::to('/') }}">Trang chủ</a></li>
             <li class="breadcrumb-item active" aria-current="page">Thông tin đơn hàng</li>
         </ol>
         

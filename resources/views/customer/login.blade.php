@@ -11,7 +11,7 @@
 <body>
 <div class="sign-in mx-5 ">
     <div class="row">
-        <a href="{{ URL::to('home')}}">Trang chủ</a>
+        <a href="{{ URL::to('/')}}">Trang chủ</a>
         <div class="col-6 col-md-3 mx-auto">
             <form action="{{ URL::to('/login')}}" method="post">
                 {{ csrf_field() }}             

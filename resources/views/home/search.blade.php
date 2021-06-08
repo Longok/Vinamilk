@@ -1,30 +1,39 @@
 @extends('layout.master')
 @include('layout.header')
 @section('content')
-<div class="container-fluid">
-        <div class="row">
-            <div class="menu col-8 ">       
-            <ul class="parent col-lg-12 col-md-12 col-sm-6 col-xs-8">
-                <li class="active"> <a href="{{ URL::to('/home') }}"> Trang chủ </a></li>
-                <li> <a href=""> Sản phẩm </a>
-                    <ul class="submenu">
-                        @foreach($categorys as $category)
-                        <li><a href="{{URL::to('/home/category/'.$category->id)}}">{{ $category->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li> <a href=""> Tin tức </a></li>
-                <li> <a href=""> Liên hệ </a></li>               
-            </ul>
-            </div>  
-            <div class="col-4">
-                <form action="{{ URL::to('/search') }}" method="post">
+<body>
+    <div class="menu">
+        <ul>
+            <li class="active">
+                <a href="{{ URL::to('/') }}">Trang chủ</a>
+            </li>
+            <li>
+                <a href="">Sản phẩm
+                    <i class="ti-angle-down"></i>  
+                </a>
+                <ul class="submenu">
+                    @foreach($categorys as $category)
+                        <li><a href="{{URL::to('/category/'.$category->id)}}">{{ $category->name }}</a></li>
+                    @endforeach
+                </ul>
+            </li>
+            <li><a href="">Tin tức</a></li>
+            <li><a href="">Liên hệ</a></li>                   
+        </ul> 
+        <div class="search-btn">
+            <form action="{{ URL::to('/search') }}" method="post">
                 {{ csrf_field() }}
-                    <input type="text" placeholder="Tìm kiếm sản phẩm" name="keywords">
-                    <input type="submit" class="btn btn-success btn-sm mt-1" value="Tìm kiếm" name="search">                           
-                </form> 
-            </div>     
-            <div id="demo" class="carousel slide" data-ride="carousel">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="keywords" placeholder="Tìm kiếm.." aria-label="Recipient's username">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>               
+            </form>                        
+        </div>      
+    </div> 
+    <div class="slide">
+        <div id="demo" class="carousel " data-ride="carousel">
                 <ul class="carousel-indicators">
                     <li data-target="#demo" data-slide-to="0" class="active"></li>
                     <li data-target="#demo" data-slide-to="1"></li>
@@ -50,10 +59,10 @@
                     <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
-        </div>
+        </div>    
     </div>    
-<div class="container">
-        <div class="row mt-4">
+    <div class="content">
+        <div class="container">
                 @foreach($search as $pro)
                 <div class="box col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <form action="{{Route('cart',$pro->id)}}" method="post" enctype="multipart/form-data">
@@ -76,14 +85,15 @@
                                 <h6>Số lượng</h6>
                                 <input class="input" name="qty" type="number" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                                <button type="submit" class="btn btn-primary mt-2 ">Mua hàng</button>
+                                <button type="submit" class="btn btn-primary mb-2 ">Mua hàng</button>
                             </div>
                         </div>
                     </form>
                 </div>
                 @endforeach
         </div>
-</div> 
+    </div>  
+</body>    
 <script>
     $('.DM').click(function () {
         $(' ul.droplow').toggleClass("show");

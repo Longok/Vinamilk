@@ -4,7 +4,7 @@
 <div class="container" style="margin-top: 80px">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ URL::to('/home') }}">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="{{ URL::to('/') }}">Trang chủ</a></li>
         </ol>
     </nav>
     <div class="div">

@@ -10,6 +10,7 @@
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="{{asset('/bootstrap.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('/asset/font-icon/themify-icons.css')}}">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
   <link rel="stylesheet" href="{{asset('/style.css')}}">

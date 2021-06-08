@@ -3,7 +3,7 @@
 @section('content')       
 <div class="col-md-8 mx-auto">
 <h1>Chi tiết đơn hàng</h1>
-    <table class="table table-hover table-striped table-bordered mt-5 text-primary">
+    <table class="table table-striped table-bordered mt-5 text-light">
         <tbody>
             <tr>
                 <td>Tên người đặt hàng</td>
@@ -35,7 +35,7 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-hover table-striped table-bordered mt-4 text-primary">
+    <table class="table table-striped table-bordered mt-4 text-light">
         <thead>
             <tr role="row">
                 <th>STT</th>
