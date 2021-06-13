@@ -5,7 +5,7 @@
     <div class="menu">
         <ul>
             <li class="active">
-                <a href="{{ URL::to('/') }}">Trang chủ</a>
+                <a href="{{ URL::to('/index') }}">Trang chủ</a>
             </li>
             <li>
                 <a href="">Sản phẩm
@@ -64,7 +64,7 @@
     <div class="content">
         <div class="container">
                 @foreach($search as $pro)
-                <div class="box col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="box col-lg-4 col-md-4 col-sm-4 col-xs-6">
                     <form action="{{Route('cart',$pro->id)}}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="card">

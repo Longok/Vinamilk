@@ -1,11 +1,11 @@
 @extends('layout.master')
-@include('layout.header')
 @section('content')
+@include('layout.header')
 <body>
-    <div class="menu">
+    <div id="menu">
         <ul>
             <li class="active">
-                <a href="{{ URL::to('/') }}">Trang chủ</a>
+                <a href="{{ URL::to('/index') }}">Trang chủ</a>
             </li>
             <li>
                 <a href="">Sản phẩm
@@ -30,6 +30,9 @@
                         </div>
                     </div>               
             </form>                        
+        </div>
+        <div id="menu-icon" class="menu-icon">
+            <i class="ti-align-justify"></i>
         </div>      
     </div> 
     <div class="slide">
@@ -48,7 +51,7 @@
                 $i++;
                 @endphp
                 <div class="carousel-item {{ $i == 1 ? 'active' :''}}">
-                    <img class="d-block " src="{{ asset('/storage/image/'.$slide->image) }}" width="100%" height="500">
+                    <img src="{{ asset('/storage/image/'.$slide->image) }}" width="100%">
                 </div>
                 @endforeach
             </div>
@@ -64,7 +67,7 @@
     <div class="content">
         <div class="container">            
             @foreach($products as $pro)
-                <div class="box col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="box col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <form action="{{Route('cart',$pro->id)}}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="card">
@@ -97,25 +100,19 @@
    
 </body>
 <script>
-    $('.DM').click(function () {
-        $(' ul.droplow').toggleClass("show");
-    });
-    $('.DM1').click(function () {
-         $(' ul.droplow1').toggleClass("show1");
-    });
-    $('.DM2').click(function () {
-        $(' ul.droplow2').toggleClass("show2");
-    });
-    $('.DM3').click(function () {
-         $(' ul.droplow3').toggleClass("show3");
-    });
-    $('.DM4').click(function () {
-         $(' ul.droplow4').toggleClass("show4");
-    });
-    $('.icon').click(function () {
-       alert('helo');
-    });
+    var menu = document.getElementById('menu');
+    var menuIcon = document.getElementById('menu-icon');
+    var menuHeight = menu.clientHeight;
+
+        menuIcon.onclick = function () {
+            var closeIcon = menu.clientHeight === menuHeight;
+            if (closeIcon) {
+                menu.style.height = 'auto';
+            } else {
+                menu.style.height = null;
+            }
+        }
+
 </script>
 @include('layout.footer')
-</html>
 @endsection

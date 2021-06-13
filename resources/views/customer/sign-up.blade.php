@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="col-sm-8 col-md-9">
-  <a href ="{{ URL::to('/')}}"><img src="{{ asset('image/logo.png') }}" height="100" width="120"></a>
+  <a href ="{{ URL::to('/index')}}"><img src="{{ asset('image/logo.png') }}" height="100" width="120"></a>
 </div>
 <div class="container mt-3">
   <div class="div">

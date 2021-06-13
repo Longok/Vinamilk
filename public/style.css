@@ -12,13 +12,14 @@ body{
 }
 
 #header {
-    height: 60px;
+    height: 70px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     text-transform: uppercase;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 2;
   
 }
 /* logo */
@@ -43,54 +44,70 @@ body{
 }
 
 .nav ul li {
-    display:inline-block;
+    display: inline-block;
     list-style: none;
+}
+
+.nav-icon {
+    display: none;
 }
 
 .nav li a {
     text-decoration: none;
     color: white;
     line-height: 50px;
-    padding: 0 20px;
-    margin: 5px 0px 0px 0px;
+    padding: 0 10px;
+    margin-top: 5px;
     display: inline-block;
     font-size: 15px;
 }
 
 .nav li:hover a {
-     background-color: rgb(233, 36, 36);
+     border-bottom: 3px solid red;
      color: white; 
 }
 
-/* menu */
 
-.menu .active {
+
+/* menu */
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#menu .active {
     border-bottom: 2px solid red;
 }
-.menu > ul {
+#menu > ul {
     display: inline-block;
 }
 
-.menu > ul > li {
+#menu > ul > li {
     display: inline-block;
     position: relative;
     top: 70px;
     left: 250px;
     padding: 0 5px;
-    line-height: 60px;
+    line-height: 40px;
 }
-.menu li:hover .submenu {
+
+#menu li:hover .submenu {
     display: block;
 }
-.menu .submenu {
+
+#menu .submenu {
     display: none;
     position: absolute;
     left: 0;
-    top: 50px;
+    top: 0;
     box-shadow: 1px 0 10px rgba(255, 255, 0, 0.5);
 }
 
-.menu li a {
+#menu li a {
     text-decoration: none;
     color: white;
     padding: 0 10px;
@@ -100,16 +117,23 @@ body{
     line-height: 50px;  
 }
 
-.menu > ul > li:hover {
-    background-color: red;
+#menu > ul > li:hover {
+    border-bottom: 3px solid red;
     border-radius: 5px;
 }
 
-.menu .search-btn {
+#menu .search-btn {
     float: right;    
-    padding: 0 300px;
-    margin-top: 67px;
+    padding-right: 30px;
+    margin-top: 75px;
     cursor: pointer;
+}
+
+#menu .menu-icon {
+    display: none;
+    float: right;    
+    padding-right: 10px;
+    margin-top: 75px;
 }
 
 ul > li > a{
@@ -123,20 +147,21 @@ ul > li > a{
     transition: 0.3s;
     border-radius: 5px;
 }
-.menu ul .submenu {
+#menu ul .submenu {
     width: 180px;
     color: rgb(221, 237, 250);
     min-height: 150px;
     position: absolute;
+    top: 52px;
     background-color: black;
     z-index: 10;
 }
 
-.menu .submenu > li {
+#menu .submenu > li {
     list-style: none;
 }
 
-.menu .submenu > li > a{
+#menu .submenu > li > a{
     width: 180px;
     text-decoration: none;
     display: block;
@@ -145,7 +170,7 @@ ul > li > a{
     color: white;
 }
 
-.menu .submenu li:hover a {
+#menu .submenu li:hover a {
     color: white;   
     text-align: center;
     background-color: red;
@@ -153,9 +178,14 @@ ul > li > a{
 }
 
 /* slide */
+
+.slide {
+    overflow: hidden;
+}
 .carousel {
     height: 550px;
-    margin-top: 55px;
+    margin-top: 120px;
+    padding-top: 15px;
 }
 
 .carousel-inner{
@@ -170,8 +200,6 @@ ul > li > a{
     position: relative;
     justify-content: center;
     align-items: center;
-    max-width: 100%;
-    z-index: 1;
     flex-wrap: wrap;
 }
 
@@ -182,9 +210,9 @@ ul > li > a{
 
 .container .card {
     position: relative;
-    width: 320px;
+    width: 300px;
     height: 400px;
-    margin: 0 5px;
+    margin: 10px 5px;
     box-shadow: 20px 20px 50px rgba(0, 0,0, 0.5);
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.1);
@@ -222,6 +250,21 @@ ul > li > a{
     padding: 0;
     color: white;
     border-top: 1px solid white;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.text-link {
+    position: absolute;
+    /* left: 50%;
+    transform: translateX(-50%); */
+    text-align: center;
+    right: 0;
+    left: 0;
 }
 
 .footer-network{
@@ -235,6 +278,11 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
 }
 /* admin */
 
+.header-admin {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+
 .sidebar ul ul {
     display: none;
 }
@@ -243,6 +291,9 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     width: 100%;
     margin-left:10px;
     padding-left: 20px;
+    margin-top: auto;
+    position: relative;
+    left: 20px;
 }
 
 .sub > li > a {
@@ -284,5 +335,89 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     margin-bottom:50px;
 }
 
+/* reponsive */
 
+/* tablet */
+/* @media (min-width: 740px) and (max-width:1023px) {
 
+} */
+/* mobie */
+@media (max-width: 740px) {
+    
+    .nav {
+        display: none;
+    }
+
+    .nav-icon {
+        float: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .nav-icon ul li {
+        display: inline-block;
+        list-style: none;
+    }
+
+    .nav-icon {
+        display: inline-block;
+    }
+
+    .nav-icon li a {
+        text-decoration: none;
+        color: white;
+        line-height: 50px;
+        padding: 0 10px;
+        margin-top: 5px;
+        display: inline-block;
+        font-size: 15px;
+    } 
+    
+    #menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        /* z-index: 1; */
+        background-color: rgba(0, 0, 0, 1);
+        overflow: hidden;
+        height: 100px;
+    }
+
+    #menu .menu-icon {
+        display: block;
+        float: right;    
+        padding-right: 10px;
+        line-height: 40px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    #menu > ul {
+        display: block;
+    }
+
+    #menu > ul > li {
+        display: block;
+        position: relative;
+        top: 70px;
+        left: 0;
+        padding: 0 5px;
+        line-height: 40px;
+        width: 150px;
+    }
+
+    #menu .search-btn {
+        float: left;    
+        padding-left: 30px;
+        /* margin-top: 170px; */
+    }
+
+    .carousel {
+        height: 300px;
+        margin-top: 120px;
+        padding-top: 15px;
+    }
+    
+}

@@ -41,7 +41,6 @@
         </div>
     </div>
 </div>
-@include('layout.footer')
 <script>
 $('.DM').click(function(){
     $('.droplow').toggleClass("show");

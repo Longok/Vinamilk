@@ -22,7 +22,7 @@ class HomeController extends Controller
         $categorys = Category::all();
         $products = Product::orderBy('id','desc')->paginate(16);
         $slides = Slide::all();
-        return view('home.index', compact('categorys','products','slides'));
+        return view('/index', compact('categorys','products','slides'));
     }
 
     public function category($id)

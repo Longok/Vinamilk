@@ -13,11 +13,9 @@
       </div>
     </div>
     <div class="link col-lg-4 col-md-6 col-sm-6 col-xs-12 d-flex text-center mt-3">
-      <div class="div">
+      <div class="text-link">
         <p>Mua ngay tại</p>
         <a href="">Giacmosuaviet.com </a>
-      </div>
-      <div class="div">
         <p>Kết nối với fanpage</p>
         <a href="https://www.facebook.com/vinamilkbiquyetngonkhoetuthiennhien/">Vinamilk tại đây</a>
       </div>

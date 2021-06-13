@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,15 @@
 <body>
 @include('layout.headerAdmin')
 @include('layout.nav-bar')
+@include('layout.footer')
 </body>
-</html>
-
+</html> -->
+@extends('layout.master')
+@section('content')
+  <body>
+    @include('layout.headerAdmin')
+    @include('layout.nav-bar')
+    @include('layout.footer')
+  </body>
+@endsection
 
