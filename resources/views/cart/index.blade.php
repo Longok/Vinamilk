@@ -1,13 +1,13 @@
 @extends('layout.master')
 @include('layout.header')
 @section('content')
-<div class="container" style="margin-top: 80px">
-    <nav aria-label="breadcrumb">
+<div class="container" style="margin-top: 120px">
+    
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ URL::to('/home') }}">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="{{ URL::to('/index') }}">Trang chủ</a></li>
             <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
         </ol>
-    </nav>
+
     <div class="table-reponsive cart_info">
         <?php
             $content = Cart::content()
@@ -64,25 +64,34 @@
             </tbody>
         </table>
     </div>    
-    <div class="col-sm-3 float-right">        
-        <div class="breadcrumb">
+    <div class=" float-left">        
+        <div class="">
             <ul>
                 <li class="breadcrumb">Thành tiền: {{cart::subtotal(0).'VNĐ'}}</li>
                 <li class="breadcrumb">Phí vận chuyển: Free </li>
-                <!-- <li class="breadcrumb">Tổng tiền: {{cart::total(0).'VNĐ'}}</li> -->
+                <li class="breadcrumb">Tổng tiền: {{cart::total(0).'VNĐ'}}</li>
             </ul>
             <?php
-                $customer_id = Session::get('customer_id');
-                if($customer_id != null){
+                // $customer_id = Session::get('customer_id');
+                // if($customer_id != null){
             ?>  
-                <a href="{{ URL::to('/check-out')}}"><i class="fas fa-thumbs-up"></i></i> Thanh toán</a> 
+                <!-- <a href="{{ URL::to('/check-out')}}"><i class="fas fa-thumbs-up"></i> Thanh toán</a>  -->
             <?php
-                }else{
+                // }else{
             ?>
-                <a href="{{ URL::to('/login')}}"><i class="fas fa-thumbs-up"></i></i> Thanh toán</a>
+                <!-- <a href="{{ URL::to('/login')}}"><i class="fas fa-thumbs-up"></i>Thanh toán</a> -->
             <?php
-                }
-            ?>                    
+                // }
+            ?>     
+            @if(Auth::check())
+                <li>
+                    <a href="{{ URL::to('/check-out')}}"><i class="fas fa-thumbs-up"></i>Thanh toán</a>
+                </li>
+                @else 
+                <li>
+                    <a href="{{ URL::to('/login')}}"><i class="fas fa-thumbs-up"></i>Thanh toán</a>
+                </li>
+                @endif               
         </div>
     @else
         <p>Bạn chưa có sản phẩm nào</p>      
@@ -90,9 +99,16 @@
     </div>      
 </div>
 <style>
+
+    .container, .cart_price, .total {
+        /* background:white; */
+        color: blue;
+    }
+
     .cart_menu {
         background: linear-gradient(45deg, #40b2f5, #ffbc00);
         color: white;
     }
+
 </style>
 @endsection

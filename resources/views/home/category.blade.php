@@ -8,7 +8,7 @@
                 <a href="{{ URL::to('/index') }}">Trang chủ</a>
             </li>
             <li>
-                <a href="">Sản phẩm
+                <a href="#">Sản phẩm
                     <i class="ti-angle-down"></i>  
                 </a>
                 <ul class="submenu">
@@ -17,8 +17,8 @@
                     @endforeach
                 </ul>
             </li>
-            <li><a href="">Tin tức</a></li>
-            <li><a href="">Liên hệ</a></li>                   
+            <li><a href="#">Tin tức</a></li>
+            <li><a href="#">Liên hệ</a></li>                   
         </ul> 
         <div class="search-btn">
             <form action="{{ URL::to('/search') }}" method="post">

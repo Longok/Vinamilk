@@ -39,7 +39,7 @@ class CheckoutController extends Controller
         Session::put('customer_id',$customer_id);
         Session::put('name',$request->name);
         Session::put('message','Tạo tài khoản thành công');  
-        return redirect('/home');
+        return redirect('/index');
       
     }
 
@@ -55,7 +55,7 @@ class CheckoutController extends Controller
         ];
         if(Auth::attempt($arr)){
                 // dd('Đăng nhập thành công');    
-            return redirect('/home');
+            return redirect('/index');
         }else{
             return redirect('/login')->with('message','Địa chỉ Email hoặc mật khẩu không đúng');
             // dd('Đăng nhập thất bại');
@@ -64,7 +64,7 @@ class CheckoutController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect::to('/home');
+        return redirect::to('/index');
     }
 
     public function checkout(){

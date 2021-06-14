@@ -12,10 +12,10 @@
 <div class="sign-in mx-5 ">
     <div class="row">
         <a href="{{ URL::to('/index')}}">Trang chủ</a>
-        <div class="col-6 col-md-3 mx-auto">
+        <div class="login col-lg-3 col-md-6 col-sm-6 mx-auto">
             <form action="{{ URL::to('/login')}}" method="post">
                 {{ csrf_field() }}             
-                <div class="loginbox">
+                <div class="login-box">
                     <div class="text-danger mt-3 ">
                    <?php
                        $message = Session::get('message');
@@ -28,7 +28,7 @@
                     <h1>Login</h1>
                     <div class="form-group">
                         <!-- <label for="email">Email</label><br> -->
-                        <input type="email" class="form-control" name="email" placeholder="ĐIền email" required="">
+                        <input type="email" class="form-control" name="email" placeholder="Điền email" required="">
 
                     </div>
                     <div class="form-group">
@@ -60,7 +60,12 @@
         color:white;
         text-decoration:none;
     }
-    .loginbox{
+
+    .login {
+        display: flex;
+    }
+
+    .login-box{
         position:absolute;
         border: 1px solid #66ff66;
         padding:15px;
@@ -69,9 +74,9 @@
         box-shadow: 3px 3px none;
         color:white;
         background:none;
-        outline:none;
+        /* outline:none; */
     }    
-    .loginbox h1{
+    .login-box h1{
         font-size:40px;
         border-bottom:1px solid #66ff66;
         padding:10px 0;

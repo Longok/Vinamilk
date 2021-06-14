@@ -8,7 +8,7 @@
                 <a href="{{ URL::to('/index') }}">Trang chủ</a>
             </li>
             <li>
-                <a href="">Sản phẩm
+                <a href="#">Sản phẩm
                     <i class="ti-angle-down"></i>  
                 </a>
                 <ul class="submenu">
@@ -17,8 +17,8 @@
                     @endforeach
                 </ul>
             </li>
-            <li><a href="">Tin tức</a></li>
-            <li><a href="">Liên hệ</a></li>                   
+            <li><a href="#">Tin tức</a></li>
+            <li><a href="#">Liên hệ</a></li>                   
         </ul> 
         <div class="search-btn">
             <form action="{{ URL::to('/search') }}" method="post">
@@ -42,7 +42,7 @@
                     <li data-target="#demo" data-slide-to="1"></li>
                     <li data-target="#demo" data-slide-to="2"></li>
                 </ul>
-            <div class="carousel-inner col-12">
+            <div class="carousel-inner">
                 @php
                 $i = 0;
                 @endphp
@@ -67,12 +67,12 @@
     <div class="content">
         <div class="container">            
             @foreach($products as $pro)
-                <div class="box col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <div class="box col-lg-4 col-md-4 col-sm-6 col-xs-6 mt-2">
                     <form action="{{Route('cart',$pro->id)}}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="card">
-                            <div class="d-flex justify-content-around mt-2">
-                                <img src="{{ asset('/storage/image/'.$pro->image) }}" height="160" width="220px">
+                            <div class="card-image d-flex justify-content-around mt-2">
+                                <img src="{{ asset('/storage/image/'.$pro->image) }}" height="160">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title ">{{$pro->name}}</h5>
@@ -80,12 +80,12 @@
                                 <h6 class="card-title">Giá: {{number_format($pro->price)}} VNĐ</h6>
                                 @else
                                 <strike class="card-title">Giá: {{number_format($pro->price)}} vnđ</strike>
-                                <h6 class="card-title">Giảm giá: {{ number_format($pro->price - (( $pro->price *
+                                <h6 class="card-title">Giá: {{ number_format($pro->price - (( $pro->price *
                                     $pro->discount)/100)) }} VNĐ</h6>
                                 @endif
                             </div>
                             <div class="quantity">
-                                <h6>Số lượng</h6>
+                                <!-- <h6>Số lượng</h6> -->
                                 <input class="input" name="qty" type="number" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
                                 <button type="submit" class="btn btn-primary mb-2">Mua hàng</button>
@@ -96,8 +96,7 @@
             @endforeach
             <span class="pagination justify-content-center">{{ $products->render() }}</span>
         </div>     
-    </div>          
-   
+    </div>           
 </body>
 <script>
     var menu = document.getElementById('menu');

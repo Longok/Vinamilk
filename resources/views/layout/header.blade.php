@@ -18,7 +18,7 @@
 
                 @if(Auth::check())
                     <i class="fas fa-smile" style="color:blue"></i> {{Auth::user()->name}}
-                    <li><a" href ="{{URL::to('/logout')}}">Đăng Xuất</a></li>
+                    <li><a href ="{{URL::to('/logout')}}">Đăng Xuất</a></li>
                 @else
                 <li><a href ="{{URL::to('/login')}}">Đăng nhập</a></li>
                 <li><a href ="{{URL::to('/sign-up')}}">Đăng ký</a></li>   
@@ -45,14 +45,22 @@
                 @endif
 
                 @if(Auth::check())
-                    <i class="fas fa-smile" style="color:blue"></i> {{Auth::user()->name}}
-                    <li href ="{{URL::to('/logout')}}"></a></li>
+                    <!-- <i class="fas fa-smile" style="color:blue"></i> {{Auth::user()->name}}
+                    <li href ="{{URL::to('/logout')}}"></a></li> -->
+                        <i class="ti-comments-smiley" style="color:blue"></i>
+                    <li>
+                        <a href ="{{URL::to('/logout')}}">
+                            <i class="ti-face-sad" style="color:red"></i>
+                        </a>
+                    </li>
                 @else
-                <li><a href ="{{URL::to('/login')}}">
+                <li>
+                    <a href ="{{URL::to('/login')}}">
                         <i class="ti-user"></i>
                     </a>
                 </li>
-                <li><a href ="{{URL::to('/sign-up')}}">
+                <li>
+                    <a href ="{{URL::to('/sign-up')}}">
                         <i class="ti-slice"></i>
                     </a>
                 </li>   
