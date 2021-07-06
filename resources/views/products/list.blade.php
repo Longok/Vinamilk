@@ -1,6 +1,7 @@
 @extends('layout.master')
-@section('content')       
-        <div class="col-md-8 mx-auto">
+@section('content')  
+@include('layout.nav-bar')     
+        <div class="col-md-8 col-xs-12 mx-auto">
             <div class="mt-3 text-primary">
                 <h6>Danh sách sản phẩm</h6>
             </div>

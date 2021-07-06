@@ -9,7 +9,8 @@
         <div class="nav">
             <ul>
                 <li>
-                    <a href="{{ URL::to('/show-cart')}}">Giỏ hàng</a></li>
+                    <!-- <a href="{{ URL::to('/show-cart')}}">Giỏ hàng</a></li> -->
+                    <a href="{{ URL::to('/cart')}}">Giỏ hàng</a></li>
                 @if(Auth::check())
                 <li><a href="{{ URL::to('/check-out')}}">Thanh toán</a></li>
                 @else 
@@ -17,6 +18,7 @@
                 @endif
 
                 @if(Auth::check())
+                    <!-- {{Auth::user()->customer_id}} -->
                     <i class="fas fa-smile" style="color:blue"></i> {{Auth::user()->name}}
                     <li><a href ="{{URL::to('/logout')}}">Đăng Xuất</a></li>
                 @else
@@ -43,8 +45,9 @@
                     </a>
                 </li>
                 @endif
-
+                   
                 @if(Auth::check())
+                
                     <!-- <i class="fas fa-smile" style="color:blue"></i> {{Auth::user()->name}}
                     <li href ="{{URL::to('/logout')}}"></a></li> -->
                         <i class="ti-comments-smiley" style="color:blue"></i>

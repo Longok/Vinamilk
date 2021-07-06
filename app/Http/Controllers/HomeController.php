@@ -13,6 +13,7 @@ use Session;
 use Auth;
 
 use Illuminate\Support\Facades\Hash;
+Session_start();
 
 class HomeController extends Controller
 {

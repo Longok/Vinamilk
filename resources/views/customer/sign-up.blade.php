@@ -12,7 +12,7 @@
 </div>
 <div class="container mt-3">
   <div class="div">
-    <a href="{{ URL::to('/dashboard')}}">Quay lại trang chủ</a>
+    <a href="{{ URL::to('/index')}}">Quay lại trang chủ</a>
   </div>
   <header class="col-xs-4 col-md-4 mx-auto text-primary text-center">
     Đăng ký tài khoản

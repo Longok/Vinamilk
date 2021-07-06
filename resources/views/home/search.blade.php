@@ -2,13 +2,13 @@
 @include('layout.header')
 @section('content')
 <body>
-    <div class="menu">
+<div id="menu">
         <ul>
             <li class="active">
                 <a href="{{ URL::to('/index') }}">Trang chủ</a>
             </li>
             <li>
-                <a href="">Sản phẩm
+                <a href="#">Sản phẩm
                     <i class="ti-angle-down"></i>  
                 </a>
                 <ul class="submenu">
@@ -17,8 +17,8 @@
                     @endforeach
                 </ul>
             </li>
-            <li><a href="">Tin tức</a></li>
-            <li><a href="">Liên hệ</a></li>                   
+            <li><a href="#">Tin tức</a></li>
+            <li><a href="#">Liên hệ</a></li>                   
         </ul> 
         <div class="search-btn">
             <form action="{{ URL::to('/search') }}" method="post">
@@ -30,6 +30,9 @@
                         </div>
                     </div>               
             </form>                        
+        </div>
+        <div id="menu-icon" class="menu-icon">
+            <i class="ti-align-justify"></i>
         </div>      
     </div> 
     <div class="slide">
@@ -64,7 +67,7 @@
     <div class="content">
         <div class="container">
                 @foreach($search as $pro)
-                <div class="box col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <div class="box col-lg-4 col-md-4 col-sm-6 col-xs-6 mt-2">
                     <form action="{{Route('cart',$pro->id)}}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="card">

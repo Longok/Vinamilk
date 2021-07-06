@@ -16,7 +16,7 @@ Route::get('/clear-cache', function() {
     // return what you want
 });
 //admin
-Route::get('/my-admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard','AdminController@show_dashboard');
 Route::post('/dashboard','AdminController@dashboard');
 Route::get('/create-admin', 'AdminController@create');
@@ -52,6 +52,12 @@ Route::post('/cart/{id}', 'CartController@add')->name('cart');
 Route::get('/show-cart','CartController@show_cart');
 Route::get('/delete-cart/{rowId}','CartController@delete_cart');
 Route::post('/update-cart/','CartController@update_cart');
+Route::post('/add-cart-ajax/','CartController@add_cart_ajax');
+Route::get('/cart/','CartController@show_cart_ajax');
+Route::get('/delete-cart-ajax/{id}','CartController@delete_cart_ajax');
+
+
+
 //Checkout
 Route::get('/check-out','CheckoutController@checkout');
 Route::post('/save-info-customer','CheckoutController@info_customer');

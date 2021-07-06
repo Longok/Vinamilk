@@ -14,12 +14,10 @@
             <p>Vui lòng điền thông tin gửi hàng</p>          
         </div> 
     </nav>    
-        <div class="row mt-4 text-primary">    
-            <div class="col-6 mx-auto">  
-                                       
-                <div class="col-md-12">              
+        <div class="row mt-4 text-light">    
+            <div class="col-md-8 col-xs-12 mx-auto">                                                   
                     <div class="mt-3">            
-                        <label for="">Tên khách hàng</label> 
+                        <label for="">Tên người đặt hàng</label> 
                         <input type="text"class="form-control" value="{{ old('shipping_name')}}" placeholder="Họ và tên" name="shipping_name">        
                     </div>
                     <div class="mt-3">            
@@ -50,18 +48,15 @@
                                         <option value="{{$xp->xaid}}">{{$xp->name}}</option>        
                                     @endforeach
                             </select> -->
-                        <input type="text"class="form-control" value="{{ old('shipping_adress')}}" placeholder="Địa chỉ nhận hàng" name="shipping_adress">   
-                        <button type="submit" name="thanhtoan" class="btn btn-success btn-md mt-3 thanhtoan">Gửi</button>
+                        <input type="text"class="form-control" value="{{ old('shipping_adress')}}" placeholder="Địa chỉ nhận hàng" name="shipping_adress">                  
                     </div>                        
-                    
-                </div> 
             </div>                   
-            <div class="col-md-6">
+            <div class="col-md-8 col-xs-12 mx-auto">
                 <div class="mt-3">            
                     <label for="">Ghi chú</label>                               
                     <textarea type="text" class="form-control ckeditor" placeholder="Ghi chú" name="shipping_note" ></textarea> 
                 </div>                
-                <div class="breadcrumb-item active">
+                <div class="">
                     Chọn hình thức thanh toán:
                 </div>
                 <div class="payment">
@@ -74,54 +69,51 @@
                     <span>
                         <label><input name="shipping_method" type="checkbox" value="VN-Pay">Thanh toán VN-Pay</label>        
                     </span>           
-                </div>     
+                </div>   
+                <button type="submit" name="thanhtoan" class="btn btn-success btn-md mt-3 thanhtoan">Đặt hàng</button>  
             </div> 
-            <div class="col-12">
-                <div class="table-reponsive cart_info">
+            <div class="col-md-8 col-xs-12 mx-auto">
+                <div class="">
                     <?php
-                    $content = Cart::content()            
+                        // dd(Session::get('cart'));           
                     ?>
-                    @if(count($content))
-                        <table class="table table-condensed">
+                    @if(Session::get('cart') !=null)
+                        <table class="col-md-12 col-xs-12 mx-auto text-center info text-light">
                             <thead>
                                 <tr class="cart_menu">
-                                    <td class="image">Sản phẩm</td>
-                                    <td class="description">Tên sản phẩm</td>
-                                    <td class="price">Giá</td>
-                                    <td class="quantity">Số lượng</td>
-                                    <td class="total">Tổng</td>
+                                    <td class="">Sản phẩm</td>
+                                    <td class="">Tên sản phẩm</td>
+                                    <td class="">Giá (đ)</td>
+                                    <td class="">Số lượng</td>
+                                    <td class="">Tổng</td>
                                     <td>Xóa</td>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($content as $v_content)
+                            @foreach(Session::get('cart') as $key => $v_content)
                                 <tr>
                                     <td class="cart_product">
-                                        <img src="{{ asset('/storage/image/'.$v_content->options->image) }}" height="150" width="150px">
+                                        <img src="{{ asset('/storage/image/'.$v_content['image']) }}">
                                     </td>
                                     <td class="cart_name">
-                                        <h4> <a href="">{{ $v_content->name}}</a> </h4>
+                                        <p> <a href="">{{ $v_content['name']}}</a></p>
                                     </td>
                                     <td class="cart_price">
-                                        @if ($v_content->price * $v_content->discount == 0)
-                                        <h6 class="card-title">{{number_format($v_content->price)}} VNĐ</h6>
-                                        @else
-                                        <h6 class="card-title">{{ number_format($v_content->price - (( $v_content->price *
-                                            $pro->discount)/100)) }} VNĐ</h6>
-                                        @endif
+                                       
+                                        <p class="card-title">{{ number_format($v_content['price'],0,',','.')}} đ</p>
+                                      
                                     </td>
                                     <td class="cart_quantity">
                                         <div class="cart_quantity_button">                                          
                                             <input class="input" type="number" name="quantity"
-                                            value="{{$v_content->qty}}" autocomplete="off" size="2">                                               
+                                            value="{{ $v_content['quantity']}}" autocomplete="off" size="2">                                               
                                         </div>
                                     </td>
                                     <td class="total">
-                                        <p class="cart_total_price">{{ number_format($v_content->price * $v_content->qty)}} VNĐ</p>
+                                        <p class="cart_total_price">{{number_format($v_content['price']*$v_content['quantity'],0,',','.')}} đ</p>
                                     </td>
                                     <td class="cart_delete">
-                                        <a class="cart_quantity_delete" href="{{ URL::to('/delete-cart/'.$v_content->rowId)}}"><i
-                                            class="fa fa-times"></i></a>
+                                        <a class="cart_quantity_delete" href="{{ URL::to('/delete-cart/')}}">Xóa</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -159,5 +151,17 @@
             });
         });  
     })
-  </script>                  
+  </script> 
+  <style>
+    .cart_product img {
+        width: 100px;
+        height: 100px;
+    }
+    @media (max-width: 740px) {
+        .info {
+            font-size: 12px;
+            text: center;
+        }
+    }    
+  </style>                 
 @endsection

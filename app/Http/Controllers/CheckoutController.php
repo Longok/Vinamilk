@@ -21,7 +21,7 @@ use Cart;
 use Auth;
 use Carbon\Carbon;
 use DB;
-
+// Session_start();
 class CheckoutController extends Controller
 {
    
@@ -39,7 +39,7 @@ class CheckoutController extends Controller
         Session::put('customer_id',$customer_id);
         Session::put('name',$request->name);
         Session::put('message','Tạo tài khoản thành công');  
-        return redirect('/index');
+        return redirect('/sign-up');
       
     }
 
@@ -75,8 +75,10 @@ class CheckoutController extends Controller
     }
 
     public function info_customer(CheckoutRequest $request){
-        $content = Cart::content();
-
+        // $content = Cart::content();
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $data = $request->all();
+        $new_cart = Session::get('cart');
         $shipping = new Shipping;
         $shipping->shipping_name = $request->shipping_name;
         $shipping->shipping_email = $request->shipping_email;
@@ -89,29 +91,25 @@ class CheckoutController extends Controller
 
         $code = substr(md5(microtime()),rand(0,26),5);
         $order = new Order;
-        $order->customer_id = Session::get('customer_id');
+        $order->customer_id = Auth::user()->customer_id;
         $order->shipping_id = $shipping_id;
         $order->order_code = $code;
         $order->order_status = 1;
         $order->save();
 
-        foreach($content as $key =>$value){
-            $order_detail = new Order_detail;
-            $order_detail->order_code = $code;
-            $order_detail->product_id = $value->id;
-            $order_detail->product_name = $value->name;
-            $order_detail->product_price = $value->price;
-            $order_detail->product_quantity = $value->qty;
-            $order_detail->save();
-            // echo '<pre>';
-            // print_r($order_detail);
-            // echo '</pre>';
+        if(Session::get('cart')){
+            foreach(Session::get('cart') as $key => $new_cart){ 
+                $order_detail = new Order_detail;          
+                $order_detail->order_code = $code;
+                $order_detail->product_id = $new_cart['id'];
+                $order_detail->product_name = $new_cart['name'];
+                $order_detail->product_price = $new_cart['price'];
+                $order_detail->product_quantity = $new_cart['quantity'];
+                $order_detail->save();
+            }
         }
-
-        if($shipping->shipping_method = $request->shipping_method){
-            Cart::destroy();
-            return view('checkout.message');
-        }       
+          
+        Session::forget('cart');    
         return view('checkout.message');
 
     }

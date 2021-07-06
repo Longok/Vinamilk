@@ -179,7 +179,6 @@ ul > li > a{
 }
 
 /* slide */
-
 .slide {
     overflow: hidden;
 }
@@ -236,16 +235,20 @@ ul > li > a{
     margin: 5px;
 }
 
-.input {
+#quantity {
     width: 50%;
     background-color:rgb(179, 248, 245);
     text-indent: 50%;
     border: rgb(122, 164, 241);
+    border-radius: 3px;
+    height: 31px;
+
 } 
 
 .btn {
     margin-bottom: 10px;
     height: 33px;
+
 } 
 
 .footer{
@@ -283,21 +286,19 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
 /* admin */
 
 .header-admin {
-    background-color: rgba(0, 0, 0, 1);
+    background-color: #161623;
 }
-
 
 .sidebar ul ul {
     display: none;
 }
 .sidebar {
     background-color: rgba(255, 255, 255, 0.1);
-    width: 100%;
-    margin-left:10px;
-    padding-left: 20px;
+    width: 20%;
     margin-top: auto;
     position: relative;
-    left: 20px;
+    min-height: 100vh;
+    padding-left: 15px;
 }
 
 .sub > li > a {
@@ -308,6 +309,8 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     text-decoration: none;
     color: white;
     list-style: none;
+    padding-left: 20px;
+
 }
 .sidebar > ul > a{
     display: none;
@@ -329,6 +332,9 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     line-height: 40px;
 }
 
+.content_menu{
+    width: 80%;
+}
 .loginbox{
     position:absolute;
 }
@@ -344,6 +350,13 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
 /* tablet */
 @media (min-width: 740px) and (max-width:1023px) {
 
+    body{
+        font-size: 17px;
+        background-color: #161623;
+        color: white;
+        font-family:montserrat;
+    }
+    
     .carousel {
         height: 400px;
         margin-top: 120px;
@@ -470,6 +483,26 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
 
     #menu > ul {
         display: block;
+    }   
+
+    #menu .submenu > li > a {
+        width: 180px;
+        text-decoration: none;
+        display: block;
+        line-height: 30px;
+        text-indent: 10px;
+        color: white;
+        padding-left: 10%;
+    }
+
+    #menu li a {
+        text-decoration: none;
+        color: white;
+        padding: 0 10px;
+        margin: 0px 10px 0px 0px;
+        display: inline-block;
+        font-size: 14px;
+        line-height: 50px;  
     }
 
     #menu > ul > li {
@@ -478,7 +511,7 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
         top: 70px;
         left: 0;
         padding: 0 5px;
-        line-height: 40px;
+        line-height: 30px;
         width: 100%;
     }
 
@@ -535,6 +568,7 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
         padding: 3px;
         margin: -12px;
         display: flex;
+        text-align: center;
     }
 
     .btn, .input {

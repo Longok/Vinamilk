@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <td>Tên người đặt hàng</td>
-                <td>{{ $customer->name}}</td>
+                <td>{{ $shipping->shipping_name}}</td>
             </tr>
             <tr>
                 <td>Email</td>
@@ -35,15 +35,15 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-striped table-bordered mt-4 text-light">
+    <table class="table table-striped table-bordered mt-4 text-light text-center">
         <thead>
             <tr role="row">
                 <th>STT</th>
                 <th>Tên sản phẩm</th>
                 <th>Hình ảnh sản phẩm</th>
-                <th>Tồn kho</th>
                 <th>Số lượng</th>
                 <th>Đơn giá (vnđ)</th>
+                <th>Thành tiền</th>
             </tr>    
         </thead>
         <tbody> 
@@ -60,19 +60,15 @@
                     <td>
                         <img src="{{ asset('storage/image/'.$detail->product->image) }}" height="100" width="150">
                     </td>
-                    <td>{{ $detail->product->quantity }}</td>
                     <td>
-                        <input type="number" min="1" value="{{$detail->product_quantity}}" name="product_quantity">
+                        <input id="quantity" type="number" min="1" value="{{$detail->product_quantity}}" name="product_quantity">
                         <input type="hidden" value="{{$detail->product_id}}" name="order_product_id" class="order_product_id">
-                        <button class="btn btn-success btn-sm" name="update_quantity">Cập nhật</button>
+                        <button class="btn btn-success mt-2" name="update_quantity">Cập nhật</button>
                     </td>
                     <td>{{ number_format($detail->product_price ,0,'.','.') }}</td>
-                </tr>               
-        @endforeach
-                <tr>
-                    <td colspan="3"><b>Tổng tiền</b></td>
                     <td colspan="1"><b class="text-red">{{ number_format($detail->product_quantity*$detail->product_price ,0,'.','.')}} vnđ</b></td>
-                </tr>      
+                </tr>             
+        @endforeach             
         </tbody>
     </table>               
     <div class="col-md-12 mt-3">

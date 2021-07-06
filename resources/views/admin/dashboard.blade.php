@@ -1,32 +1,71 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="{{asset('./favicon.ico')}}">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Vinamilk</title>
-  <link rel="stylesheet" href="{{asset('/bootstrap.css')}}">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-  <link rel="stylesheet" href="{{asset('/style.css')}}">
-  <script src="{{asset('/asset/js/jquery-3.3.1.min.js')}}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-@include('layout.headerAdmin')
-@include('layout.nav-bar')
-@include('layout.footer')
-</body>
-</html> -->
 @extends('layout.master')
 @section('content')
-  <body>
-    @include('layout.headerAdmin')
-    @include('layout.nav-bar')
-    @include('layout.footer')
-  </body>
+<body>
+@include('layout.headerAdmin')
+
+<div class="row">
+    <div class="sidebar">
+        <ul class="sub">
+            <li><a href="#"class="DM"> Danh mục <i class="ti-angle-down"></i></a>
+                <ul class="droplow">
+                    <li><a href="{{URL::to('/category')}}">Thêm danh mục</a></li>
+                    <li><a href="{{URL::to('/all-category')}}">Danh sách danh mục</a></li>
+                </ul>
+            </li>
+            <li><a href="#"class="DM1">Sản phẩm <i class="ti-angle-down"></i></a>
+                <ul class="droplow1">
+                    <li><a href="{{URL::to('/product')}}">Thêm sản phẩm</a></li>
+                    <li><a href="{{URL::to('/all-product')}}">Danh sách sản phẩm</a></li>
+                </ul>
+            </li>
+            <li><a href="#"class="DM2">Slide <i class="ti-angle-down"></i></a>
+                <ul class="droplow2">
+                        <li><a href="{{URL::to('/slide')}}">Thêm Slide</a></li>
+                    <li><a href="{{URL::to('/all-slide')}}">Danh sách Slide</a></li>
+                </ul>
+            </li>
+            <li><a href="#"class="DM3">User <i class="ti-angle-down"></i></a>
+                <ul class="droplow3">
+                    <li><a href="{{URL::to('/list-user')}}">Danh sách User</a></li>
+                </ul>
+            </li>
+            <li><a href="#"class="DM4">Quản lý đơn hàng <i class="ti-angle-down"></i></a>
+                <ul class="droplow4">
+                    <li><a href="{{URL::to('/manage-order')}}">Danh sách đơn hàng</a></li>
+                </ul>
+            </li>
+            <li><a href="#"class="DM5">Quản lý kho hàng <i class="ti-angle-down"></i></a>
+                <ul class="droplow5">
+                    <li><a href="{{URL::to('/manage-warehouse')}}">Quản lý kho hàng</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="content_menu ">
+        <h1>Helo</h1>
+    </div>
+</div>
+
+</body>
+<script>
+$('.DM').click(function(){
+    $('.droplow').toggleClass("show");
+});
+$('.DM1').click(function(){
+    $('.droplow1').toggleClass("show1");
+});
+$('.DM2').click(function(){
+    $('.droplow2').toggleClass("show2");
+});
+$('.DM3').click(function(){
+    $('.droplow3').toggleClass("show3");
+});
+$('.DM4').click(function(){
+    $('.droplow4').toggleClass("show4");
+});
+$('.DM5').click(function(){
+    $('.droplow5').toggleClass("show5");
+});
+</script>
 @endsection
 

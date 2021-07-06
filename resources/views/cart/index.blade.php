@@ -1,48 +1,46 @@
 @extends('layout.master')
-@include('layout.header')
 @section('content')
-<div class="container" style="margin-top: 120px">
-    
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ URL::to('/index') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
-        </ol>
-
-    <div class="table-reponsive cart_info">
+@include('layout.header')
+<div class="container" style="margin-top: 120px">   
+    <div class=" col-md-12 col-xs-12 mx-auto">
+        <div class="col-md-12 col-xs-12 mx-auto text-center">
+            <a href="{{ URL::to('/index') }}">Trang chủ</a>
+            <h5>Giỏ hàng của bạn</h5> 
+        </div>       
         <?php
             $content = Cart::content()
         ?>
         @if(count($content))
-        <table class="table table-condensed">
+        <table class="col-md-12 col-xs-12 mx-auto text-center info text-light">
             <thead>
-                <tr class="cart_menu">
-                    <td class="image">Sản phẩm</td>
-                    <td class="description">Tên sản phẩm</td>
-                    <td class="price">Giá</td>
-                    <td class="quantity">Số lượng</td>
-                    <td class="total">Tổng</td>
+                <tr class="cart-menu text-center">
+                    <td>Sản phẩm</td>
+                    <td>Tên sản phẩm</td>
+                    <td>Giá</td>
+                    <td>Số lượng</td>
+                    <td>Tổng</td>
                     <td>Xóa</td>
                 </tr>
             </thead>
             <tbody>
                 @foreach($content as $v_content)
-                <tr>
-                    <td class="cart_product">
-                        <img src="{{ asset('/storage/image/'.$v_content->options->image) }}" height="150" width="150px">
+                <tr class="cart-content">
+                    <td class="cart_product pt-2">
+                        <img src="{{ asset('/storage/image/'.$v_content->options->image) }}" >
                     </td>
-                    <td class="cart_name">
-                        <h4> <a href="">{{ $v_content->name}}</a> </h4>
+                    <td class="cart-name">
+                        <a href="">{{ $v_content->name}}</a>
                     </td>
-                    <td class="cart_price">
+                    <td class="cart-price">
                         @if ($v_content->price * $v_content->discount == 0)
-                        <h6 class="card-title">{{number_format($v_content->price)}} VNĐ</h6>
+                        <p> {{number_format($v_content->price)}} vnđ</p>
                         @else
-                        <h6 class="card-title">{{ number_format($v_content->price - (( $v_content->price *
-                            $pro->discount)/100)) }} VNĐ</h6>
+                        <p> {{ number_format($v_content->price - (( $v_content->price *
+                            $pro->discount)/100)) }} vnđ</p>
                         @endif
                     </td>
-                    <td class="cart_quantity">
-                        <div class="cart_quantity_button">
+                    <td class="cart-quantity">
+                        <div class="cart-quantity-button">
                             <form action="{{URL::to('/update-cart')}}" method="post">
                                 {{csrf_field()}}
                                 <input class="cart_quantity_input text-center" type="text" name="quantity"
@@ -53,62 +51,89 @@
                         </div>
                     </td>
                     <td class="total">
-                        <p class="cart_total_price">{{ number_format($v_content->price * $v_content->qty)}} VNĐ</p>
+                        <p class="cart-total-price">{{ number_format($v_content->price * $v_content->qty)}} vnđ</p>
                     </td>
                     <td class="cart_delete">
-                        <a class="cart_quantity_delete" href="{{ URL::to('/delete-cart/'.$v_content->rowId)}}"><i
-                                class="fa fa-times"></i>Xóa</a>
+                        <a class="cart-quantity-delete" href="{{ URL::to('/delete-cart/'.$v_content->rowId)}}"><i
+                            class="fa fa-times"></i>Xóa</a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>    
-    <div class=" float-left">        
+    <div class="col-md-4 col-xs-4 mx-auto float-left mb-5 mt-5">        
         <div class="">
             <ul>
-                <li class="breadcrumb">Thành tiền: {{cart::subtotal(0).'VNĐ'}}</li>
-                <li class="breadcrumb">Phí vận chuyển: Free </li>
-                <li class="breadcrumb">Tổng tiền: {{cart::total(0).'VNĐ'}}</li>
+             
+                <li><a href="" class="breadcrumb">Tổng tiền: {{cart::subtotal(0).'vnđ'}}</a></li>
             </ul>
-            <?php
-                // $customer_id = Session::get('customer_id');
-                // if($customer_id != null){
-            ?>  
-                <!-- <a href="{{ URL::to('/check-out')}}"><i class="fas fa-thumbs-up"></i> Thanh toán</a>  -->
-            <?php
-                // }else{
-            ?>
-                <!-- <a href="{{ URL::to('/login')}}"><i class="fas fa-thumbs-up"></i>Thanh toán</a> -->
-            <?php
-                // }
-            ?>     
+            
             @if(Auth::check())
-                <li>
-                    <a href="{{ URL::to('/check-out')}}"><i class="fas fa-thumbs-up"></i>Thanh toán</a>
-                </li>
+               
+                <a href="{{ URL::to('/check-out')}}"><i class="fas fa-thumbs-up"></i>Thanh toán</a>
+                
                 @else 
-                <li>
-                    <a href="{{ URL::to('/login')}}"><i class="fas fa-thumbs-up"></i>Thanh toán</a>
-                </li>
+                
+                <a href="{{ URL::to('/login')}}"><i class="fas fa-thumbs-up"></i>Thanh toán</a>
+                
                 @endif               
         </div>
-    @else
-        <p>Bạn chưa có sản phẩm nào</p>      
-    @endif 
+        @else
+            <div class="text-danger mx-auto text-center">
+                <h3>Bạn chưa có sản phẩm nào</h3>
+            </div>            
+        @endif 
     </div>      
 </div>
 <style>
 
-    .container, .cart_price, .total {
-        /* background:white; */
-        color: blue;
-    }
+    @media (max-width: 740px) {
+        .info {
+            font-size: 12px;
+            text: center;
+        }
+        .table-condensed {
+            font-size: 13px;
+            color: white;
+        }
 
-    .cart_menu {
+        .breadcrumb {
+            font-size: 15px;
+            width: 230px;
+            height: 40px;
+        }
+
+        .cart_product img {
+           color: #000;
+        }
+
+        ul li, li > a {
+        font-size: 12px;
+    }
+    }
+    .cart-menu {
         background: linear-gradient(45deg, #40b2f5, #ffbc00);
         color: white;
     }
 
+    .cart-name > a {
+        color: white;
+    }
+
+    .cart-content {
+        color: white;
+    }
+
+    ul li, li > a {
+        list-style: none;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .cart_product img {
+        width: 100px;
+        height: 100px;
+    }  
 </style>
+
 @endsection

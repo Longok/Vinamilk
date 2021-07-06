@@ -49,7 +49,7 @@ class AdminController extends Controller
 
         return redirect::to('/dashboard');
     }
-    Session::put('message','Mật khẩu hoặc tài khoản bị sai');
+    Session::put('message','Mật khẩu hoặc tài khoản không đúng');
     return redirect()->back();
         
     }   
@@ -58,7 +58,7 @@ class AdminController extends Controller
         Session::put('admin_name',null);
         Session::put('admin_id',null);
         
-        return redirect::to('/my-admin');
+        return redirect::to('/admin');
     }
 
     public function list_user(){
