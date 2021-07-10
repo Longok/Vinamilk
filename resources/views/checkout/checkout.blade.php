@@ -78,7 +78,7 @@
                         // dd(Session::get('cart'));           
                     ?>
                     @if(Session::get('cart') !=null)
-                        <table class="col-md-12 col-xs-12 mx-auto text-center info text-light">
+                        <table class="col-md-10 col-xs-10 mx-auto text-center info text-light">
                             <thead>
                                 <tr class="cart_menu">
                                     <td class="">Sản phẩm</td>
@@ -105,7 +105,7 @@
                                     </td>
                                     <td class="cart_quantity">
                                         <div class="cart_quantity_button">                                          
-                                            <input class="input" type="number" name="quantity"
+                                            <input class="input_quantity" type="number" name="quantity"
                                             value="{{ $v_content['quantity']}}" autocomplete="off" size="2">                                               
                                         </div>
                                     </td>

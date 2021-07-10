@@ -17,7 +17,7 @@
                     @endforeach
                 </ul>
             </li>
-            <li><a href="#">Tin tức</a></li>
+            <li><a href="{{ URL::to('/news') }}">Tin tức</a></li>
             <li><a href="#">Liên hệ</a></li>                   
         </ul> 
         <div class="search-btn">
@@ -122,7 +122,7 @@
                             <div class="quantity">
                                 <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                                <button type="button" class="btn btn-success mb-2 add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
+                                <button type="button" class="btn btn-success add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
                             </div>
                         </div>
                     </form>

@@ -34,8 +34,15 @@
                     <li><a href="{{URL::to('/manage-order')}}">Danh sách đơn hàng</a></li>
                 </ul>
             </li>
-            <li><a href="#"class="DM5">Quản lý kho hàng <i class="ti-angle-down"></i></a>
+            <li><a href="#"class="DM5">Quản lý tin tức <i class="ti-angle-down"></i></a>
                 <ul class="droplow5">
+                    <li><a href="{{URL::to('/add-news')}}">Thêm tin tức</a></li>
+                    <li><a href="{{URL::to('/list-news')}}">Danh sách tin tức</a></li>
+
+                </ul>
+            </li>
+            <li><a href="#"class="DM6">Quản lý kho hàng <i class="ti-angle-down"></i></a>
+                <ul class="droplow6">
                     <li><a href="{{URL::to('/manage-warehouse')}}">Quản lý kho hàng</a></li>
                 </ul>
             </li>
@@ -65,6 +72,9 @@ $('.DM4').click(function(){
 });
 $('.DM5').click(function(){
     $('.droplow5').toggleClass("show5");
+});
+$('.DM6').click(function(){
+    $('.droplow6').toggleClass("show6");
 });
 </script>
 @endsection

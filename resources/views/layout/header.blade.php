@@ -1,7 +1,7 @@
 <div id="header">
     <div class="image-nav">
         <div class="image">
-            <a href ="{{ URL::to('/index')}}"><img src="{{ asset('image/logo.png') }}" height="70" width="120"></a>
+            <a href ="{{ URL::to('/index')}}"><img src="{{ asset('image/logo.png') }}" height="70" width="110"></a>
             <div class="brand">
                 <span>D</span>emo
             </div>
@@ -30,7 +30,7 @@
         <div class="nav-icon">
             <ul>
                 <li>
-                    <a href="{{ URL::to('/show-cart')}}">
+                    <a href="{{ URL::to('/cart')}}">
                         <i class="ti-shopping-cart"></i>
                     </a>            
                 </li>

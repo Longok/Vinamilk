@@ -56,8 +56,6 @@ Route::post('/add-cart-ajax/','CartController@add_cart_ajax');
 Route::get('/cart/','CartController@show_cart_ajax');
 Route::get('/delete-cart-ajax/{id}','CartController@delete_cart_ajax');
 
-
-
 //Checkout
 Route::get('/check-out','CheckoutController@checkout');
 Route::post('/save-info-customer','CheckoutController@info_customer');
@@ -68,11 +66,16 @@ Route::post('/update-order-status','CheckoutController@update_status');
 Route::get('/delete-order/{order_id}','CheckoutController@delete');
 Route::get('/manage-warehouse','CheckoutController@manage_warehouse');
 
-
 //User
 Route::get('/sign-up','CheckoutController@create');
 Route::post('/sign-up','CheckoutController@store');
 Route::get('/login','CheckoutController@getLogin');
 Route::post('/login','CheckoutController@postLogin');
-
 Route::get('logout','CheckoutController@logout');
+
+//News
+Route::get('/add-news','NewsController@create');
+Route::post('/add-news','NewsController@store');
+Route::get('/news','NewsController@index');
+Route::get('/news-detail/{id}','NewsController@detail');
+
