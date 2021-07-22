@@ -68,7 +68,7 @@
     </div>
     <div class="content bg-light mt-2">
         <div class="container">
-            <div class=" col-8 mt-4 news">                   
+            <div class=" col-8 mt-4 news ">                   
                 <h5 class=" ">{{$news->title}}</h5>
                    
                 <img src="{{ asset('/storage/image/'.$news->image) }}" height="100%" width="100%">
@@ -76,9 +76,16 @@
                 <h6 class=" mt-4 ">{{ $news->description}}</a></h6>
 
                 <h6>{!! $news->content !!}</h6>        
-            </div>
-        </div>
-        
+            </div>           
+        </div>    
+        <div class="">
+                <h4 class="text-warning mt-5 text-center">Bài viết liên quan</h4>
+                <ul class="list-news col-5">
+                    @foreach($list_news as $news)
+                    <a href="{{ URL::to('/news-detail/'.$news->id) }}"><li>{{$news->title}}</li></a>                   
+                    @endforeach
+                </ul>
+        </div> 
     </div>
 </body>
 <script>
@@ -98,6 +105,9 @@
 <style>
 body{
     background-color: whitesmoke;
+     padding: 0;
+    margin:0;
+    box-sizing: border-box;
 }    
 .news {
     /* border: 2px solid black ; */
@@ -105,8 +115,8 @@ body{
     margin: auto;
     min-height: 300px;
 }
-
-.news img {
+.list-news {
+    margin: auto;
 
 }
 

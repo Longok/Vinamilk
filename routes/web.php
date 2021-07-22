@@ -56,6 +56,7 @@ Route::post('/add-cart-ajax/','CartController@add_cart_ajax');
 Route::get('/cart/','CartController@show_cart_ajax');
 Route::get('/delete-cart-ajax/{id}','CartController@delete_cart_ajax');
 
+
 //Checkout
 Route::get('/check-out','CheckoutController@checkout');
 Route::post('/save-info-customer','CheckoutController@info_customer');

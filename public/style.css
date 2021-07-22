@@ -44,6 +44,13 @@ body{
     font-size: 14px;
 }
 
+.show-cart {
+    background: red;
+    color: white;
+    border-radius: 5px;
+    padding: 0 4px;
+}
+
 .nav ul li {
     display: inline-block;
     list-style: none;
@@ -438,7 +445,22 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
 }
 /* mobie */
 @media (max-width: 740px) {
-    
+    .brand {
+        font-size: 15px;
+        margin-left: -15px;
+    }
+
+    .show-cart{
+        font-size: 20px;
+        padding: 0 3px;
+        position: absolute;
+        top: 5px;
+        left: 11px;
+    }
+    .logo-brand > a > img {
+        width: 100px;
+    }
+
     .nav {
         display: none;
     }
@@ -454,6 +476,7 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     .nav-icon ul li {
         display: inline-block;
         list-style: none;
+        position: relative;
     }
 
     .nav-icon li a {
@@ -619,4 +642,6 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
        left: 190px;
        bottom: 20px;
     }
+    
+
 }

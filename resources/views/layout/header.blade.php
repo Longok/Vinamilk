@@ -1,6 +1,6 @@
 <div id="header">
     <div class="image-nav">
-        <div class="image">
+        <div class="logo-brand">
             <a href ="{{ URL::to('/index')}}"><img src="{{ asset('image/logo.png') }}" height="70" width="110"></a>
             <div class="brand">
                 <span>D</span>emo
@@ -9,8 +9,8 @@
         <div class="nav">
             <ul>
                 <li>
-                    <!-- <a href="{{ URL::to('/show-cart')}}">Giỏ hàng</a></li> -->
-                    <a href="{{ URL::to('/cart')}}">Giỏ hàng</a></li>
+                    <a href="{{ URL::to('/cart')}}">Giỏ hàng<span class="show-cart"></span></a>                
+                </li>
                 @if(Auth::check())
                 <li><a href="{{ URL::to('/check-out')}}">Thanh toán</a></li>
                 @else 
@@ -31,8 +31,9 @@
             <ul>
                 <li>
                     <a href="{{ URL::to('/cart')}}">
-                        <i class="ti-shopping-cart"></i>
-                    </a>            
+                        <i class="ti-shopping-cart"><span class="show-cart"></span></i>                       
+                    </a>  
+                              
                 </li>
                 @if(Auth::check())
                 <li><a href="{{ URL::to('/check-out')}}">
@@ -73,5 +74,22 @@
     </div> 
         
 </div>
-
+<style>
+   
+</style>
+<script>
+    $(document).ready(function (){
+        show_cart();
+        function show_cart(){
+            $.ajax({
+                url:'{{ url('/show-cart') }}',
+                method: "GET",
+                success:function(data){
+                    $('.show-cart').html(data);
+                }
+            });
+        }    
+    });
+    
+</script>
 

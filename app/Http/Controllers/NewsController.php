@@ -13,7 +13,7 @@ class NewsController extends Controller
 {
 
     public function index(){
-        $news = News::all();
+        $news = News::orderBy('id','DESC')->paginate(6);
         $categorys = Category::all();
         $slides = Slide::all();
         return view('news.index', compact('categorys','slides','news'));
@@ -43,9 +43,10 @@ class NewsController extends Controller
     public function detail($id){
 
         $news = News::find($id);
+        $list_news = News::all();
         $categorys = Category::all();
         $slides = Slide::all();
-        return view('news.detail', compact('categorys','slides','news'));
+        return view('news.detail', compact('categorys','slides','news','list_news'));
     }
 
 }

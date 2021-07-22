@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Hash;
 class CartController extends Controller
 {
     
+    public function show_cart(Request $request){
+        $data = $request->all();
+        $cart = count(Session::get('cart'));
+        $output = '';
+        if($cart >0){
+            $output .= '<span class="show-cart">'.$cart.'</span>';
+        }else{
+            $output .= '<span class="show-cart">0</span>';
+        }
+       
+        echo $output;           
+    }
 
     public function add_cart_ajax(Request $request){
         $data = $request->all();
@@ -88,30 +100,30 @@ class CartController extends Controller
         }
     }
 
-    public function add( Request $request, $id){
-        $proId = $request->productid_hidden;
-        $quantity = $request->qty;      
-        $product = Product::where('id',$proId)->first();
-        $data['id'] = $product->id;
-        $data['qty'] = $quantity;
-        $data['name'] = $product->name;
-        $data['price'] = $product->price - (($product->price*$product->discount)/100); 
-        $data['weight'] = '123';
-        $data['options']['image'] = $product->image;
-        Cart::add($data);
-        // $content = Cart::content();
-        return redirect::to('/show-cart');
-    }
+    // public function add( Request $request, $id){
+    //     $proId = $request->productid_hidden;
+    //     $quantity = $request->qty;      
+    //     $product = Product::where('id',$proId)->first();
+    //     $data['id'] = $product->id;
+    //     $data['qty'] = $quantity;
+    //     $data['name'] = $product->name;
+    //     $data['price'] = $product->price - (($product->price*$product->discount)/100); 
+    //     $data['weight'] = '123';
+    //     $data['options']['image'] = $product->image;
+    //     Cart::add($data);
+    //     // $content = Cart::content();
+    //     return redirect::to('/show-cart');
+    // }
 
-    public function show_cart(){
+    // public function show_cart(){
        
-        return view('cart.index');
-    }
+    //     return view('cart.index');
+    // }
 
-    public function delete_cart($rowId){
-        Cart::update($rowId,0);
-        return redirect::to('/show-cart');
-    }
+    // public function delete_cart($rowId){
+    //     Cart::update($rowId,0);
+    //     return redirect::to('/show-cart');
+    // }
 
 
 }
