@@ -134,9 +134,29 @@ body{
     float: right;    
     padding-right: 30px;
     margin-top: 75px;
-    cursor: pointer;
 }
 
+.search-box {
+    background: #efefef;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+}
+.search-box img {
+    height: 30px;
+    width: 35px;
+}
+
+.search-box input {
+    width: 100%;
+    background: transparent;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+}
 #menu .menu-icon {
     display: none;
     float: right;    
@@ -519,6 +539,15 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     #menu > ul {
         display: block;
     }   
+    #menu ul .submenu {
+        width: 180px;
+        color: rgb(221, 237, 250);
+        min-height: 250px;
+        position: absolute;
+        top: 42px;
+        background-color: black;
+        z-index: 10;
+    }
 
     #menu .submenu > li > a {
         width: 180px;
@@ -537,7 +566,7 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
         margin: 0px 10px 0px 0px;
         display: inline-block;
         font-size: 14px;
-        line-height: 50px;  
+        line-height: 40px;  
     }
 
     #menu > ul > li {
@@ -552,6 +581,7 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
 
     #menu .search-btn {
         width: 90%;
+        margin-bottom: 35px;
     }
 
     .carousel {
@@ -599,25 +629,29 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     }
 
     .quantity {
-        font-size: 12px;
+        font-size: 10px;
         padding: 3px;
-        margin: -10px;
+        /* margin: -10px; */
         display: flex;
         text-align: center;
+        border-radius:inherit;
     }
 
     #quantity {
-        font-size: 13px;
+        font-size: 10px;
         height: 30px;
-        margin-top: 2px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
     }
 
-    .btn {
-        background-color: green(0, 0, 0, 1);
-        border: green solid 1px;
-        color: rgb(158, 245, 88);
+    .add-cart-ajax{
         font-size: 10px;
-        border-radius: 10%;
+        height: 30px;
+        width: 50%;
+        position: absolute;
+        right: 0;
+        bottom: -5px;
     }
 
     .footer {

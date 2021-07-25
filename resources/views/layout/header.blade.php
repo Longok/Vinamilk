@@ -9,7 +9,7 @@
         <div class="nav">
             <ul>
                 <li>
-                    <a href="{{ URL::to('/cart')}}">Giỏ hàng<span class="show-cart"></span></a>                
+                    <a href="{{ URL::to('/cart')}}">Giỏ hàng<span class="show-cart">0</span></a>                 
                 </li>
                 @if(Auth::check())
                 <li><a href="{{ URL::to('/check-out')}}">Thanh toán</a></li>

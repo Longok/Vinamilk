@@ -23,11 +23,12 @@
         <div class="search-btn">
             <form action="{{ URL::to('/search') }}" method="post">
                 {{ csrf_field() }}
-                    <div class="input-group mb-3">
+                    <div class="search-box">
+                        <img src="{{ asset('storage/image/search.png.png')}}">
                         <input type="text" class="form-control" name="keywords" placeholder="Tìm kiếm.." aria-label="Recipient's username">
-                        <div class="input-group-append">
+                        <!-- <div class="input-group-append">
                             <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        </div>
+                        </div> -->
                     </div>               
             </form>                        
         </div>
@@ -88,7 +89,7 @@
                                 @if ($pro->price * $pro->discount == 0)
                                 <h6 class="card-title">Giá: {{number_format($pro->price)}} VNĐ</h6>
                                 @else
-                                <strike class="card-title">Giá: {{number_format($pro->price)}} vnđ</strike>
+                                <strike class="card-title">Giá: {{number_format($pro->price)}} VNĐ</strike>
                                 <h6 class="card-title">Giá: {{ number_format($pro->price - (( $pro->price *
                                     $pro->discount)/100)) }} VNĐ</h6>
                                 @endif

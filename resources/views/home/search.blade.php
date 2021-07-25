@@ -23,11 +23,12 @@
         <div class="search-btn">
             <form action="{{ URL::to('/search') }}" method="post">
                 {{ csrf_field() }}
-                    <div class="input-group mb-3">
+                    <div class="search-box">
+                        <img src="{{ asset('storage/image/search.png.png')}}">
                         <input type="text" class="form-control" name="keywords" placeholder="Tìm kiếm.." aria-label="Recipient's username">
-                        <div class="input-group-append">
+                        <!-- <div class="input-group-append">
                             <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        </div>
+                        </div> -->
                     </div>               
             </form>                        
         </div>
