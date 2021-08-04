@@ -68,7 +68,7 @@
     </div>
     <div class="content bg-light mt-2">
         <div class="container">
-            <div class=" col-8 mt-4 news ">                   
+            <div class=" col-md-10 col-xs-12 mt-4 news ">                   
                 <h5 class=" ">{{$news->title}}</h5>
                    
                 <img src="{{ asset('/storage/image/'.$news->image) }}" height="100%" width="100%">
@@ -105,7 +105,7 @@
 <style>
 body{
     background-color: whitesmoke;
-     padding: 0;
+    padding: 0;
     margin:0;
     box-sizing: border-box;
 }    
@@ -119,7 +119,11 @@ body{
     margin: auto;
 
 }
-
+@media (max-width: 740px) {
+    .list-news {
+        font-size: 15px;
+    }
+}
 </style>
 @include('layout.footer')
 @endsection

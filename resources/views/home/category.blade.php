@@ -94,7 +94,7 @@
                                     $pro->discount)/100)) }} VNĐ</h6>
                                 @endif
                             </div>
-                            <div class="quantity">
+                            <div class="card-bottom">
                                 <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
                                 <button type="button" class="btn btn-success add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>

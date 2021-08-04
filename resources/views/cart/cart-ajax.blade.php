@@ -20,8 +20,7 @@
         <table class="col-md-12 col-xs-12 mx-auto text-center info text-light">
             <thead>
                 <tr class="cart-menu text-center">
-                    <td>Hình ảnh sản phẩm</td>
-                    <td>Tên sản phẩm</td>
+                    <td>Sản phẩm</td>
                     <td>Giá (đ)</td>
                     <td>Số lượng</td>
                     <td>Tổng</td>
@@ -40,10 +39,11 @@
                 <tr class="cart-content">
                     <td class="cart_product pt-2">
                         <img src="{{ asset('/storage/image/'.$val['image']) }}" >
-                    </td>
-                    <td class="cart-name">
                         <a href="">{{$val['name']}}</a>
                     </td>
+                    <!-- <td class="cart-name">
+                        
+                    </td> -->
                     <td class="cart-price">                      
                         <p> {{ number_format($val['price'],0,',','.')}} đ</p>                  
                     </td>

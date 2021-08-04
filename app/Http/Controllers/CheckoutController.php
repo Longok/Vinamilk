@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CheckoutRequest;
+use App\Http\Requests\SignupRequest;
 use App\Category;
 use App\Product;
 use App\Customer;
@@ -29,7 +30,7 @@ class CheckoutController extends Controller
         return view('customer.sign-up');
     }
 
-    public function store(Request $request){
+    public function store(SignupRequest $request){
         $data = array();
         $data['name'] = $request->name;
         $data['email'] = $request->email;

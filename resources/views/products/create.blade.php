@@ -2,9 +2,8 @@
 @include('layout.headerAdmin')
 @section('content')
    <div class="container">
-       <div class="row">
             <section class="panel mt-3">
-                <div class=" col-md-12 col-xs-12 mx-auto">
+                <div class=" col-md-8 col-xs-12 mx-auto">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -72,7 +71,6 @@
                         </form>
                 </div>
             </section>
-       </div>
    </div>
 @include('layout.footer')   
 @endsection

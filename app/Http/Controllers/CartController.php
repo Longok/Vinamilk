@@ -41,7 +41,7 @@ class CartController extends Controller
                     'name'=>$data['product_name'],
                     'image'=>$data['product_image'],
                     'price'=>$data['product_price'],
-                    'quantity'=>$data['product_quantity'],
+                    'quantity'=>$data['product_quantity']++,
                 );
                 Session::put('cart',$new_cart);
             }
