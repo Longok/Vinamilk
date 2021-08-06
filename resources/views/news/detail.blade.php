@@ -80,7 +80,7 @@
         </div>    
         <div class="">
                 <h4 class="text-warning mt-5 text-center">Bài viết liên quan</h4>
-                <ul class="list-news col-5">
+                <ul class="list-news ">
                     @foreach($list_news as $news)
                     <a href="{{ URL::to('/news-detail/'.$news->id) }}"><li>{{$news->title}}</li></a>                   
                     @endforeach
@@ -116,12 +116,26 @@ body{
     min-height: 300px;
 }
 .list-news {
-    margin: auto;
-
+    margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
+@media (min-width: 740px) and (max-width:1023px) {
+    .list-news {
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    }
+}
+  
 @media (max-width: 740px) {
     .list-news {
-        font-size: 15px;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     }
 }
 </style>

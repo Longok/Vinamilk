@@ -230,8 +230,9 @@ ul > li > a{
 .cards {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 100px;
     margin-top: 15px;
+    margin-left: -30px;
+    padding: 0 20px;
 }
 
 .card__item {
@@ -270,35 +271,32 @@ ul > li > a{
 .card__bottom {
     margin-top: auto;
     flex-shrink: 0;
+    display: flex;
+
 }
+
 .input_quantity {
-    width: 40px;
+    width: 50%;
     text-align: center;
     margin-top: -25px;
     margin-left: auto;
 }
 
-/* .quantity {
-    padding: 5px;
-    margin: 5px;
-} */
-
 #quantity {
     width: 50%;
     background-color:rgb(179, 248, 245);
     text-indent: 50%;
-    border: rgb(122, 164, 241);
-    border-radius: 3px;
+    border-radius: 0 0 0 10px;
     height: 31px;
 
 } 
-
-.btn {
-    margin-bottom: 6px;
-    height: 31px;
-
-} 
-
+.add-cart-ajax {
+    width: 75%;
+    border-radius: 0 0 10px 0;
+    height: 32px;
+    background-color: rgb(52, 214, 52);
+    color: rgba(255, 255, 255, 1);
+}
 .footer{
     background-color: #161623;
     margin: 0;
@@ -432,8 +430,9 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     .cards {
         display: flex;
         flex-wrap: wrap;
-        padding: 0 50px;
+        padding: 0 30px;
         margin-top: 5px;
+        margin-left: -10px;
     }
     
     .card__item {
@@ -482,13 +481,11 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
         width: 60%;
         border-radius: 0 0 0 10px;
     }    
-    .btn {
-        background-color: green(0, 0, 0, 1);
-        border: green solid 1px;
-        color: rgb(158, 245, 88);
-        font-size: 12px;
+    .add-cart-ajax {
+        width: 75%;
         border-radius: 0 0 10px 0;
-        width: 100%;
+        height: 32px;
+        background-color: rgb(52, 214, 52);
     }
 
 }
@@ -626,8 +623,9 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
     .cards {
         display: flex;
         flex-wrap: wrap;
-        padding: 0 30px;
+        padding: 0 15px;
         margin-top: 5px;
+        margin-left: -10px;
     }
     
     .card__item {
@@ -675,16 +673,14 @@ ul.droplow.show, ul.droplow1.show1, ul.droplow2.show2, ul.droplow3.show3, ul.dro
         min-height: 20px;
         width: 60%;
         border-radius: 0 0 0 10px;
-    }    
-    .btn {
-        min-height: 15px;
-        background-color: green(0, 0, 0, 1);
-        border: green solid 1px;
-        color: rgb(158, 245, 88);
-        font-size: 12px;
+    }  
+    .add-cart-ajax {
+        width: 75%;
         border-radius: 0 0 10px 0;
-        width: 100%;
-    }
+        height: 32px;
+        font-size: 12px;
+        background-color: rgb(52, 214, 52);
+    }  
 
     .footer {
         background-color: #161623;

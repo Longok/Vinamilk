@@ -9,6 +9,7 @@ use App\Category;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -29,7 +30,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $file = $request->file('image');
-        $fileName = $file->getClientOriginalName('image');
+        $fileName = $file->getClientOriginalName('image');  
         $file->move('storage/image',$fileName);
         $product = New Product;
         $product->category_id = $request->category_id;

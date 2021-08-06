@@ -69,7 +69,7 @@
     <div class="content bg-light mt-2">
         <div class="container">
             @foreach( $news as $new)
-                <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-6 mt-4 news">                                      
+                <div class="mt-4 news">                                      
                         <img src="{{ asset('/storage/image/'.$new->image) }}" height="160" width="100%">
                         <h6 class=" mt-2 "><a href="{{ URL::to('/news-detail/'.$new->id)}}">{{$new->title}}</a></h6>                   
                         <p><a href="{{ URL::to('/news-detail/'.$new->id)}}">{{ $new->description}}</a></p>
@@ -106,13 +106,16 @@ body{
 
 .container {
     background-color: whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
 }
 .news {
     /* border: 2px solid black ; */
     color: #000;
     text-align: center;
-    margin: auto;
+    margin-left: 30px;
     min-height: 300px;
+    width: calc(25% - 30px);
 }
 
 .news > h6 > a {
@@ -131,6 +134,34 @@ body{
 .date > a {
     text-decoration: none;
 }
+@media (min-width: 740px) and (max-width:1023px) {
+        .container {
+        background-color: whitesmoke;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .news {
+        color: #000;
+        text-align: center;
+        min-height: 300px;
+        margin-left: 10px;
+        width: calc(33% - 10px);
+    }
+}    
+@media (max-width: 740px) {
+        .container {
+        background-color: whitesmoke;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .news {
+        color: #000;
+        text-align: center;
+        min-height: 300px;
+        margin-left: 10px;
+        width: calc(100% - 10px);
+    }
+}    
 </style>
 @include('layout.footer')
 @endsection

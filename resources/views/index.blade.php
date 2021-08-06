@@ -82,17 +82,17 @@
                             <div class="card__top">
                                 <h5 class="card-name ">{{$pro->name}}</h5>
                                 @if ($pro->price * $pro->discount == 0)
-                                <h6 class="card-title">Giá: {{number_format($pro->price)}} VNĐ</h6>
+                                <h6 class="card-title">{{number_format($pro->price)}} $</h6>
                                 @else
-                                <strike class="card-title">Giá: {{number_format($pro->price)}} VNĐ</strike>
-                                <h6 class="card-title">Giá: {{ number_format($pro->price - (( $pro->price *
-                                    $pro->discount)/100)) }} VNĐ</h6>
+                                <strike class="card-title">{{number_format($pro->price)}} $</strike>
+                                <h6 class="card-title">{{ number_format($pro->price - (( $pro->price *
+                                    $pro->discount)/100)) }} $</h6>
                                 @endif
                             </div>
                             <div class="card__bottom">
                                 <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                                <button type="button" class="btn btn-success add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
+                                <button type="button" class="add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
                             </div>
                         </div>                           
                         
@@ -102,7 +102,7 @@
             
          
     </div>  
-    <span class="pagination justify-content-center mt-3">{{ $products->render() }}</span>           
+    <span class="pagination justify-content-center mt-3">{{ $products->links() }}</span>           
 </body>
 <script>
     show_cart();

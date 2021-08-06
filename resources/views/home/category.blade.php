@@ -23,13 +23,10 @@
         <div class="search-btn">
             <form action="{{ URL::to('/search') }}" method="post">
                 {{ csrf_field() }}
-                <div class="search-box">
+                    <div class="search-box">
                         <img src="{{ asset('storage/image/search.png.png')}}">
                         <input type="text" class="form-control" name="keywords" placeholder="Tìm kiếm.." aria-label="Recipient's username">
-                        <!-- <div class="input-group-append">
-                            <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        </div> -->
-                </div>               
+                    </div>               
             </form>                        
         </div>
         <div id="menu-icon" class="menu-icon">
@@ -65,10 +62,9 @@
             </div>
         </div>    
     </div> 
-    <div class="content">
-        <div class="container">            
+    <div class="cards">    
             @foreach($products as $pro)
-                <div class="box col-lg-4 col-md-4 col-sm-6 col-xs-6 mt-2">
+                <div class="card__item">
                     <form>
                     @csrf
                         <input type="hidden" value="{{ $pro->id }}" class="product_id_{{ $pro->id }}">
@@ -80,38 +76,48 @@
                         @else
                             <input type="hidden" value="{{ $pro->price - $pro->price * $pro->discount/100 }}" class="product_price_{{ $pro->id }}">
                         @endif
-                        <div class="card">
-                            <div class="card-image d-flex justify-content-around mt-2">
-                                <img src="{{ asset('/storage/image/'.$pro->image) }}" height="160">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title ">{{$pro->name}}</h5>
+                                 
+                        <img class="card-image mt-2"src="{{ asset('/storage/image/'.$pro->image) }}">
+                        <div class="card-content">
+                            <div class="card__top">
+                                <h5 class="card-name ">{{$pro->name}}</h5>
                                 @if ($pro->price * $pro->discount == 0)
-                                <h6 class="card-title">Giá: {{number_format($pro->price)}} VNĐ</h6>
+                                <h6 class="card-title">{{number_format($pro->price)}} đ</h6>
                                 @else
-                                <strike class="card-title">Giá: {{number_format($pro->price)}} vnđ</strike>
-                                <h6 class="card-title">Giá: {{ number_format($pro->price - (( $pro->price *
-                                    $pro->discount)/100)) }} VNĐ</h6>
+                                <strike class="card-title">{{number_format($pro->price)}} đ</strike>
+                                <h6 class="card-title">{{ number_format($pro->price - (( $pro->price *
+                                    $pro->discount)/100)) }} đ</h6>
                                 @endif
                             </div>
-                            <div class="card-bottom">
+                            <div class="card__bottom">
                                 <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                                <button type="button" class="btn btn-success add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
+                                <button type="button" class="add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
                             </div>
-                        </div>
+                        </div>                           
+                        
                     </form>
                 </div>
             @endforeach
-            <span class="pagination justify-content-center">{{ $products->render() }}</span>
-        </div>     
-    </div>           
+            
+         
+    </div>  
+    <span class="pagination justify-content-center mt-3">{{ $products->render() }}</span>           
 </body>
 <script>
+    show_cart();
+        function show_cart(){
+            $.ajax({
+                url:'{{ url('/show-cart') }}',
+                method: "GET",
+                success:function(data){
+                    $('.show-cart').html(data);
+                }
+            });
+        }     
     var menu = document.getElementById('menu');
     var menuIcon = document.getElementById('menu-icon');
     var menuHeight = menu.clientHeight;
-
         menuIcon.onclick = function () {
             var closeIcon = menu.clientHeight === menuHeight;
             if (closeIcon) {
@@ -143,8 +149,8 @@
                 },
                 success:function(data){
                     swal("Good job!", "Thêm vào giỏ hàng thành công!", "success");
-                    // alert(data);
-                
+                    // alert(data);   
+                    show_cart();            
                 }
             });
         });

@@ -39,7 +39,7 @@
                 <tr class="cart-content">
                     <td class="cart_product pt-2">
                         <img src="{{ asset('/storage/image/'.$val['image']) }}" >
-                        <a href="">{{$val['name']}}</a>
+                        <p>{{$val['name']}}</p>
                     </td>
                     <!-- <td class="cart-name">
                         
