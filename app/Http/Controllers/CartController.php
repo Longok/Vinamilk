@@ -15,12 +15,16 @@ use Illuminate\Support\Facades\Hash;
 class CartController extends Controller
 {
     
-    public function show_cart(Request $request){
+    public function count_cart(Request $request){
         $data = $request->all();
         $cart = count(Session::get('cart'));
+        $totalquanty = 0;
+        foreach(Session::get('cart') as $count){
+            $totalquanty += $count['quantity'];
+        }
         $output = '';
         if($cart >0){
-            $output .= '<span class="show-cart">'.$cart.'</span>';
+            $output .= '<span class="show-cart">'.$totalquanty.'</span>';
         }else{
             $output .= '<span class="show-cart">0</span>';
         }
@@ -30,40 +34,50 @@ class CartController extends Controller
 
     public function add_cart_ajax(Request $request){
         $data = $request->all();
-        $session_id = substr(md5(microtime()),rand(0,26),4);
+        // $session_id = substr(md5(microtime()),rand(0,26),4);
         $new_cart = Session::get('cart');
         if($new_cart == true){
             $isset = 0;
-            if($isset == 0){
+           foreach($new_cart as $key => $val){
+               if($val['id'] == $data['product_id']){
+                   $isset++;
+                   $new_cart[$key] = array(
+                    'id'=>$val['id'],
+                    'name'=>$val['name'],
+                    'image'=>$val['image'],
+                    'price'=>$val['price'],
+                    'quantity'=>$val['quantity']+$data['product_quantity'],
+                );
+                Session::put('cart',$new_cart);
+               }
+           }
+           if($isset == 0){
                 $new_cart[] = array(
-                    'session_id'=> $session_id,
                     'id'=>$data['product_id'],
                     'name'=>$data['product_name'],
                     'image'=>$data['product_image'],
                     'price'=>$data['product_price'],
-                    'quantity'=>$data['product_quantity']++,
+                    'quantity'=>1,
                 );
-                Session::put('cart',$new_cart);
-            }
-
+            Session::put('cart',$new_cart);
+           }
         }else{
             $new_cart[] = array(
-                'session_id'=> $session_id,
                 'id'=>$data['product_id'],
                 'name'=>$data['product_name'],
                 'image'=>$data['product_image'],
                 'price'=>$data['product_price'],
-                'quantity'=>$data['product_quantity'],
+                'quantity'=>1,
             );
             Session::put('cart',$new_cart);
         }
         
         Session::save();
-        // print_r($data);
+        print_r($data);
     }
 
-    public function show_cart_ajax(){
-        return view('cart.cart-ajax');
+    public function index(){
+        return view('cart.index');
     }
 
 
@@ -99,31 +113,5 @@ class CartController extends Controller
             return redirect()->back()->with('message','Xóa sản phẩm thành công');
         }
     }
-
-    // public function add( Request $request, $id){
-    //     $proId = $request->productid_hidden;
-    //     $quantity = $request->qty;      
-    //     $product = Product::where('id',$proId)->first();
-    //     $data['id'] = $product->id;
-    //     $data['qty'] = $quantity;
-    //     $data['name'] = $product->name;
-    //     $data['price'] = $product->price - (($product->price*$product->discount)/100); 
-    //     $data['weight'] = '123';
-    //     $data['options']['image'] = $product->image;
-    //     Cart::add($data);
-    //     // $content = Cart::content();
-    //     return redirect::to('/show-cart');
-    // }
-
-    // public function show_cart(){
-       
-    //     return view('cart.index');
-    // }
-
-    // public function delete_cart($rowId){
-    //     Cart::update($rowId,0);
-    //     return redirect::to('/show-cart');
-    // }
-
 
 }

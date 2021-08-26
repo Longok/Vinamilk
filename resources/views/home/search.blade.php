@@ -33,7 +33,7 @@
             <i class="ti-align-justify"></i>
         </div>      
     </div> 
-    <div class="slide">
+    <div class="slide mb-5">
         <div id="demo" class="carousel " data-ride="carousel">
                 <ul class="carousel-indicators">
                     <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -76,31 +76,31 @@
                         @else
                             <input type="hidden" value="{{ $pro->price - $pro->price * $pro->discount/100 }}" class="product_price_{{ $pro->id }}">
                         @endif
-                                 
+                        <input id="quantity" type="hidden" min="1" value="1" class="product_quantity_{{ $pro->id }}">        
                         <img class="card-image mt-2"src="{{ asset('/storage/image/'.$pro->image) }}">
                         <div class="card-content">
                             <div class="card__top">
                                 <h5 class="card-name ">{{$pro->name}}</h5>
                                 @if ($pro->price * $pro->discount == 0)
-                                <h6 class="card-title">{{number_format($pro->price)}} đ</h6>
+                                <h6 class="card-title">{{number_format($pro->price)}} $</h6>
                                 @else
-                                <strike class="card-title">{{number_format($pro->price)}} đ</strike>
+                                <strike class="card-title">{{number_format($pro->price)}} $</strike>
                                 <h6 class="card-title">{{ number_format($pro->price - (( $pro->price *
-                                    $pro->discount)/100)) }} đ</h6>
+                                    $pro->discount)/100)) }} $</h6>
                                 @endif
                             </div>
                             <div class="card__bottom">
                                 <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                                <button type="button" class="btn btn-success add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
+                                <button type="button" class="add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
                             </div>
                         </div>                           
                         
                     </form>
                 </div>
-            @endforeach
-                   
-    </div>        
+            @endforeach       
+    </div>  
+      
 </body>
 <script>
     show_cart();
@@ -136,7 +136,7 @@
             var _token = $('input[name="_token"]').val();
         
             $.ajax({
-                url: '{{url('/add-cart-ajax')}}',
+                url: 'add-cart/',
                 method: 'POST',
                 data: { product_id:product_id,
                     product_name:product_name,

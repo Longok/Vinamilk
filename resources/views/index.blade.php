@@ -33,7 +33,7 @@
             <i class="ti-align-justify"></i>
         </div>      
     </div> 
-    <div class="slide">
+    <div class="slide mb-5">
         <div id="demo" class="carousel " data-ride="carousel">
                 <ul class="carousel-indicators">
                     <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -76,7 +76,7 @@
                         @else
                             <input type="hidden" value="{{ $pro->price - $pro->price * $pro->discount/100 }}" class="product_price_{{ $pro->id }}">
                         @endif
-                                 
+                        <input id="quantity" type="hidden" min="1" value="1" class="product_quantity_{{ $pro->id }}">        
                         <img class="card-image mt-2"src="{{ asset('/storage/image/'.$pro->image) }}">
                         <div class="card-content">
                             <div class="card__top">
@@ -138,7 +138,7 @@
             var _token = $('input[name="_token"]').val();
         
             $.ajax({
-                url: '{{url('/add-cart-ajax')}}',
+                url: 'add-cart/',
                 method: 'POST',
                 data: { product_id:product_id,
                     product_name:product_name,

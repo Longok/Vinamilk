@@ -11,13 +11,13 @@
   <a href ="{{ URL::to('/index')}}"><img src="{{ asset('image/logo.png') }}" height="100" width="120"></a>
 </div>
 <div class="container mt-3">
-  <div class="div">
+  <div class="d-flex">
     <a href="{{ URL::to('/index')}}">Quay lại trang chủ</a>
+    <header class="col-xs-4 col-md-4 mx-auto text-primary mb-5">
+     Đăng ký tài khoản
+    </header>
   </div>
-  <header class="col-xs-4 col-md-4 mx-auto text-primary text-center">
-    Đăng ký tài khoản
-  </header>
-    <div class="col-lg-8 col-md-10 col-xs-10 px-10 mx-auto">
+    <div class="col-lg-8 col-md-10 col-xs-10 mx-auto">
       @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -36,7 +36,7 @@
           }
         ?>
       </div>
-       <div class="col-lg-8 col-md-10 col-xs-10">
+        <div class="col-lg-8 col-md-10 col-xs-10 mx-auto">
           <form action="{{ URL::to('sign-up') }}" method="post" enctype="multipart/form-data" >
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="form-group ">
@@ -61,7 +61,7 @@
               </button>
             </div>
           </form>
-       </div>   
+        </div>   
     </div>
 </div>  
 </body>

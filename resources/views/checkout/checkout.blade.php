@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
 @include('layout.header')
-<div class="container"> 
+<div class="container text-dark"> 
 <form action="{{URL::to('/save-info-customer')}}" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">         
     <nav aria-label="breadcrumb">
@@ -10,11 +10,11 @@
             <li class="breadcrumb-item active" aria-current="page">Thông tin đơn hàng</li>
         </ol>
         
-        <div class="text-center">
+        <div class="text-center mt-5">
             <p>Vui lòng điền thông tin gửi hàng</p>          
         </div> 
     </nav>    
-        <div class="row mt-4 text-light">    
+        <div class="row mt-4 text-dark">    
             <div class="col-md-8 col-xs-12 mx-auto">                                                   
                     <div class="mt-3">            
                         <label for="">Tên người đặt hàng</label> 
@@ -59,7 +59,7 @@
                 <div class="">
                     Chọn hình thức thanh toán:
                 </div>
-                <div class="payment">
+                <div class="payment text-primary">
                     <span>
                         <label><input name="shipping_method" type="checkbox" value="ATM">Thanh toán ATM</label>        
                     </span>        
@@ -78,7 +78,7 @@
                         // dd(Session::get('cart'));           
                     ?>
                     @if(Session::get('cart') !=null)
-                        <table class="col-md-10 col-xs-10 mx-auto text-center info text-light">
+                        <table class="col-md-10 col-xs-10 mx-auto text-center info text-dark">
                             <thead>
                                 <tr class="cart_menu">
                                     <td class="">Sản phẩm</td>

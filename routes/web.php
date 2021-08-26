@@ -48,13 +48,11 @@ Route::post('/add-slide','SlideController@store');
 Route::get('/all-slide','SlideController@index');
 Route::get('/delete-slide/{id}','SlideController@delete');
 //Cart
-Route::post('/cart/{id}', 'CartController@add')->name('cart');
-Route::get('/show-cart','CartController@show_cart');
-Route::get('/delete-cart/{rowId}','CartController@delete_cart');
+Route::get('/show-cart','CartController@count_cart');
 Route::post('/update-cart/','CartController@update_cart');
-Route::post('/add-cart-ajax/','CartController@add_cart_ajax');
-Route::get('/cart/','CartController@show_cart_ajax');
-Route::get('/delete-cart-ajax/{id}','CartController@delete_cart_ajax');
+Route::post('/add-cart/','CartController@add_cart_ajax');
+Route::get('/cart/','CartController@index');
+Route::get('/delete-cart/{id}','CartController@delete_cart_ajax');
 
 
 //Checkout
