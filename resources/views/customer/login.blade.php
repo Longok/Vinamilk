@@ -35,10 +35,10 @@
                         <!-- <label for="password">Password</label><br> -->
                         <input type="password" class="form-control" name="password" placeholder="Điền password" required="">
                     </div>
-                    <button type="submit"class="btn form-control btn-primary ">Đăng nhập</button>
-                    <span>
+                    <button type="submit"class="btn">Đăng nhập</button>
+                    
                         <a href="{{ URL::to('/sign-up')}}">Đăng ký</a>
-                    </span>
+                    
                 </div>
             </form>
         </div>
@@ -49,16 +49,18 @@
 </html>
 <style>
     body{
-        background:black;
+        background: #161623;
     }
     a {
-        color:white;
-        margin-top:20px;
+        color: white;
+        margin-top: 2rem;
+        font-size: 1.8rem;
+        padding: 0 .5rem;
     }
 
     a:hover{
         color:white;
-        text-decoration:none;
+        text-decoration: none;
     }
 
     .login {
@@ -74,7 +76,6 @@
         box-shadow: 3px 3px none;
         color:white;
         background:none;
-        /* outline:none; */
     }    
     .login-box h1{
         font-size:40px;
@@ -99,7 +100,10 @@
         font-size:20px;
     }
     .btn{
-        background:none;
+        border-radius: .5rem;
+        color: #fff;
+        width: 100%;
+        margin: 1rem 0;
     }
     
 </style>

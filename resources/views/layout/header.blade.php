@@ -1,83 +1,85 @@
-<div id="header">
-    <div class="image-nav">
-        <div class="logo-brand">
-            <a href ="{{ URL::to('/index')}}"><img src="{{ asset('image/logo.png') }}" height="70" width="110"></a>
-            <div class="brand">
-                <span>D</span>emo
-            </div>
-        </div>
-        <div class="nav">
-            <ul>
-                <li>
-                    <a href="{{ URL::to('/cart')}}">Giỏ hàng<span class="show-cart">0</span></a>                 
-                </li>
-                @if(Auth::check())
-                <li><a href="{{ URL::to('/check-out')}}">Thanh toán</a></li>
-                @else 
-                <li><a href="{{ URL::to('/login')}}">Thanh toán</a></li>
-                @endif
 
-                @if(Auth::check())
-                    <!-- {{Auth::user()->customer_id}} -->
-                    <i class="fas fa-smile" style="color:blue"></i> {{Auth::user()->name}}
-                    <li><a href ="{{URL::to('/logout')}}">Đăng Xuất</a></li>
-                @else
-                <li><a href ="{{URL::to('/login')}}">Đăng nhập</a></li>
-                <li><a href ="{{URL::to('/sign-up')}}">Đăng ký</a></li>   
-                @endif                      
-            </ul>
-        </div> 
-        <div class="nav-icon">
-            <ul>
-                <li>
-                    <a href="{{ URL::to('/cart')}}">
-                        <i class="ti-shopping-cart"><span class="show-cart"></span></i>                       
-                    </a>  
-                              
-                </li>
-                @if(Auth::check())
-                <li><a href="{{ URL::to('/check-out')}}">
-                        <i class="ti-check-box"></i>
-                    </a>
-                </li>
-                @else 
-                <li><a href="{{ URL::to('/login')}}">
-                        <i class="ti-check-box"></i>
-                    </a>
-                </li>
-                @endif
-                   
-                @if(Auth::check())
-                
-                    <!-- <i class="fas fa-smile" style="color:blue"></i> {{Auth::user()->name}}
-                    <li href ="{{URL::to('/logout')}}"></a></li> -->
-                        <i class="ti-comments-smiley" style="color:blue"></i>
-                    <li>
-                        <a href ="{{URL::to('/logout')}}">
-                            <i class="ti-face-sad" style="color:red"></i>
-                        </a>
-                    </li>
-                @else
-                <li>
-                    <a href ="{{URL::to('/login')}}">
-                        <i class="ti-user"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href ="{{URL::to('/sign-up')}}">
-                        <i class="ti-slice"></i>
-                    </a>
-                </li>   
-                @endif                      
-            </ul>
-        </div> 
-    </div> 
-        
-</div>
-<style>
+<header class="header">
+    <a href="{{ URL::to('/index')}}" class="logo">
+        <img src="{{ asset('image/logo.png') }}" alt=""> <span>Demo</span> 
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="{{ URL::to('/index') }}">Trang chủ</a>
+            </li>
+            <li>
+                <a href="#">Sản phẩm
+                    <i class="ti-angle-down"></i>  
+                </a>
+                <ul class="submenu">
+                    @foreach($categorys as $category)
+                        <li><a href="{{URL::to('/category/'.$category->id)}}">{{ $category->name }}</a></li>
+                    @endforeach
+                </ul>
+            </li>
+            <li><a href="{{ URL::to('/news') }}">Tin tức</a></li>
+            <li><a href="#">Liên hệ</a></li>                   
+        </ul> 
+    </nav>
    
-</style>
+
+    <div class="icons">
+        <div class="icon-header fas fa-bars" id="menu-btn"></div>
+        <div class="icon-header fas fa-search" id="search-btn"></div>
+        <div class="icon-header fas fa-shopping-cart" id="cart-btn">
+            <span class="show-cart"></span>
+        </div>
+        
+        @if(Auth::check())
+            {{Auth::user()->name}}
+            <a class="logout" href ="{{URL::to('/logout')}}">Đăng xuất</a>
+        @else
+        <a href="{{URL::to('/login')}}">
+            <div class="icon-header fas fa-user" id="login-btn"></div>
+        </a> 
+        @endif
+    </div>
+
+    <!-- search -->
+    <form action="{{ URL::to('/search') }}" class="search-form" method="post">
+        {{ csrf_field() }}
+        <input type="search" id="search-box"  name="keywords" placeholder="Tìm kiếm..." aria-label="Recipient's username">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+    <!-- login -->
+    <!-- <form action="{{ URL::to('/login')}}" method="post" class="login-form">
+        {{ csrf_field() }}  
+        <h3>Đăng nhập</h3>
+        <input type="email" placeholder="email" class="box">
+        <input type="password" placeholder="password" class="box">
+        <p>Chưa có tài khoản <a href="{{ URL::to('/sign-up')}}">Tạo ngay</a></p>
+        <input type="submit" value="Đăng nhập" class="btn">
+    </form> -->
+</header>
+
+
+
 <script>
+    // search
+    const searchForm = document.querySelector('.search-form');
+    const searchBtn = document.querySelector('#search-btn');
+    
+    searchBtn.addEventListener('click', function(){
+        searchForm.classList.toggle('active');
+        navbar.classList.remove('active');
+    });
+
+    const navbar = document.querySelector('.navbar');
+    const menuBtn = document.querySelector('#menu-btn');  
+
+    menuBtn.addEventListener('click', function(){
+        navbar.classList.toggle('active');
+        searchForm.classList.remove('active');
+    });
+
     $(document).ready(function (){
         show_cart();
         function show_cart(){

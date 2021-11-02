@@ -2,36 +2,8 @@
 @section('content')
 @include('layout.header')
 <body>
-    <div id="menu">
-        <ul>
-            <li class="active">
-                <a href="{{ URL::to('/index') }}">Trang chủ</a>
-            </li>
-            <li>
-                <a href="#">Sản phẩm
-                    <i class="ti-angle-down"></i>  
-                </a>
-                <ul class="submenu">
-                    @foreach($categorys as $category)
-                        <li><a href="{{URL::to('/category/'.$category->id)}}">{{ $category->name }}</a></li>
-                    @endforeach
-                </ul>
-            </li>
-            <li><a href="{{ URL::to('/news') }}">Tin tức</a></li>
-            <li><a href="#">Liên hệ</a></li>                   
-        </ul> 
-        <div class="search-btn">
-            <form action="{{ URL::to('/search') }}" method="post">
-                {{ csrf_field() }}
-                    <div class="search-box">
-                        <img src="{{ asset('storage/image/search.png.png')}}">
-                        <input type="text" class="form-control" name="keywords" placeholder="Tìm kiếm.." aria-label="Recipient's username">
-                    </div>               
-            </form>                        
-        </div>
-        <div id="menu-icon" class="menu-icon">
-            <i class="ti-align-justify"></i>
-        </div>      
+    
+    
     </div> 
     <div class="slide mb-5">
         <div id="demo" class="carousel " data-ride="carousel">
@@ -62,7 +34,8 @@
             </div>
         </div>    
     </div> 
-    <div class="cards">    
+    
+    <section class="cards">    
             @foreach($search as $pro)
                 <div class="card__item">
                     <form>
@@ -80,29 +53,31 @@
                         <img class="card-image mt-2"src="{{ asset('/storage/image/'.$pro->image) }}">
                         <div class="card-content">
                             <div class="card__top">
-                                <h5 class="card-name ">{{$pro->name}}</h5>
+                                <h3 class="card-name ">{{$pro->name}}</h3>
                                 @if ($pro->price * $pro->discount == 0)
-                                <h6 class="card-title">{{number_format($pro->price)}} $</h6>
+                                <h3 class="card-price">{{number_format($pro->price)}} $</h3>
                                 @else
-                                <strike class="card-title">{{number_format($pro->price)}} $</strike>
-                                <h6 class="card-title">{{ number_format($pro->price - (( $pro->price *
-                                    $pro->discount)/100)) }} $</h6>
+                                <strike class="card-price">{{number_format($pro->price)}} $</strike>
+                                <h3 class="card-price">{{ number_format($pro->price - (( $pro->price *
+                                    $pro->discount)/100)) }} $</h3>
                                 @endif
                             </div>
                             <div class="card__bottom">
                                 <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                                <button type="button" class="add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button>
+                                <!-- <button type="button" class="add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button> -->
+                                <a href="" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">Mua hàng</a>
                             </div>
                         </div>                           
                         
                     </form>
                 </div>
             @endforeach       
-    </div>  
+    </section>  
       
 </body>
 <script>
+
     show_cart();
         function show_cart(){
             $.ajax({
@@ -113,17 +88,7 @@
                 }
             });
         }     
-    var menu = document.getElementById('menu');
-    var menuIcon = document.getElementById('menu-icon');
-    var menuHeight = menu.clientHeight;
-        menuIcon.onclick = function () {
-            var closeIcon = menu.clientHeight === menuHeight;
-            if (closeIcon) {
-                menu.style.height = 'auto';
-            } else {
-                menu.style.height = null;
-            }
-        }
+  
     //add-cart-ajax
     $(document).ready(function (){
         $('.add-cart-ajax').click(function(){

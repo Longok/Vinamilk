@@ -15,7 +15,7 @@
         <div class="col-6 col-md-3 mx-auto">
             <form action="{{ URL::to('/dashboard')}}" method="post">
                 {{ csrf_field() }}             
-                <div class="loginbox">
+                <div class="login-box">
                     <div class="text-danger mt-3 ">
                    <?php
                        $message = Session::get('message');
@@ -35,10 +35,10 @@
                         <!-- <label for="password">Password</label><br> -->
                         <input type="password" class="form-control" name="admin_password" placeholder="Điền password" required="">
                     </div>
-                    <button type="submit"class="btn form-control btn-primary ">Đăng nhập</button>
-                    <span>
-                        <a href="{{ URL::to('/create-admin')}}">Đăng ký</a>
-                    </span>
+                    <button type="submit" class="btn">Đăng nhập</button>
+
+                    <a href="{{ URL::to('/create-admin')}}">Đăng ký</a>
+
                 </div>
             </form>
         </div>
@@ -49,18 +49,19 @@
 </html>
 <style>
     body{
-        background:black;
+        background: #111111;
     }
     a {
-        color:white;
-        margin-top:20px;
+        color: white;
+        margin-top: 20px;
+        font-size: 1.8rem;
     }
 
     a:hover{
         color:white;
         text-decoration:none;
     }
-    .loginbox{
+    .login-box{
         position:absolute;
         border: 1px solid #66ff66;
         padding:15px;
@@ -71,7 +72,7 @@
         background:none;
         outline:none;
     }    
-    .loginbox h1{
+    .login-box h1{
         font-size:40px;
         border-bottom:1px solid #66ff66;
         padding:10px 0;
@@ -93,8 +94,12 @@
         color:white;
         font-size:20px;
     }
+    
     .btn{
-        background:none;
+        border-radius: .5rem;
+        color: #fff;
+        width: 100%;
+        margin: 1rem 0;
     }
     
 </style>
