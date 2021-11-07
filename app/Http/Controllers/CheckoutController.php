@@ -69,10 +69,11 @@ class CheckoutController extends Controller
     }
 
     public function checkout(){
+        $categorys = Category::all();
         $thanhpho = City::all();
         $quanhuyen = Districts::all();
         $xaphuong = Wards::all();
-        return view('checkout.checkout',compact('thanhpho','quanhuyen','xaphuong'));
+        return view('checkout.checkout',compact('thanhpho','quanhuyen','xaphuong','categorys'));
     }
 
     public function info_customer(CheckoutRequest $request){

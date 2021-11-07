@@ -15,6 +15,7 @@ Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
     // return what you want
 });
+
 //admin
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard','AdminController@show_dashboard');
@@ -23,10 +24,12 @@ Route::get('/create-admin', 'AdminController@create');
 Route::post('/create-admin', 'AdminController@store');
 Route::get('/logout-admin', 'AdminController@logout');
 Route::get('/list-user','AdminController@list_user');
+
 //Home
 Route::get('/index','HomeController@index');
 Route::get('/category/{id}','HomeController@category');
 Route::post('/search','HomeController@search');
+
 //Category
 Route::get('category','CategoryController@create');
 Route::post('/addCategory','CategoryController@store')->name('add-category');
@@ -34,6 +37,7 @@ Route::get('/all-category','CategoryController@index');
 Route::get('/edit-category/{id}','CategoryController@edit');
 Route::post('/update-category/{id}','CategoryController@update');
 Route::get('/delete-category/{id}','CategoryController@delete');
+
 //Products
 Route::get('/product','ProductController@create');
 Route::post('/addProduct','ProductController@store')->name('add-product');
@@ -42,18 +46,19 @@ Route::get('/list-product/{id}','ProductController@list');
 Route::get('/edit-product/{id}','ProductController@edit');
 Route::post('/update-product/{id}','ProductController@update');
 Route::get('/delete-product/{id}','ProductController@delete');
+
 //Slide
 Route::get('slide','SlideController@create');
 Route::post('/add-slide','SlideController@store');
 Route::get('/all-slide','SlideController@index');
 Route::get('/delete-slide/{id}','SlideController@delete');
+
 //Cart
 Route::get('/show-cart','CartController@count_cart');
 Route::post('/update-cart/','CartController@update_cart');
 Route::post('/add-cart/','CartController@add_cart_ajax');
 Route::get('/cart/','CartController@index');
 Route::get('/delete-cart/{id}','CartController@delete_cart_ajax');
-
 
 //Checkout
 Route::get('/check-out','CheckoutController@checkout');
@@ -77,4 +82,5 @@ Route::get('/add-news','NewsController@create');
 Route::post('/add-news','NewsController@store');
 Route::get('/news','NewsController@index');
 Route::get('/news-detail/{id}','NewsController@detail');
+Route::get('/list-news','NewsController@list_news');
 

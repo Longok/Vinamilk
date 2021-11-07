@@ -1,6 +1,7 @@
 @extends('layout.master')
+@include('layout.side-bar')
 @section('content')  
-@include('layout.nav-bar')     
+    
         <div class="col-md-8 col-xs-12 mx-auto">
             <div class="mt-3 text-primary">
                 <h6>Danh sách sản phẩm</h6>
@@ -27,7 +28,7 @@
                         <td scope="row">{{$product->name}}</td>
                         <td scope="row">{{$product->price}}</td>
                         <td scope="row">
-                            <img src="{{ asset('storage/image/'.$product->image) }}" height="200" width="200">
+                            <img src="{{ asset('storage/image/'.$product->image) }}" height="150" width="150">
                         </td>
                         <td scope="row">{{$product->quantity}}</td>
                         <td scope="row">{{$product->discount}}</td>

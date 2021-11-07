@@ -1,24 +1,30 @@
-<div class="header-admin">
-    <div class="row">
-        <div class="col-12  ">
-            <div class="d-flex ">
-                <div class="col-sm-9 col-md-9">
-                    <a href ="{{ URL::to('/index')}}"><img src="{{ asset('image/logo.png') }}" height="100" width="120"></a>
-                </div>
-                <div class="col-sm-3 col-md-3 mt-5 d-block">
+<header>
+
+    <h2>
+        <label for="nav-toggle">
+            <span class="fas fa-bars"></span>
+        </label>
+        Dashboard
+    </h2>
+
+    <div class="search-wrapper">
+        <span class="fas fa-search"></span>
+        <input type="search" placeholder="search here..."/>
+    </div>
+
+    <div class="user-wrapper">
+        <div>
+            <h4>
                 <a href =""><i class="fas fa-user" style="font-size:22px;color:blue;"></i></a>
-                    <?php
-                        $name = Session::get('admin_name');
-                        if($name){
-                            echo $name;
-                        }                    
-                    ?>
-                        <a href ="{{URL::to('/logout-admin')}}">Đăng Xuất</a>                                        
-                </div>
-            </div>
+                <?php
+                    $name = Session::get('admin_name');
+                    if($name){
+                        echo $name;
+                    }                    
+                ?>
+                    <a href ="{{URL::to('/logout-admin')}}">Đăng Xuất</a> 
+            </h4>                                                      
         </div>
     </div>
-    <div class="mx-4 mt-3 text-primary">
-        <h6><a href="{{URL::to('/dashboard')}}">Trang Admin</a></h6>
-    </div>
-</div>
+
+</header>

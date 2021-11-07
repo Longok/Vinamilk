@@ -4,8 +4,8 @@
 <div class="container" style="margin-top: 120px">   
     <div class=" col-md-12 col-xs-12 mx-auto">
         <div class="col-md-12 col-xs-12 mx-auto text-center d-flex">
-            <a href="{{ URL::to('/index') }}">TRANG CHỦ |</a>
-            <h5 class="text-dark">Giỏ hàng của bạn</h5> 
+            <h3><a href="{{ URL::to('/index') }}">TRANG CHỦ |</a></h3>
+            <h4 class="text-dark">Giỏ hàng của bạn</h4> 
         </div>    
         <div class="alert-success mt-5 mb-3 text-center">
             <?php
@@ -17,7 +17,7 @@
             ?>
         </div>
         @if(Session::get('cart') !=null)
-        <table class="col-md-12 col-xs-12 mx-auto text-center text-dark">
+        <table class="col-md-12 col-xs-12 mx-auto text-center">
             <thead>
                 <tr class="cart-menu text-center">
                     <td>Sản phẩm</td>
@@ -41,10 +41,10 @@
                 <tr class="cart-content">
                     <td class="cart_product pt-2">
                         <img src="{{ asset('/storage/image/'.$val['image']) }}" >
-                        <p>{{$val['name']}}</p>
+                        <h4>{{$val['name']}}</h4>
                     </td>
                     <td class="cart-price">                      
-                        <p> {{ number_format($val['price'],0,',','.')}} đ</p>                  
+                        <h4> {{ number_format($val['price'],0,',','.')}}</h4>                  
                     </td>
                     <td class="cart-quantity">
                         <div class="cart-quantity-button">
@@ -57,11 +57,10 @@
                         </div>
                     </td>
                     <td class="total">
-                        <p class="cart-total-price"> {{number_format($subTotal,0,',','.')}} đ</p>
+                        <h4 class="cart-total-price"> {{number_format($subTotal,0,',','.')}}</h4>
                     </td>
                     <td class="cart_delete">
-                        <a class="cart-quantity-delete" href="{{ URL::to('/delete-cart/'.$val['id'])}}"><i
-                            class="fa fa-times"></i>Xóa</a>
+                        <a class="cart-quantity-delete" href="{{ URL::to('/delete-cart/'.$val['id'])}}">Xóa</a>
                     </td>
                 </tr>
             @endforeach  
@@ -69,7 +68,7 @@
         </table>
     </div>    
     <div class="col-md-4 col-xs-4 mx-auto float-right mb-5 mt-5">        
-        <div class="">
+        <div class="checkout">
             <ul>
                 <li><a href="" class="breadcrumb bg-success text-dark">Tổng tiền:{{number_format($total,0,',','.')}} đ</a></li>
             </ul>
@@ -92,46 +91,69 @@
     </div>      
 </div>
 <style>
-    @media (max-width: 740px) {
-        .info {
-            font-size: 12px;
-            text: center;
-        }
-        .table-condensed {
-            font-size: 13px;
-            color: black;
-        }
-        .breadcrumb {
-            font-size: 15px;
-            width: 230px;
-            height: 40px;
-        }
-        .cart_product img {
-           color: #000;
-        }
-        ul li, li > a {
+
+.cart-menu td {
+    font-size: 1.5rem;
+}
+
+.checkout a {
+    font-size: 1.5rem;
+}
+
+.cart_delete a {
+    margin-top: 50%;
+    font-size: 1.3rem;
+}
+
+.cart-quantity-button input {
+    font-size: 1.3rem;
+}
+
+.cart_quantity_input {
+    font-size: 1.3rem;
+}
+
+.cart-menu {
+    background: linear-gradient(45deg, #40b2f5, #ffbc00);
+    color: black;
+}
+.cart-name > a {
+    color: black;
+}
+.cart-content {
+    color: black;
+}
+ul li, li > a {
+    list-style: none;
+    text-decoration: none;
+    font-size: 14px;
+}
+.cart_product img {
+    width: 100px;
+    height: 100px;
+} 
+
+@media (max-width: 740px) {
+    .info {
         font-size: 12px;
+        text: center;
     }
-    }
-    .cart-menu {
-        background: linear-gradient(45deg, #40b2f5, #ffbc00);
+    .table-condensed {
+        font-size: 13px;
         color: black;
     }
-    .cart-name > a {
-        color: black;
-    }
-    .cart-content {
-        color: black;
-    }
-    ul li, li > a {
-        list-style: none;
-        text-decoration: none;
-        font-size: 14px;
+    .breadcrumb {
+        font-size: 15px;
+        width: 230px;
+        height: 40px;
     }
     .cart_product img {
-        width: 100px;
-        height: 100px;
-    }  
+        color: #000;
+    }
+    ul li, li > a {
+    font-size: 12px;
+    }
+}
 </style>
 
 @endsection

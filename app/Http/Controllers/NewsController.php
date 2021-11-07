@@ -49,4 +49,10 @@ class NewsController extends Controller
         return view('news.detail', compact('categorys','slides','news','list_news'));
     }
 
+ 
+    public function list_news(){
+        $news = News::orderBy('id','DESC')->paginate(6);
+        return view('news.list', compact('news'));
+    }
+
 }

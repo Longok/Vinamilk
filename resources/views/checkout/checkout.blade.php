@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
 @include('layout.header')
-<div class="container text-dark"> 
+<div class="container"> 
 <form action="{{URL::to('/save-info-customer')}}" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">         
     <nav aria-label="breadcrumb">
@@ -11,25 +11,25 @@
         </ol>
         
         <div class="text-center mt-5">
-            <p>Vui lòng điền thông tin gửi hàng</p>          
+            <h2>Vui lòng điền thông tin gửi hàng</h2>          
         </div> 
     </nav>    
         <div class="row mt-4 text-dark">    
             <div class="col-md-8 col-xs-12 mx-auto">                                                   
                     <div class="mt-3">            
-                        <label for="">Tên người đặt hàng</label> 
+                        <label class="info">Tên người đặt hàng</label> 
                         <input type="text"class="form-control" value="{{ old('shipping_name')}}" placeholder="Họ và tên" name="shipping_name">        
                     </div>
                     <div class="mt-3">            
-                        <label for="">Số điện thoại</label>       
+                        <label class="info">Số điện thoại</label>       
                         <input type="text"class="form-control" value="{{ old('shipping_phone')}}" placeholder="Số điện thoại" name="shipping_phone">        
                     </div>
                     <div class="mt-3">            
-                        <label for="">Email</label>       
+                        <label class="info">Email</label>       
                         <input type="text"class="form-control" value="{{ old('shipping_email')}}" placeholder="Email" name="shipping_email">        
                     </div>
                     <div class="mt-3">            
-                        <label for="">Địa chỉ</label>      
+                        <label class="info">Địa chỉ</label>      
                             <!-- <select class="form-control choose city" name="city" id="city" >
                                     <option value="0">--Chọn thành phố--</option>
                                     @foreach($thanhpho as $key => $tp)       
@@ -53,13 +53,13 @@
             </div>                   
             <div class="col-md-8 col-xs-12 mx-auto">
                 <div class="mt-3">            
-                    <label for="">Ghi chú</label>                               
+                    <label class="info">Ghi chú</label>                               
                     <textarea type="text" class="form-control ckeditor" placeholder="Ghi chú" name="shipping_note" ></textarea> 
                 </div>                
-                <div class="">
+                <h4 class="mt-3">
                     Chọn hình thức thanh toán:
-                </div>
-                <div class="payment text-primary">
+                </h4>
+                <div class="payment text-primary mt-3">
                     <span>
                         <label><input name="shipping_method" type="checkbox" value="ATM">Thanh toán ATM</label>        
                     </span>        
@@ -70,7 +70,7 @@
                         <label><input name="shipping_method" type="checkbox" value="VN-Pay">Thanh toán VN-Pay</label>        
                     </span>           
                 </div>   
-                <button type="submit" name="thanhtoan" class="btn btn-success btn-md mt-3 thanhtoan">Đặt hàng</button>  
+                <button type="submit" name="thanhtoan" class="btn mt-3 thanhtoan">Đặt hàng</button>  
             </div> 
             <div class="col-md-8 col-xs-12 mx-auto">
                 <div class="">
@@ -78,15 +78,15 @@
                         // dd(Session::get('cart'));           
                     ?>
                     @if(Session::get('cart') !=null)
-                        <table class="col-md-10 col-xs-10 mx-auto text-center info text-dark">
+                        <table class="col-md-10 col-xs-10 mx-auto text-center">
                             <thead>
                                 <tr class="cart_menu">
-                                    <td class="">Sản phẩm</td>
-                                    <td class="">Tên sản phẩm</td>
-                                    <td class="">Giá (đ)</td>
-                                    <td class="">Số lượng</td>
-                                    <td class="">Tổng</td>
-                                    <td>Xóa</td>
+                                    <td>Sản phẩm</td>
+                                    <td>Tên sản phẩm</td>
+                                    <td>Giá (đ)</td>
+                                    <td>Số lượng</td>
+                                    <td>Tổng</td>
+                                    <td class="mt-3">Xóa</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,23 +96,23 @@
                                         <img src="{{ asset('/storage/image/'.$v_content['image']) }}">
                                     </td>
                                     <td class="cart_name">
-                                        <p> <a href="">{{ $v_content['name']}}</a></p>
+                                        <h5> <a href="">{{ $v_content['name']}}</a></h5>
                                     </td>
                                     <td class="cart_price">
                                        
-                                        <p class="card-title">{{ number_format($v_content['price'],0,',','.')}} đ</p>
+                                        <h5 class="card-title">{{ number_format($v_content['price'],0,',','.')}}</h5>
                                       
                                     </td>
                                     <td class="cart_quantity">
                                         <div class="cart_quantity_button">                                          
                                             <input class="input_quantity" type="number" name="quantity"
-                                            value="{{ $v_content['quantity']}}" autocomplete="off" size="2">                                               
+                                            value="{{ $v_content['quantity']}}" autocomplete="off" size="3">                                               
                                         </div>
                                     </td>
                                     <td class="total">
-                                        <p class="cart_total_price">{{number_format($v_content['price']*$v_content['quantity'],0,',','.')}} đ</p>
+                                        <h5 class="cart_total_price">{{number_format($v_content['price']*$v_content['quantity'],0,',','.')}}</h5>
                                     </td>
-                                    <td class="cart_delete">
+                                    <td class="cart_delete mt-5">
                                         <a class="cart_quantity_delete" href="{{ URL::to('/delete-cart/')}}">Xóa</a>
                                     </td>
                                 </tr>
@@ -129,7 +129,7 @@
 @include('layout.footer')
 @endsection
 @section('script')
-  <script>
+<script>
     $(document).ready(function(){
         $('.choose').on('change',function(){
             var action = $(this).attr('id');
@@ -151,17 +151,35 @@
             });
         });  
     })
-  </script> 
-  <style>
+</script> 
+<style>
+
+    td {
+        font-size: 1.3rem;
+     } 
+    .payment label {
+        font-size: 1.5rem;
+    }  
+    .info {
+        font-size: 1.5rem;
+    }
+  
+    .container {
+        margin: 5rem auto;
+    }
     .cart_product img {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
     }
     @media (max-width: 740px) {
         .info {
             font-size: 12px;
             text: center;
         }
+        .cart_product img {
+        width: 60px;
+        height: 60px;
+    }
     }    
-  </style>                 
+</style>                 
 @endsection

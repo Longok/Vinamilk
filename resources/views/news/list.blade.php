@@ -10,19 +10,26 @@
                     <thead>
                         <tr class="text-center">
                             <th scope="col-4" class="">#</th>
-                            <th scope="col-4" class="">Tên khách hàng</th>
-                            <th scope="col-4" class="">Email</th>
+                            <th scope="col-4" class="">Title</th>
+                            <th scope="col-4" class="">Description</th>
+                            <!-- <th scope="col-4" class="">Content</th> -->
+                            <th scope="col-4" class="">Image</th>
                             <th scope="col-4" class="">Sửa/Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($customers as $customer)
+                        @foreach($news as $new)
                             <tr class="text-center">
-                                <td scope="row">{{$customer->customer_id}}</td>
-                                <td scope="row">{{$customer->name}}</td>
-                                <td scope="row">{{$customer->email}}</td>
+                                <td scope="row">{{$new->id}}</td>
+                                <td scope="row">{{$new->title}}</td>
+                                <td scope="row">{{$new->description}}</td>
+                                <!-- <td scope="row">{{$new->content}}</td> -->
+                                <td scope="row">
+                                    <img src="{{ asset('/storage/image/'.$new->image) }}" height="160" width="100%">
+                                </td>
                                 <td>
-                                    <a href="{{URL::to('/delete-customer/'.$customer->id)}}">Xóa</a>
+                                    <a href="#">Xóa</a>|
+                                    <a href="#">Sửa</a>
                                 </td>
                             </tr>
                         @endforeach

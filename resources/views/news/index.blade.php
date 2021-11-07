@@ -3,40 +3,6 @@
 @include('layout.header')
 
 <body>
-    <div id="menu">
-        <ul>
-            <li class="active">
-                <a href="{{ URL::to('/index') }}">Trang chủ</a>
-            </li>
-            <li>
-                <a href="#">Sản phẩm
-                    <i class="ti-angle-down"></i>
-                </a>
-                <ul class="submenu">
-                    @foreach($categorys as $category)
-                    <li><a href="{{URL::to('/category/'.$category->id)}}">{{ $category->name }}</a></li>
-                    @endforeach
-                </ul>
-            </li>
-            <li><a href="{{ URL::to('/news') }}">Tin tức</a></li>
-            <li><a href="#">Liên hệ</a></li>
-        </ul>
-        <div class="search-btn">
-            <form action="{{ URL::to('/search') }}" method="post">
-                {{ csrf_field() }}
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="keywords" placeholder="Tìm kiếm.."
-                        aria-label="Recipient's username">
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div id="menu-icon" class="menu-icon">
-            <i class="ti-align-justify"></i>
-        </div>
-    </div>
     <div class="slide">
         <div id="demo" class="carousel " data-ride="carousel">
             <ul class="carousel-indicators">
@@ -71,11 +37,11 @@
             @foreach( $news as $new)
                 <div class="mt-4 news">                                      
                         <img src="{{ asset('/storage/image/'.$new->image) }}" height="160" width="100%">
-                        <h6 class=" mt-2 "><a href="{{ URL::to('/news-detail/'.$new->id)}}">{{$new->title}}</a></h6>                   
-                        <p><a href="{{ URL::to('/news-detail/'.$new->id)}}">{{ $new->description}}</a></p>
+                        <h4 class=" mt-2 "><a href="{{ URL::to('/news-detail/'.$new->id)}}">{{$new->title}}</a></h4>                   
+                        <h5><a href="{{ URL::to('/news-detail/'.$new->id)}}">{{ $new->description}}</a></h5>
                     <div class="d-flex date">                        
                         <p class="mr-auto">{{$new->created_at}}</p> 
-                        <a href="{{ URL::to('/news-detail/'.$new->id)}}">Xem thêm</a>     
+                        <h5><a href="{{ URL::to('/news-detail/'.$new->id)}}">Xem thêm</a></h5>     
                     </div>                   
                 </div>
             @endforeach   
@@ -118,9 +84,9 @@ body{
     width: calc(25% - 30px);
 }
 
-.news > h6 > a {
+.news > h5 > a {
     text-decoration: none;
-    color: black;
+    color: #666;
 }
 .news > p > a {
     text-decoration: none;

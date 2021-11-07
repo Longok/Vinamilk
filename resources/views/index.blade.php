@@ -66,7 +66,6 @@
                         <div class="card__bottom">
                             <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
                             <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                            <!-- <button type="button" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">Mua hàng</button> -->
                             <a href="" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">Mua hàng</a>
                         </div>
                     </div>                           

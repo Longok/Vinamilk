@@ -1,8 +1,10 @@
 @extends('layout.master')
-@include('layout.headerAdmin')
+@include('layout.side-bar')
 @section('content')
-   <div class="container">
-       <div class="row">
+
+    <div class="main-content"> 
+    @include('layout.headerAdmin')
+        <div class="main">
            <div class="col-md-12">
             <section class="panel mt-3">
                 <div class=" col-md-8 mx-auto">
@@ -24,28 +26,28 @@
                           }
                         ?>
                     </div>
-                    <div class="mt-4">
+                    <h2>
                         <a href="">Thêm Slide</a>
-                    </div>
+                    </h2>
                         <form action="{{ URL::to('add-slide')}}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <div class="form-group mt-3">
-                                    <label for="">Tên Slide</label>
-                                    <input class="form-control" name="name" type="text">
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label for="">Mô tả Slide</label>
-                                    <input class="form-control" name="description" type="text">
-                                </div>
+                            <div class="form-group mt-3">
+                                <label class="info"> Tên Slide</label>
+                                <input class="form-control" name="name" type="text">
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="info"> Mô tả Slide</label>
+                                <input class="form-control" name="description" type="text">
+                            </div>
 
-                                <div class="form-group mt-3">
-                                    <label for="">Hình ảnh Slide</label>
-                                    <input class="form-control" name="image" type="file">
-                                </div>
+                            <div class="form-group mt-3">
+                                <label class="info"> Hình ảnh Slide</label>
+                                <input class="form-control" name="image" type="file">
+                            </div>
 
-                                <div class="form-group mt-3">
-                                    <button type="submit" class="btn btn-danger">Thêm Slide</button>
-                                </div>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-danger">Thêm Slide</button>
+                            </div>
                         </form>
                 </div>
             </section>
@@ -53,3 +55,17 @@
        </div>
    </div>
 @endsection
+<style>
+
+    .main h2 a {
+        text-decoration: none;
+    }
+    
+    .form-group .info {
+        font-size: 1.5rem;
+    }
+
+    select, option {
+        font-size: 1.5rem;
+    }
+</style>

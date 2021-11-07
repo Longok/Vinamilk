@@ -1,10 +1,10 @@
 @extends('layout.master')
+@include('layout.side-bar')
 @section('content')
-<div class="mx-5 text-primary">
-    <h6><a href="{{URL::to('/admin')}}">Trang Admin</a></h6>
-</div>
-   <div class="container">
-       <div class="row">
+
+    <div class="main-content"> 
+    @include('layout.headerAdmin')
+        <div class="main">
            <div class="col-md-12">
             <section class="panel mt-3">
                 <div class=" col-md-8 mx-auto">
@@ -26,29 +26,29 @@
                           }
                         ?>
                     </div>
-                    <div class="mt-4">
+                    <h2>
                         <a href="">Sửa sản phẩm</a>
-                    </div>
+                    </h2>       
                         <form action="{{URL::to('/update-product/'.$products->id)}}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group mt-3">
-                                    <label for="">Tên sản phẩm</label>
+                                    <label class="info"> Tên sản phẩm</label>
                                     <input class="form-control" name="name" type="text" placeholder="{{ $products->name }}">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Mô tả sản phẩm</label>
+                                    <label class="info"> Mô tả sản phẩm</label>
                                     <input class="form-control" name="description" type="text" placeholder="{{ $products->desc }}">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Số lượng sản phẩm</label>
+                                    <label class="info"> Số lượng sản phẩm</label>
                                     <input class="form-control" name="quantity" type="text" placeholder="{{ $products->quantity }}">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Giá sản phẩm</label>
+                                    <label class="info"> Giá sản phẩm</label>
                                     <input class="form-control" name="price" type="text" placeholder="{{ $products->price }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Giảm giá sản phẩm</label>
+                                    <label class="info"> Giảm giá sản phẩm</label>
                                     <select name="discount" class="form-control input-sm m-bot15" placeholder="{{ $products->discount }}">
                                         <option value="0">0%</option>
                                         <option value="10">10%</option>
@@ -58,11 +58,11 @@
                                     </select>
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Hình ảnh sản phẩm</label>
+                                    <label class="info"> Hình ảnh sản phẩm</label>
                                     <input class="form-control" name="image" type="file" >
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Danh mục sản phẩm</label>
+                                    <label class="info"> Danh mục sản phẩm</label>
                                     <select name="category_id" class="form-control input-sm m-bot15">
                                         <option value="0">Chọn danh mục</option>
                                             @foreach( $category as $cate)
@@ -80,3 +80,17 @@
        </div>
    </div>
 @endsection
+<style>
+
+    .main h2 a {
+        text-decoration: none;
+    }
+    
+    .info {
+        font-size: 1.5rem;
+    }
+
+    select, option {
+        font-size: 1.5rem;
+    }
+</style>

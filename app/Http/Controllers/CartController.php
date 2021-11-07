@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CategoryRequest;
 use App\Category;
 use App\Product;
+use App\Slide;
 use Session;
 use Cart;
 
@@ -77,7 +78,11 @@ class CartController extends Controller
     }
 
     public function index(){
-        return view('cart.index');
+        $categorys = Category::all();
+        $products = Product::orderBy('id','desc')->paginate(12);
+        $slides = Slide::all();
+        // return view('/index', compact('categorys','products','slides'));
+        return view('cart.index', compact('categorys','products','slides'));
     }
 
 

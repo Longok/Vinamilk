@@ -27,12 +27,12 @@
                     </div>
                     <h1>Login</h1>
                     <div class="form-group">
-                        <!-- <label for="email">Email</label><br> -->
+
                         <input type="email" class="form-control" name="admin_email" placeholder="ĐIền email" required="">
 
                     </div>
                     <div class="form-group">
-                        <!-- <label for="password">Password</label><br> -->
+
                         <input type="password" class="form-control" name="admin_password" placeholder="Điền password" required="">
                     </div>
                     <button type="submit" class="btn">Đăng nhập</button>

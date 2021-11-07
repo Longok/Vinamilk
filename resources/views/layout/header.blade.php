@@ -1,5 +1,5 @@
 
-<header class="header">
+<div class="header">
     <a href="{{ URL::to('/index')}}" class="logo">
         <img src="{{ asset('image/logo.png') }}" alt=""> <span>Demo</span> 
     </a>
@@ -28,9 +28,10 @@
     <div class="icons">
         <div class="icon-header fas fa-bars" id="menu-btn"></div>
         <div class="icon-header fas fa-search" id="search-btn"></div>
-        <div class="icon-header fas fa-shopping-cart" id="cart-btn">
-            <span class="show-cart"></span>
-        </div>
+        <!-- <div class="icon-header fas fa-shopping-cart" id="cart-btn"> -->
+            <!-- <span class="show-cart"></span> -->
+            <a class="icon-header fas fa-shopping-cart" id="cart-btn" href="{{ URL::to('/cart')}}"><span class="show-cart"></span></a>   
+        <!-- </div> -->
         
         @if(Auth::check())
             {{Auth::user()->name}}
@@ -58,7 +59,7 @@
         <p>Chưa có tài khoản <a href="{{ URL::to('/sign-up')}}">Tạo ngay</a></p>
         <input type="submit" value="Đăng nhập" class="btn">
     </form> -->
-</header>
+</div>
 
 
 
@@ -94,3 +95,13 @@
     });
     
 </script>
+<style>
+    .header .logo > img {
+        width: 80px;
+        height: 40px; 
+        margin-left: 0; 
+    }
+    .header .logo > span {
+        display: none;
+    }
+</style>

@@ -1,7 +1,11 @@
 @extends('layout.master')
-@include('layout.headerAdmin')
+@include('layout.side-bar')
+
 @section('content')
-   <div class="container">
+
+    <div class="main-content"> 
+    @include('layout.headerAdmin')
+        <div class="main">
             <section class="panel mt-3">
                 <div class=" col-md-8 col-xs-12 mx-auto">
                     @if ($errors->any())
@@ -22,29 +26,29 @@
                           }
                         ?>
                     </div>
-                    <div class="mt-4">
+                    <h2>
                         <a href="">Thêm sản phẩm</a>
-                    </div>
+                    </h2>
                         <form action="{{Route('add-product')}}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group mt-3">
-                                    <label for="">Tên sản phẩm</label>
+                                    <label class="info">Tên sản phẩm</label>
                                     <input class="form-control" name="name" type="text">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Mô tả sản phẩm</label>
+                                    <label class="info">Mô tả sản phẩm</label>
                                     <input class="form-control" name="description" type="text">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Số lượng sản phẩm</label>
+                                    <label class="info">Số lượng sản phẩm</label>
                                     <input class="form-control" name="quantity" type="text">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Giá sản phẩm</label>
+                                    <label class="info">Giá sản phẩm</label>
                                     <input class="form-control" name="price" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Giảm giá sản phẩm</label>
+                                    <label class="info">Giảm giá sản phẩm</label>
                                     <select name="discount" class="form-control input-sm m-bot15">
                                         <option value="0">0%</option>
                                         <option value="10">10%</option>
@@ -54,11 +58,11 @@
                                     </select>
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Hình ảnh sản phẩm</label>
+                                    <label class="info">Hình ảnh sản phẩm</label>
                                     <input class="form-control" name="image" type="file">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="">Danh mục sản phẩm</label>
+                                    <label class="info">Danh mục sản phẩm</label>
                                     <select name="category_id" class="form-control input-sm m-bot15">
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -71,6 +75,21 @@
                         </form>
                 </div>
             </section>
+        </div>    
    </div>
-@include('layout.footer')   
+
 @endsection
+<style>
+
+    .main h2 a {
+        text-decoration: none;
+    }
+    
+    .form-group .info {
+        font-size: 1.5rem;
+    }
+
+    select, option {
+        font-size: 1.5rem;
+    }
+</style>

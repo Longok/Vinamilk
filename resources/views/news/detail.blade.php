@@ -3,40 +3,7 @@
 @include('layout.header')
 
 <body>
-    <div id="menu">
-        <ul>
-            <li class="active">
-                <a href="{{ URL::to('/index') }}">Trang chủ</a>
-            </li>
-            <li>
-                <a href="#">Sản phẩm
-                    <i class="ti-angle-down"></i>
-                </a>
-                <ul class="submenu">
-                    @foreach($categorys as $category)
-                    <li><a href="{{URL::to('/category/'.$category->id)}}">{{ $category->name }}</a></li>
-                    @endforeach
-                </ul>
-            </li>
-            <li><a href="{{ URL::to('/news') }}">Tin tức</a></li>
-            <li><a href="#">Liên hệ</a></li>
-        </ul>
-        <div class="search-btn">
-            <form action="{{ URL::to('/search') }}" method="post">
-                {{ csrf_field() }}
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="keywords" placeholder="Tìm kiếm.."
-                        aria-label="Recipient's username">
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div id="menu-icon" class="menu-icon">
-            <i class="ti-align-justify"></i>
-        </div>
-    </div>
+    
     <div class="slide">
         <div id="demo" class="carousel " data-ride="carousel">
             <ul class="carousel-indicators">
@@ -69,18 +36,18 @@
     <div class="content bg-light mt-2">
         <div class="container">
             <div class=" col-md-10 col-xs-12 mt-4 news ">                   
-                <h5 class=" ">{{$news->title}}</h5>
+                <h1>{{$news->title}}</h1>
                    
                 <img src="{{ asset('/storage/image/'.$news->image) }}" height="100%" width="100%">
                   
-                <h6 class=" mt-4 ">{{ $news->description}}</a></h6>
+                <h4 class="mt-4 ">{{ $news->description}}</a></h4>
 
-                <h6>{!! $news->content !!}</h6>        
+                <h4 class="text-secondary">{!! $news->content !!}</h4>        
             </div>           
         </div>    
         <div class="">
-                <h4 class="text-warning mt-5 text-center">Bài viết liên quan</h4>
-                <ul class="list-news ">
+                <h3 class="text-dark mt-5 text-center">Bài viết liên quan</h3>
+                <ul class="list-news">
                     @foreach($list_news as $news)
                     <a href="{{ URL::to('/news-detail/'.$news->id) }}"><li>{{$news->title}}</li></a>                   
                     @endforeach
@@ -108,9 +75,14 @@ body{
     padding: 0;
     margin:0;
     box-sizing: border-box;
-}    
+}  
+
+.container h1 {
+    margin: 2rem 0;
+    padding: 2rem 0;
+    text-align: center;
+}
 .news {
-    /* border: 2px solid black ; */
     color: #000;
     margin: auto;
     min-height: 300px;
@@ -121,6 +93,12 @@ body{
     flex-direction: column;
     align-items: start;
 }
+
+.list-news > a {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
 @media (min-width: 740px) and (max-width:1023px) {
     .list-news {
     margin-left: 10%;
