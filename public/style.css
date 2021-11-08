@@ -291,6 +291,7 @@ section {
     outline: var(--outline);
     outline-offset: -1rem;
     cursor: pointer;
+    /* height: 400px; */
 }
 
 .card__item:hover {
@@ -300,7 +301,7 @@ section {
 
 .card__item .card-content {
     height: 200px;
-    padding: 2rem;
+    padding: 1.5rem;
     flex-direction: column;
     display: flex;
 }
@@ -317,16 +318,42 @@ section {
 }
 
 .card-content .card__top .card-price {
-    font-size: 1.5rem;
-    color: var(--light-color);
-    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+    margin-bottom: -2rem;
 }
 
+.card-content .card__top .price-item, .price-discount {
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.card-content .card__top .price-discount {
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 1rem 0;
+    width: 6rem;
+    height: 2.5rem;
+    line-height: .5rem;
+    background-color: var(--main-color);
+    border-radius: .5rem;
+}
+
+.card-content .card__top  .strike-discount {
+    text-decoration: line-through;
+    color: var(--light-color);
+    font-size: 1.3rem;
+    padding-top: 1rem;
+}
 .card__bottom {
     margin-top: auto;
     flex-shrink: 0;
     display: flex;
+}
 
+.card__bottom i {
+    padding-right: .5rem;
 }
 
 .input_quantity {
@@ -348,15 +375,14 @@ section {
 .btn {
     display: inline-block;
     font-size: 1.7rem;
-    border-radius: 0 0 1rem 0;
+    border-radius: .5rem;
     border: .2rem solid var(--green);
     color: var(--black);
     cursor: pointer;
     background: none;
     height: 3rem;
-    /* width: 75%; */
-    width: 100%;
     line-height: 2rem;
+    margin: 0 auto;
 }
 
 .btn:hover {
@@ -493,6 +519,15 @@ section {
         display: inline-block;
     }
     
+    .header .logo > img {
+        width: 80px;
+        height: 40px; 
+        margin-left: 0; 
+    }
+    .header .logo > span {
+        display: none;
+    }
+
     .header .search-form {
         width: 90%;
     }

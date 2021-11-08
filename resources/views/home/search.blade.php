@@ -63,10 +63,12 @@
                                 @endif
                             </div>
                             <div class="card__bottom">
-                                <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
+                                <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="hidden" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                                <!-- <button type="button" class="add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button> -->
-                                <a href="" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">Mua hàng</a>
+                                <button type="button" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                        Thêm vào giỏ
+                                </button>
                             </div>
                         </div>                           
                         
@@ -112,7 +114,6 @@
                 },
                 success:function(data){
                     swal("Good job!", "Thêm vào giỏ hàng thành công!", "success");
-                    // alert(data);   
                     show_cart();            
                 }
             });

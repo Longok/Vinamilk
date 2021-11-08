@@ -52,21 +52,28 @@
                         <div class="card-content">
                             <div class="card__top">
                                 <h3 class="card-name ">{{$pro->name}}</h3>
-                                @if ($pro->price * $pro->discount == 0)
-                                <h3 class="card-price">{{number_format($pro->price)}} đ</h3>
-                                @else
-                                <strike class="card-price">{{number_format($pro->price)}} đ</strike>
-                                <h3 class="card-price">{{ number_format($pro->price - (( $pro->price *
-                                    $pro->discount)/100)) }} đ</h3>
-                                @endif
+                                <div class="card-price">
+                                    <div class="price">
+                                        @if ($pro->price * $pro->discount == 0)
+                                        <h3 class="price-item">{{number_format($pro->price)}} $</h3>
+                                        @else
+                                        <strike class="strike-discount">{{number_format($pro->price)}} $</strike>
+                                        <h3 class="price-item">{{ number_format($pro->price - (( $pro->price *
+                                            $pro->discount)/100)) }} $</h3>
+                                        @endif
+                                    </div>
+                                    <h3 class="price-discount">Giảm {{ $pro->discount }}%</h3>
+                                </div>
                             </div>
                             <div class="card__bottom">
-                                <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
+                                <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="hidden" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                                <!-- <button type="button" class="add-cart-ajax" data-id_product="{{$pro->id}}">Mua hàng</button> -->
-                                <a href="" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">Mua hàng</a>
+                                <button type="button" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                        Thêm vào giỏ
+                                </button>
                             </div>
-                        </div>                           
+                        </div>                                  
                         
                     </form>
                 </div>

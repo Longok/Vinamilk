@@ -81,27 +81,17 @@
         searchForm.classList.remove('active');
     });
 
-    $(document).ready(function (){
-        show_cart();
-        function show_cart(){
-            $.ajax({
-                url:'{{ url('/show-cart') }}',
-                method: "GET",
-                success:function(data){
-                    $('.show-cart').html(data);
-                }
-            });
-        }    
-    });
+    // $(document).ready(function (){
+    //     show_cart();
+    //     function show_cart(){
+    //         $.ajax({
+    //             url:'{{ url('/show-cart') }}',
+    //             method: "GET",
+    //             success:function(data){
+    //                 $('.show-cart').html(data);
+    //             }
+    //         });
+    //     }    
+    // });
     
 </script>
-<style>
-    .header .logo > img {
-        width: 80px;
-        height: 40px; 
-        margin-left: 0; 
-    }
-    .header .logo > span {
-        display: none;
-    }
-</style>

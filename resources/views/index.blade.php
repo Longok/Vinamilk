@@ -54,22 +54,34 @@
                     <img class="card-image"src="{{ asset('/storage/image/'.$pro->image) }}">
                     <div class="card-content">
                         <div class="card__top">
-                            <h3 class="card-name ">{{$pro->name}}</h3>
-                            @if ($pro->price * $pro->discount == 0)
-                            <h3 class="card-price">{{number_format($pro->price)}} $</h3>
-                            @else
-                            <strike class="card-price">{{number_format($pro->price)}} $</strike>
-                            <h3 class="card-price">{{ number_format($pro->price - (( $pro->price *
-                                $pro->discount)/100)) }} $</h3>
-                            @endif
+                            <div class="card-name">
+                                <h3>{{$pro->name}}</h3>
+                            </div>
+                            <div class="card-price">
+                                <div class="price">
+                                    @if ($pro->price * $pro->discount == 0)
+                                    <h3 class="price-item">{{number_format($pro->price)}} $</h3>
+                                    @else
+                                    <strike class="strike-discount">{{number_format($pro->price)}} $</strike>
+                                    <h3 class="price-item">{{ number_format($pro->price - (( $pro->price *
+                                        $pro->discount)/100)) }} $</h3>
+                                    @endif
+                                </div>
+                                <div class="div">
+                                    <h3 class="price-discount">Giảm {{ $pro->discount }}%</h3>
+                                </div>
+                            </div>
                         </div>
                         <div class="card__bottom">
-                            <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="number" min="1" value="1">
+                            <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="hidden" min="1" value="1">
                             <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
-                            <a href="" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">Mua hàng</a>
+                            <button type="button" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">
+                                <i class="fas fa-shopping-cart"></i>
+                                    Thêm vào giỏ
+                            </button>
                         </div>
                     </div>                           
-                    
+                  
                 </form>
             </div>
         @endforeach
@@ -82,17 +94,16 @@
 
 <script>
     show_cart();
-        function show_cart(){
-            $.ajax({
-                url:'{{ url('/show-cart') }}',
-                method: "GET",
-                success:function(data){
-                    $('.show-cart').html(data);
-                }
-            });
-        } 
-
-   
+    function show_cart(){
+        $.ajax({
+            url:'{{ url('/show-cart') }}',
+            method: "GET",
+            success:function(data){
+                $('.show-cart').html(data);
+            }
+        });
+    } 
+ 
     //add-cart-ajax
     $(document).ready(function (){
         $('.add-cart-ajax').click(function(){
@@ -115,8 +126,7 @@
                     _token:_token,
                 },
                 success:function(data){
-                    swal("Good job!", "Thêm vào giỏ hàng thành công!", "success");
-                    // alert(data);   
+                    swal("Good job!", "Thêm vào giỏ hàng thành công!", "success"); 
                     show_cart();            
                 }
             });

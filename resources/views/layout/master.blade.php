@@ -26,11 +26,6 @@
   @section('content')
 
   @show  
-  @yield('script')  
+  <!-- @yield('script')   -->
 </body>
-<!-- <script>
-  $(document).ready(function(){
-    swal("Hello world!");
-  });
-</script> -->
 </html>

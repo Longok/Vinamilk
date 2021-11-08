@@ -1,6 +1,7 @@
 @extends('layout.master')
-@section('content')
 @include('layout.header')
+@section('content')
+
 <div class="container" style="margin-top: 120px">   
     <div class=" col-md-12 col-xs-12 mx-auto">
         <div class="col-md-12 col-xs-12 mx-auto text-center d-flex">
