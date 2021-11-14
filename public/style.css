@@ -269,7 +269,7 @@ section {
     padding: 2rem 8%;
 }
 
-.cards {
+.card__list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
     gap: 1.5rem;
@@ -279,31 +279,22 @@ section {
     box-shadow: var(--box-shadow);
     border-radius: 1rem;
     background-color: #fff;
-    justify-content: center;
-    align-items: center;
     border: 2rem solid #fff;
     border-left: 2rem solid #fff;
     color: black;
     text-align: center;
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     outline: var(--outline);
     outline-offset: -1rem;
     cursor: pointer;
-    /* height: 400px; */
+    padding: 0 1.5rem;
 }
 
 .card__item:hover {
     outline: var(--outline-hover);
     outline-offset: 0rem;
-}
-
-.card__item .card-content {
-    height: 200px;
-    padding: 1.5rem;
-    flex-direction: column;
-    display: flex;
 }
 
 .card__item .card-image {
@@ -313,23 +304,45 @@ section {
     padding-top: 2rem;
 }
 
-.card-content .card__top .card-name {
+.card__item .card-content {
+    height: 180px;
+    flex-direction: column;
+    display: flex;
+    flex: 1;
+}
+
+.card__item .card-content .card-top {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-content .card-top .card-name {
     font-size: 2rem;
 }
 
-.card-content .card__top .card-price {
+.card-content .card-top .card-price {
     display: flex;
     justify-content: space-between;
     padding-top: 2rem;
-    margin-bottom: -2rem;
+    margin-top: auto;
+    flex-shrink: 0;
 }
 
-.card-content .card__top .price-item, .price-discount {
+.card-content .card-top .card-price .price-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content .card-top .price-item {
     font-size: 1.5rem;
     color: var(--main-color);
+    margin-top: auto;
+    line-height: 1rem;
 }
 
-.card-content .card__top .price-discount {
+.card-content .card-top .price-discount {
     font-size: 1.3rem;
     color: #fff;
     padding: 1rem 0;
@@ -338,21 +351,25 @@ section {
     line-height: .5rem;
     background-color: var(--main-color);
     border-radius: .5rem;
+    margin-top: auto;
 }
 
-.card-content .card__top  .strike-discount {
+.card-content .card-top .strike-discount {
     text-decoration: line-through;
     color: var(--light-color);
     font-size: 1.3rem;
     padding-top: 1rem;
+    margin-top: auto;
 }
-.card__bottom {
+.card-bottom {
     margin-top: auto;
     flex-shrink: 0;
     display: flex;
+    width: 100%;
+    font-size: 2.5rem;
 }
 
-.card__bottom i {
+.card-bottom i {
     padding-right: .5rem;
 }
 
@@ -389,15 +406,17 @@ section {
     background: var(--green);
     color: #fff;
 }
- 
+
 .footer {
     background: #fff;
+    margin-top: 2rem;
+    border-top: .1rem solid rgb(185, 181, 181);
 }
 
 .footer .box-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 
 .footer .box-container .box .footer-app img {
@@ -500,7 +519,7 @@ section {
 /* reponsive */
 @media (max-width:991px) {
     html {
-        font-size: 55%;
+        font-size: 65%;
     }
 
     .header {
@@ -514,7 +533,19 @@ section {
 }
 
 @media (max-width:768px) {
+    
+    html {
+        font-size: 65%;
+    }
 
+    .header {
+        padding: 2rem;
+    }
+
+    section {
+        padding: 2rem;
+    }
+    
     #menu-btn {
         display: inline-block;
     }
@@ -610,7 +641,7 @@ section {
 
 @media (max-width:450px) {
     html {
-        font-size: 50%;
+        font-size: 55%;
     }
 
     .header .logo span {

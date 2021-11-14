@@ -10,9 +10,9 @@
 </head>
 <body>
 <div class="sign-in mx-5 ">
-    <div class="row">
+
         <a href="{{ URL::to('index')}}">Trang chủ</a>
-        <div class="col-6 col-md-3 mx-auto">
+        <div class="login">
             <form action="{{ URL::to('/dashboard')}}" method="post">
                 {{ csrf_field() }}             
                 <div class="login-box">
@@ -61,8 +61,13 @@
         color:white;
         text-decoration:none;
     }
+
+    .login {
+        display: flex;
+        justify-content: center;
+    }
+
     .login-box{
-        position:absolute;
         border: 1px solid #66ff66;
         padding:15px;
         margin-top:75px;
@@ -71,7 +76,8 @@
         color:white;
         background:none;
         outline:none;
-    }    
+    } 
+
     .login-box h1{
         font-size:40px;
         border-bottom:1px solid #66ff66;
@@ -80,6 +86,7 @@
         color:none;
         margin-left:8px;
     }
+    
     .form-group{
         color:white;
         border-bottom:1px solid #66ff66;

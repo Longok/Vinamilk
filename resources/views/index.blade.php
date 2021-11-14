@@ -35,7 +35,7 @@
 
     </div> 
 
-    <section class="cards">   
+    <section class="card__list">   
 
         @foreach($products as $pro)
             <div class="card__item">
@@ -53,12 +53,10 @@
                     <input id="quantity" type="hidden" min="1" value="1" class="product_quantity_{{ $pro->id }}">        
                     <img class="card-image"src="{{ asset('/storage/image/'.$pro->image) }}">
                     <div class="card-content">
-                        <div class="card__top">
-                            <div class="card-name">
-                                <h3>{{$pro->name}}</h3>
-                            </div>
+                        <div class="card-top">                           
+                            <h3 class="card-name">{{$pro->name}}</h3>
                             <div class="card-price">
-                                <div class="price">
+                                <div class="price-left">
                                     @if ($pro->price * $pro->discount == 0)
                                     <h3 class="price-item">{{number_format($pro->price)}} $</h3>
                                     @else
@@ -67,12 +65,12 @@
                                         $pro->discount)/100)) }} $</h3>
                                     @endif
                                 </div>
-                                <div class="div">
-                                    <h3 class="price-discount">Giảm {{ $pro->discount }}%</h3>
+                                <div class="price-discount">
+                                    <p>Giảm {{ $pro->discount }}%</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card__bottom">
+                        <div class="card-bottom">
                             <input id="quantity" class="product_quantity_{{ $pro->id }}" name="qty" type="hidden" min="1" value="1">
                             <input name="productid_hidden" type="hidden" value="{{$pro->id}}">
                             <button type="button" class="add-cart-ajax btn" data-id_product="{{$pro->id}}">
@@ -88,7 +86,7 @@
             
     </section>  
 
-    <span class="pagination justify-content-center mt-3">{{ $products->links() }}</span>  
+    <span class="pagination justify-content-center mt-4">{{ $products->links() }}</span>  
 
 </body>
 

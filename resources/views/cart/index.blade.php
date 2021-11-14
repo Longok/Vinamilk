@@ -156,5 +156,16 @@ ul li, li > a {
     }
 }
 </style>
-
+<script>
+    show_cart();
+    function show_cart(){
+        $.ajax({
+            url:'{{ url('/show-cart') }}',
+            method: "GET",
+            success:function(data){
+                $('.show-cart').html(data);
+            }
+        });
+    }   
+</script>
 @endsection
