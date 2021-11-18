@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
 @include('layout.header')
-<div class="container"> 
+<div class="container mt-5"> 
 <form action="{{URL::to('/save-info-customer')}}" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">         
     <nav aria-label="breadcrumb">
@@ -81,19 +81,19 @@
                         <table class="col-md-10 col-xs-10 mx-auto text-center">
                             <thead>
                                 <tr class="cart_menu">
-                                    <td>Sản phẩm</td>
-                                    <td>Tên sản phẩm</td>
-                                    <td>Giá (đ)</td>
-                                    <td>Số lượng</td>
-                                    <td>Tổng</td>
-                                    <td class="mt-3">Xóa</td>
+                                    <th>Sản phẩm</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Giá (đ)</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng</th>
+                                    <th class="mt-3">Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach(Session::get('cart') as $key => $v_content)
                                 <tr>
                                     <td class="cart_product">
-                                        <img src="{{ asset('/storage/image/'.$v_content['image']) }}">
+                                        <img src="{{ asset('/storage/image/'.$v_content['image']) }}" height="100" width="100">
                                     </td>
                                     <td class="cart_name">
                                         <h5> <a href="">{{ $v_content['name']}}</a></h5>
@@ -155,7 +155,7 @@
 <style>
 
     td {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
      } 
     .payment label {
         font-size: 1.5rem;

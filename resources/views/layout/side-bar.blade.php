@@ -6,7 +6,7 @@
         <div class="sidebar-brand">
             <h2>
                 <span class="far fa-smile-wink"></span>
-                <span>Vinamilk </span>
+                <span><a href="{{ URL::to('/index')}}">Vinamilk </a></span>
              </h2>           
         </div>
 
