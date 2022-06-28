@@ -44,7 +44,7 @@ class AdminController extends Controller
     public function dashboard(Request $request){        
         $admin = Admin::where([['admin_email', '=', $request->admin_email]])
         ->first();
-    if (Hash::check($request->admin_password, $admin->admin_password)) {
+    if (Hash::check($request->admin_password, optional($admin->admin_password))) {
         Session::put('admin_name', $admin->admin_name);
 
         return redirect::to('/dashboard');
