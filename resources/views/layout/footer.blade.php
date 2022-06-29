@@ -39,8 +39,8 @@
     </div>
 
     <div class="box">
-      <a class="footer-img"href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=53194" target="_blank">
-        <img alt="Vinamilk Bộ Công thương icon" src="{{ asset('storage/image/bo-cong-thuong.png') }}">
+      <a class="footer-img" href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=53194" target="_blank">
+        <img alt="Vinamilk Bộ Công thương icon" src="{{ asset('image/bo-cong-thuong.png') }}">
       </a>
     </div>
   </div>

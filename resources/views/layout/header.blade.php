@@ -1,13 +1,13 @@
 
 <div class="header">
-    <a href="{{ URL::to('/index')}}" class="logo">
+    <a href="{{ URL::to('/')}}" class="logo">
         <img src="{{ asset('image/logo.png') }}" alt=""> <span>Demo</span> 
     </a>
 
     <nav class="navbar">
         <ul>
             <li>
-                <a href="{{ URL::to('/index') }}">Trang chủ</a>
+                <a href="{{ URL::to('/') }}">Trang chủ</a>
             </li>
             <li>
                 <a href="#">Sản phẩm
