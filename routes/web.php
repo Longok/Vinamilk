@@ -26,7 +26,7 @@ Route::get('/logout-admin', 'AdminController@logout');
 Route::get('/list-user','AdminController@list_user');
 
 //Home
-Route::get('/index','HomeController@index');
+Route::get('/','HomeController@index');
 Route::get('/category/{id}','HomeController@category');
 Route::post('/search','HomeController@search');
 
