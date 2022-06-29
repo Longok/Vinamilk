@@ -15,22 +15,22 @@ class SlideTableSeeder extends Seeder
             [
                 [   
                     'name' => 'Slide Sữa chua',
-                    'image' => 'Banner_nhan_hieu.jpg',   
+                    'image' => "{{ asset('image/Banner_nhan_hieu.jpg') }}", 
                     'description'=> 'Sản phẩm mới',
                 ],
                 [
                     'name' => 'Slide Sữa bột',
-                    'image' => 'Banner-Organic-Gold_PC.JPG.png',   
+                    'image' => "{{ asset('image/Banner-Organic-Gold_PC.JPG.png') }}",
                     'description'=> 'Sản phẩm mới',
                 ],
                 [
                     'name' => 'Slide Happy Tea',
-                    'image' => 'happy-mt-3.jpg',   
+                    'image' => "{{ asset('image/happy-mt-3.jpg') }}",   
                     'description'=> 'Sản phẩm mới',
                 ],
                 [
                     'name' => 'Slide Sữa tươi',
-                    'image' => 'VNM_Green-Farm_Banner_1920x914.jpg',   
+                    'image' => "{{ asset('image/VNM_Green-Farm_Banner_1920x914.jpg') }}",   
                     'description'=> 'Sản phẩm mới',
                 ],
             ]
